@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+{% block eyebrow_text %}Overview{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block page_subtitle %}<p>Welcome back. Here's what's happening across your institution today.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><span class="current">Dashboard</span>
+{% endblock %}
+
+{% block page_actions %}
+  <!-- <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button> -->
+{% endblock %}
+
+{% block content %}
+
+  <!-- Stat cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip blue"><i class="bi bi-people"></i></span>Total Students</div>
+        <div class="stat-value">2,481</div>
+        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>3.2% this term</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-calendar-check"></i></span>Attendance Today</div>
+        <div class="stat-value">94.1%</div>
+        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>1.4% vs yesterday</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-journal-text"></i></span>Pending Results</div>
+        <div class="stat-value">17</div>
+        <div class="stat-delta flat">Awaiting grading</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip red"><i class="bi bi-person-badge"></i></span>Staff on Leave</div>
+        <div class="stat-value">4</div>
+        <div class="stat-delta down"><i class="bi bi-arrow-down-short"></i>2 fewer than last week</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent students table -->
+  <div class="emis-card mb-4">
+    <div class="emis-card-header">
+      <h2>Recently Enrolled Students</h2>
+      <a href="#" class="small">View all</a>
+    </div>
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Roll No.</th>
+              <th>Class</th>
+              <th>Enrolled</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aarav Sharma</td>
+              <td class="id-cell">EMIS-2081-0142</td>
+              <td>Grade 10 — B</td>
+              <td>Aug 3, 2026</td>
+              <td><span class="pill pill-teal">Active</span></td>
+            </tr>
+            <tr>
+              <td>Sita Gurung</td>
+              <td class="id-cell">EMIS-2081-0143</td>
+              <td>Grade 9 — A</td>
+              <td>Aug 2, 2026</td>
+              <td><span class="pill pill-teal">Active</span></td>
+            </tr>
+            <tr>
+              <td>Bikash Thapa</td>
+              <td class="id-cell">EMIS-2081-0144</td>
+              <td>Grade 11 — C</td>
+              <td>Aug 1, 2026</td>
+              <td><span class="pill pill-amber">Pending docs</span></td>
+            </tr>
+            <tr>
+              <td>Puja Rai</td>
+              <td class="id-cell">EMIS-2081-0145</td>
+              <td>Grade 8 — A</td>
+              <td>Jul 30, 2026</td>
+              <td><span class="pill pill-red">Inactive</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state example (e.g. for a fresh module with no data yet) -->
+  <div class="emis-card">
+    <div class="emis-card-header">
+      <h2>Upcoming Exams</h2>
+    </div>
+    <div class="emis-card-body">
+      <div class="emis-empty">
+        <i class="bi bi-journal-x"></i>
+        <h4>No exams scheduled</h4>
+        <p>Once you create an exam under Examination &amp; Grades, it'll show up here.</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% load static %}
+<aside class="emis-sidebar">
+
+  <div class="emis-brand">
+    <div class="emis-brand-mark">E</div>
+    <div class="emis-brand-text">
+      <div class="name">EMIS</div>
+      <div class="sub">Admin Console</div>
+    </div>
+  </div>
+
+  <nav class="emis-nav">
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">General</div>
+      <a href="{% url 'general_dashboard' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        <i class="bi bi-grid-1x2"></i><span>Dashboard</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Student Management</div>
+      <a href="{% url 'student_list' %}" class="emis-nav-link">
+        <i class="bi bi-people"></i><span>Students</span>
+      </a>
+
+      <a href="{% url 'academics:classes_list' %}" class="emis-nav-link">
+        <i class="bi bi-collection"></i><span>Classes &amp; Sections</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Attendance</div>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-calendar-check"></i><span>Daily Attendance</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-bar-chart-steps"></i><span>Attendance Reports</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Examination &amp; Grades</div>
+      <a href="{% url 'examinations:exam_list' %}" class="emis-nav-link">
+        <i class="bi bi-journal-text"></i><span>Exams</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-graph-up"></i><span>Results &amp; Grades</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-award"></i><span>Report Cards</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Finances</div>
+      <a href="{% url 'finances:fee_structure_list' %}" class="emis-nav-link">
+        <i class="bi bi-cash-stack"></i><span>Fee Structures</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-receipt"></i><span>Payments &amp; Invoices</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Notices</div>
+      <a href="{% url 'notices:notice_list' %}" class="emis-nav-link">
+        <i class="bi bi-megaphone"></i><span>Notices</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Staff &amp; Access</div>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-person-badge"></i><span>Teachers &amp; Staff</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-shield-lock"></i><span>Roles &amp; Permissions</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">System</div>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-gear"></i><span>Settings</span>
+      </a>
+      <a href="#" class="emis-nav-link">
+        <i class="bi bi-clock-history"></i><span>Activity Log</span>
+      </a>
+    </div>
+
+  </nav>
+
+  <div class="emis-sidebar-footer">
+    <div class="emis-user-chip">
+      <div class="emis-user-avatar">
+        {% if request.user.is_authenticated %}{{ request.user.username|slice:":2"|upper }}{% else %}AD{% endif %}
+      </div>
+      <div class="emis-user-meta">
+        <div class="uname">{% if request.user.is_authenticated %}{{
+          request.user.get_full_name|default:request.user.username }}{% else %}Admin User{% endif %}</div>
+        <div class="urole">Administrator</div>
+      </div>
+      <div class="">
+        <a href="{% url 'general_logout' %}" class="emis-icon-btn" aria-label="Logout">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</aside>

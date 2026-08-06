@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Notice Management{% endblock %}
+{% block eyebrow_text %}Notices{% endblock %}
+{% block page_title %}Notice Management{% endblock %}
+{% block page_subtitle %}<p>Manage notices for different programs and semesters.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><span class="current">Notice Management</span>
+{% endblock %}
+
+{% block page_actions %}
+  <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button>
+  <button class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Notice</button>
+{% endblock %}
+
+{% block content %}
+  <div class="emis-card">
+    <div class="emis-card-header">
+      <h2>Notices</h2>
+      <a href="#" class="small">View all</a>
+    </div>
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table">
+          <thead>
+            <tr>
+              <th>Notice ID</th>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Academic Year</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cls in classes %}
+            <tr>
+              <td>{{ cls.class_id }}</td>
+              <td>{{ cls.name }}</td>
+              <td>{{ cls.section }}</td>
+              <td>{{ cls.academic_year }}</td>
+              <td>{{ cls.status }}</td>
+              <td>
+                <a href="" class="btn btn-sm btn-emis-outline">Edit</a>
+                <a href="" class="btn btn-sm btn-emis-danger">Delete</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center">No classes found.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends "library/base_library.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Library Dashboard{% endblock %}
+{% block page_subtitle %}<p>Track your borrowed books, due dates, and fines.</p>{% endblock %}
+
+{% block page_actions %}
+  <button class="btn btn-emis-primary"><i class="bi bi-search me-1"></i>Browse Catalog</button>
+{% endblock %}
+
+{% block content %}
+
+  <!-- Stat cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip blue"><i class="bi bi-journal-bookmark"></i></span>Books Borrowed</div>
+        <div class="stat-value">3</div>
+        <div class="stat-delta flat">Of 5 allowed</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-alarm"></i></span>Due Soon</div>
+        <div class="stat-value">1</div>
+        <div class="stat-delta down"><i class="bi bi-exclamation-circle"></i>Due in 2 days</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip red"><i class="bi bi-cash-coin"></i></span>Outstanding Fines</div>
+        <div class="stat-value">Rs 30</div>
+        <div class="stat-delta down"><i class="bi bi-arrow-down-short"></i>From 1 overdue return</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-bookmark-heart"></i></span>Reservations</div>
+        <div class="stat-value">1</div>
+        <div class="stat-delta flat">Ready for pickup</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Currently borrowed books -->
+    <div class="col-lg-8">
+      <div class="emis-card mb-4">
+        <div class="emis-card-header">
+          <h2>Currently Borrowed</h2>
+          <a href="#" class="small">View all</a>
+        </div>
+        <div class="emis-card-body p-0">
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Borrowed On</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Introduction to Algorithms</td>
+                  <td class="id-cell">Cormen et al.</td>
+                  <td>Jul 24, 2026</td>
+                  <td>Aug 9, 2026</td>
+                  <td><span class="pill pill-amber">Due soon</span></td>
+                </tr>
+                <tr>
+                  <td>A Brief History of Time</td>
+                  <td class="id-cell">Stephen Hawking</td>
+                  <td>Jul 28, 2026</td>
+                  <td>Aug 18, 2026</td>
+                  <td><span class="pill pill-teal">On time</span></td>
+                </tr>
+                <tr>
+                  <td>Nepal: A Political History</td>
+                  <td class="id-cell">Lok Raj Baral</td>
+                  <td>Jul 30, 2026</td>
+                  <td>Aug 20, 2026</td>
+                  <td><span class="pill pill-teal">On time</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog quick search -->
+      <div class="emis-card">
+        <div class="emis-card-header">
+          <h2>Quick Catalog Search</h2>
+        </div>
+        <div class="emis-card-body">
+          <form class="d-flex gap-2 mb-3">
+            <div class="stu-search flex-grow-1" style="width: auto;">
+              <i class="bi bi-search"></i>
+              <input type="text" placeholder="Search by title, author, or ISBN…" style="background: var(--canvas); color: var(--text-900); border-color: var(--line);">
+            </div>
+            <button class="btn btn-emis-primary" type="submit">Search</button>
+          </form>
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Availability</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Clean Code</td>
+                  <td class="id-cell">Robert C. Martin</td>
+                  <td>Computer Science</td>
+                  <td><span class="pill pill-teal">2 available</span></td>
+                  <td><a href="#" class="small">Reserve</a></td>
+                </tr>
+                <tr>
+                  <td>Sapiens</td>
+                  <td class="id-cell">Yuval Noah Harari</td>
+                  <td>History</td>
+                  <td><span class="pill pill-red">All checked out</span></td>
+                  <td><a href="#" class="small">Reserve</a></td>
+                </tr>
+                <tr>
+                  <td>Physics for Scientists</td>
+                  <td class="id-cell">Serway &amp; Jewett</td>
+                  <td>Science</td>
+                  <td><span class="pill pill-teal">5 available</span></td>
+                  <td><a href="#" class="small">Reserve</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fines & notices -->
+    <div class="col-lg-4">
+      <div class="emis-card mb-4">
+        <div class="emis-card-header">
+          <h2>Fines</h2>
+        </div>
+        <div class="emis-card-body">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <div class="fw-semibold" style="font-size: 13.5px;">The Alchemist</div>
+                <div class="text-muted" style="font-size: 12px;">Returned 3 days late</div>
+              </div>
+              <span class="pill pill-red">Rs 30</span>
+            </div>
+          </div>
+          <button class="btn btn-emis-outline w-100 mt-3">Pay Fine</button>
+        </div>
+      </div>
+
+      <div class="emis-card">
+        <div class="emis-card-header">
+          <h2>Library Notices</h2>
+        </div>
+        <div class="emis-card-body">
+          <div class="d-flex flex-column gap-3">
+            <div class="d-flex gap-3">
+              <span class="icon-chip blue flex-shrink-0"><i class="bi bi-book"></i></span>
+              <div>
+                <div class="fw-semibold" style="font-size: 13.5px;">New arrivals: Science &amp; Technology section</div>
+                <div class="text-muted" style="font-size: 12px;">Aug 4, 2026</div>
+              </div>
+            </div>
+            <div class="d-flex gap-3">
+              <span class="icon-chip amber flex-shrink-0"><i class="bi bi-clock-history"></i></span>
+              <div>
+                <div class="fw-semibold" style="font-size: 13.5px;">Extended hours during exam week</div>
+                <div class="text-muted" style="font-size: 12px;">Aug 2, 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

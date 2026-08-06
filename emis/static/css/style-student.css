@@ -1,0 +1,373 @@
+/* =========================================================
+   EMIS Student Portal — Horizontal Nav Layout
+   Builds on tokens/components defined in emis.css
+   ========================================================= */
+
+.stu-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--canvas);
+}
+
+/* ---------- Top bar (brand row) ---------- */
+
+.stu-topbar {
+  height: var(--topbar-h);
+  background: var(--ink-800);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.stu-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stu-brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--teal-500), var(--ink-600));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.stu-brand-text {
+  line-height: 1.2;
+}
+
+.stu-brand-text .name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15.5px;
+  color: #fff;
+}
+
+.stu-brand-text .sub {
+  font-size: 11px;
+  color: rgba(244, 246, 250, 0.55);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.stu-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stu-search {
+  position: relative;
+  width: 240px;
+}
+
+.stu-search input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 7px 14px 7px 34px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.stu-search input::placeholder { color: rgba(244, 246, 250, 0.45); }
+
+.stu-search input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--teal-500);
+}
+
+.stu-search i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(244, 246, 250, 0.5);
+  font-size: 13px;
+}
+
+.stu-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(244, 246, 250, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.stu-icon-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+.stu-icon-btn .dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber-500);
+  border: 1.5px solid var(--ink-800);
+}
+
+.stu-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px 5px 5px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.stu-user-chip:hover { background: rgba(255, 255, 255, 0.12); }
+
+.stu-user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.stu-user-meta {
+  line-height: 1.2;
+}
+
+.stu-user-meta .uname {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.stu-user-meta .urole {
+  font-size: 10.5px;
+  color: rgba(244, 246, 250, 0.5);
+}
+
+.stu-mobile-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Horizontal nav row ---------- */
+
+.stu-navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 0 24px;
+  position: sticky;
+  top: var(--topbar-h);
+  z-index: 1020;
+  /* ledger-stripe echo: thin tick rule under the active nav row,
+     tying back to the admin sidebar's register-margin motif */
+  box-shadow: 0 1px 0 rgba(60, 138, 122, 0.15);
+}
+
+.stu-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.stu-nav::-webkit-scrollbar { display: none; }
+
+.stu-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-600);
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  flex-shrink: 0;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+.stu-nav-link i { font-size: 15px; opacity: 0.8; }
+
+.stu-nav-link:hover {
+  color: var(--text-900);
+}
+
+.stu-nav-link.active {
+  color: var(--ink-700);
+  border-bottom-color: var(--teal-500);
+  font-weight: 600;
+}
+
+.stu-nav-link .badge-count {
+  background: var(--amber-soft);
+  color: var(--amber-600);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+}
+
+.stu-nav-spacer {
+  flex: 1;
+}
+
+.stu-nav-more {
+  display: none;
+}
+
+/* ---------- Content canvas ---------- */
+
+.stu-content {
+  padding: 26px 28px 48px;
+  flex: 1;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---------- Welcome / profile strip ---------- */
+
+.stu-welcome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stu-welcome-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-500), var(--ink-600));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.stu-welcome-text h2 {
+  font-size: 18px;
+  margin: 0 0 3px;
+}
+
+.stu-welcome-text p {
+  font-size: 13px;
+  color: var(--text-600);
+  margin: 0;
+}
+
+.stu-welcome-meta {
+  margin-left: auto;
+  display: flex;
+  gap: 22px;
+  text-align: right;
+}
+
+.stu-welcome-meta .item .k {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-400);
+  margin-bottom: 2px;
+}
+
+.stu-welcome-meta .item .v {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-900);
+}
+
+/* ---------- Mobile dropdown nav ---------- */
+
+@media (max-width: 991.98px) {
+  .stu-search { display: none; }
+}
+
+@media (max-width: 767.98px) {
+  .stu-mobile-toggle { display: flex; }
+
+  .stu-navbar { display: none; }
+
+  .stu-navbar.mobile-open {
+    display: block;
+    position: fixed;
+    top: var(--topbar-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1025;
+    overflow-y: auto;
+    padding: 10px 16px 24px;
+  }
+
+  .stu-navbar.mobile-open .stu-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stu-navbar.mobile-open .stu-nav-link {
+    border-bottom: none;
+    border-left: 2px solid transparent;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  .stu-navbar.mobile-open .stu-nav-link.active {
+    background: var(--teal-soft);
+    border-left-color: var(--teal-500);
+  }
+
+  .stu-welcome { flex-wrap: wrap; }
+  .stu-welcome-meta { margin-left: 0; width: 100%; justify-content: space-between; }
+}
+
+@media (max-width: 575.98px) {
+  .stu-content { padding: 18px 14px 40px; }
+  .stu-topbar { padding: 0 14px; }
+  .stu-navbar { padding: 0 14px; }
+  .stu-brand-text .sub { display: none; }
+}

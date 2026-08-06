@@ -1,0 +1,31 @@
+<header class="emis-topbar">
+
+  <div class="emis-topbar-left">
+    <button class="emis-sidebar-toggle" data-emis-sidebar-toggle type="button" aria-label="Toggle sidebar">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <div class="emis-breadcrumb">
+      {% block breadcrumb %}
+        <span>EMIS</span><span class="sep">/</span><span class="current">Dashboard</span>
+      {% endblock %}
+    </div>
+  </div>
+
+  <div class="emis-topbar-right">
+    <div class="emis-search">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="Search students, staff, records…">
+    </div>
+
+    <button class="emis-icon-btn" type="button" aria-label="Notifications">
+      <i class="bi bi-bell"></i>
+      <span class="dot"></span>
+    </button>
+
+    <button class="emis-icon-btn" type="button" aria-label="Help">
+      <i class="bi bi-question-circle"></i>
+    </button>
+  </div>
+
+</header>
