@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from emis.decorators import admin_login_required
 
-# Create your views here.
+
+@admin_login_required
 def notice_list(request):
-    # This view will handle the logic for displaying a list of notices.
-    # You can fetch the notices from the database and pass them to the template.
-    return render(request, 'admin\\notices_management\\list_notices.html')
+    # Notices module — future implementation
+    return render(request, 'admin/notices_management/list_notices.html')

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Student{% endblock %}
+{% block eyebrow_text %}Students{% endblock %}
+{% block page_title %}Confirm Deletion{% endblock %}
+{% block page_subtitle %}<p>Permanently remove student record from system database.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'student_list' %}">Students</a><span class="sep">/</span><span class="current">Delete {{ student.roll_number }}</span>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6">
+    <div class="emis-card border-danger">
+      <div class="emis-card-header bg-danger text-white">
+        <h2 class="text-white"><i class="bi bi-exclamation-triangle-fill me-2"></i>Delete Student Record</h2>
+      </div>
+      <div class="emis-card-body">
+        <p class="fs-5">Are you sure you want to delete student <strong>{{ student.full_name }}</strong> (Roll No: <code>{{ student.roll_number }}</code>)?</p>
+        <p class="text-muted small">This action cannot be undone. All associated grade records, fee payment history, and attendance records will be removed.</p>
+
+        <form method="post" class="mt-4">
+          {% csrf_token %}
+          <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'student_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Delete Permanently</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -28,6 +28,9 @@
       <div class="stu-user-meta">
         <div class="uname">{% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username }}{% else %}Student{% endif %}</div>
         <div class="urole">Grade 10 — B</div>
+        <div class="stu-user-meta">
+          <a href="/logout">logout</a>
+        </div>
       </div>
     </div>
 

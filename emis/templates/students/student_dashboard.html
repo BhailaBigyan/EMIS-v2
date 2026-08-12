@@ -1,149 +1,134 @@
 {% extends "students/base_student.html" %}
 {% load static %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Student Dashboard{% endblock %}
 {% block eyebrow_text %}Overview{% endblock %}
-{% block page_title %}Welcome back, Aarav{% endblock %}
-{% block page_subtitle %}<p>Here's a snapshot of your academic progress this term.</p>{% endblock %}
+{% block page_title %}Welcome back, {{ student.first_name }}{% endblock %}
+{% block page_subtitle %}<p>Here's a summary of your academic profile, enrolled program, and status.</p>{% endblock %}
 
 {% block content %}
 
-  <!-- Profile / quick-facts strip -->
+  <!-- Profile Strip -->
   <div class="stu-welcome">
-    <div class="stu-welcome-avatar">AS</div>
+    <div class="stu-welcome-avatar">
+      {{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}
+    </div>
     <div class="stu-welcome-text">
-      <h2>Aarav Sharma</h2>
-      <p>Grade 10 — Section B · Roll No. 14</p>
+      <h2>{{ student.full_name }}</h2>
+      <p>
+        {% if student.program %}{{ student.program.name }} ({{ student.program.code }}){% else %}General Program{% endif %}
+        · Batch {{ student.batch|default:"N/A" }}
+      </p>
     </div>
     <div class="stu-welcome-meta">
       <div class="item">
-        <div class="k">Student ID</div>
-        <div class="v">EMIS-2081-0142</div>
+        <div class="k">Roll Number / Login ID</div>
+        <div class="v">{{ student.roll_number }}</div>
       </div>
       <div class="item">
-        <div class="k">Class Teacher</div>
-        <div class="v">Mr. R. Koirala</div>
+        <div class="k">Current Semester</div>
+        <div class="v">Semester {{ student.current_semester }}</div>
       </div>
       <div class="item">
-        <div class="k">Current Term</div>
-        <div class="v">2081, Term 2</div>
+        <div class="k">Status</div>
+        <div class="v text-capitalize">{{ student.status }}</div>
       </div>
     </div>
   </div>
 
-  <!-- Stat cards -->
+  <!-- Stat Cards -->
   <div class="row g-3 mb-4">
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip teal"><i class="bi bi-calendar-check"></i></span>My Attendance</div>
-        <div class="stat-value">96.4%</div>
-        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>Above class average</div>
+        <div class="label"><span class="icon-chip blue"><i class="bi bi-mortarboard"></i></span>Enrolled Program</div>
+        <div class="stat-value" style="font-size: 20px;">{{ student.program.code|default:"—" }}</div>
+        <div class="stat-delta flat">{{ student.program.name|default:"General" }}</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip blue"><i class="bi bi-graph-up"></i></span>Overall Grade</div>
-        <div class="stat-value">A-</div>
-        <div class="stat-delta flat">Last exam: Mid-Term</div>
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-calendar-event"></i></span>Current Batch</div>
+        <div class="stat-value" style="font-size: 20px;">{{ student.batch|default:"2081" }}</div>
+        <div class="stat-delta up">Semester {{ student.current_semester }}</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip amber"><i class="bi bi-journal-text"></i></span>Upcoming Exams</div>
-        <div class="stat-value">2</div>
-        <div class="stat-delta flat">Next: Aug 14</div>
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-person-badge"></i></span>Gender</div>
+        <div class="stat-value" style="font-size: 20px;">{{ student.get_gender_display }}</div>
+        <div class="stat-delta flat">DOB: {{ student.date_of_birth|date:"Y-m-d"|default:"N/A" }}</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip red"><i class="bi bi-cash-coin"></i></span>Fee Status</div>
-        <div class="stat-value">Paid</div>
-        <div class="stat-delta up"><i class="bi bi-check-lg"></i>Term 2 cleared</div>
+        <div class="label"><span class="icon-chip green"><i class="bi bi-shield-check"></i></span>Account Status</div>
+        <div class="stat-value" style="font-size: 20px; text-transform: capitalize;">{{ student.status }}</div>
+        <div class="stat-delta up"><i class="bi bi-check-lg"></i>Active enrollment</div>
       </div>
     </div>
   </div>
 
   <div class="row g-3">
-    <!-- Recent results -->
+    <!-- Student Information Summary Card -->
     <div class="col-lg-7">
-      <div class="emis-card mb-4 mb-lg-0">
+      <div class="emis-card">
         <div class="emis-card-header">
-          <h2>Recent Results</h2>
-          <a href="#" class="small">View all</a>
+          <h2>Student Information</h2>
+          <a href="{% url 'students:student_profile' %}" class="small">View Full Profile &rarr;</a>
         </div>
-        <div class="emis-card-body p-0">
-          <div class="table-responsive">
-            <table class="emis-table">
-              <thead>
-                <tr>
-                  <th>Subject</th>
-                  <th>Exam</th>
-                  <th>Marks</th>
-                  <th>Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mathematics</td>
-                  <td>Mid-Term</td>
-                  <td class="id-cell">88 / 100</td>
-                  <td><span class="pill pill-teal">A</span></td>
-                </tr>
-                <tr>
-                  <td>Science</td>
-                  <td>Mid-Term</td>
-                  <td class="id-cell">81 / 100</td>
-                  <td><span class="pill pill-teal">A-</span></td>
-                </tr>
-                <tr>
-                  <td>English</td>
-                  <td>Mid-Term</td>
-                  <td class="id-cell">74 / 100</td>
-                  <td><span class="pill pill-amber">B+</span></td>
-                </tr>
-                <tr>
-                  <td>Social Studies</td>
-                  <td>Mid-Term</td>
-                  <td class="id-cell">69 / 100</td>
-                  <td><span class="pill pill-amber">B</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="emis-card-body">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="text-muted small">Full Name</div>
+              <div class="fw-semibold">{{ student.full_name }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Roll Number</div>
+              <div class="fw-semibold font-mono">{{ student.roll_number }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Email Address</div>
+              <div>{{ student.email|default:"Not provided" }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Phone Number</div>
+              <div>{{ student.phone|default:"Not provided" }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Guardian Name</div>
+              <div>{{ student.guardian_name|default:"Not provided" }}</div>
+            </div>
+            <div class="col-6">
+              <div class="text-muted small">Guardian Phone</div>
+              <div>{{ student.guardian_phone|default:"Not provided" }}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Notices -->
+    <!-- Quick Academic Actions -->
     <div class="col-lg-5">
       <div class="emis-card">
         <div class="emis-card-header">
-          <h2>Notices</h2>
-          <a href="#" class="small">View all</a>
+          <h2>Academic Portal Shortcuts</h2>
         </div>
         <div class="emis-card-body">
           <div class="d-flex flex-column gap-3">
-            <div class="d-flex gap-3">
-              <span class="icon-chip amber flex-shrink-0"><i class="bi bi-megaphone"></i></span>
+            <a href="{% url 'students:student_profile' %}" class="d-flex align-items-center gap-3 text-decoration-none p-2 border rounded hover-bg">
+              <span class="icon-chip blue flex-shrink-0"><i class="bi bi-person font-size-18"></i></span>
               <div>
-                <div class="fw-semibold" style="font-size: 13.5px;">Second Terminal Exam Routine Published</div>
-                <div class="text-muted" style="font-size: 12px;">Aug 5, 2026</div>
+                <div class="fw-semibold text-dark">My Profile</div>
+                <div class="text-muted small">View your detailed student bio and emergency contacts</div>
               </div>
-            </div>
-            <div class="d-flex gap-3">
-              <span class="icon-chip blue flex-shrink-0"><i class="bi bi-calendar3"></i></span>
+            </a>
+            <a href="{% url 'library:library_login' %}" class="d-flex align-items-center gap-3 text-decoration-none p-2 border rounded hover-bg">
+              <span class="icon-chip amber flex-shrink-0"><i class="bi bi-book font-size-18"></i></span>
               <div>
-                <div class="fw-semibold" style="font-size: 13.5px;">School closed Aug 10 for Janai Purnima</div>
-                <div class="text-muted" style="font-size: 12px;">Aug 3, 2026</div>
+                <div class="fw-semibold text-dark">Library Portal</div>
+                <div class="text-muted small">Access book catalog and check borrowed resources</div>
               </div>
-            </div>
-            <div class="d-flex gap-3">
-              <span class="icon-chip teal flex-shrink-0"><i class="bi bi-cash-coin"></i></span>
-              <div>
-                <div class="fw-semibold" style="font-size: 13.5px;">Term 3 fee submission opens Sep 1</div>
-                <div class="text-muted" style="font-size: 12px;">Aug 1, 2026</div>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>

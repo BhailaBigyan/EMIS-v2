@@ -10,22 +10,38 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m!v=5vix&id9suz@fyhozslcz1@7$1p3rdmtfk3ql&ob$1%7*('
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-m!v=5vix&id9suz@fyhozslcz1@7$1p3rdmtfk3ql&ob$1%7*('
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if h.strip()
+]
+
+# Allow Django test client host in DEBUG mode
+if DEBUG:
+    ALLOWED_HOSTS += ['testserver']
+
 
 
 # Application definition
@@ -43,6 +59,7 @@ INSTALLED_APPS = [
     'examinations',
     'finances',
     'notices',
+    'teachers',
 ]
 
 MIDDLEWARE = [
@@ -56,9 +73,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'emis.urls'
-
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES = [
     {
@@ -77,14 +91,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'emis.wsgi.application'
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ.get('DATABASE_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': BASE_DIR / os.environ.get('DATABASE_NAME', 'db.sqlite3'),
     }
 }
 
@@ -113,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
@@ -124,6 +138,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-#
 STATICFILES_DIRS = [BASE_DIR / "static"]
- 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Admin credentials (from .env)
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')

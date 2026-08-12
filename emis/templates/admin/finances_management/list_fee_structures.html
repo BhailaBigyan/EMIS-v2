@@ -1,61 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Fee Structures Management{% endblock %}
-{% block eyebrow_text %}Fee Structures{% endblock %}
+{% block title %}Fee Structures{% endblock %}
+{% block eyebrow_text %}Finances{% endblock %}
 {% block page_title %}Fee Structures Management{% endblock %}
-{% block page_subtitle %}<p>Manage fee structures for different programs and semesters.</p>{% endblock %}
+{% block page_subtitle %}<p>Configure program tuition, laboratory, library, examination, and other academic fees.</p>{% endblock %}
 
 {% block breadcrumb %}
-  <span>EMIS</span><span class="sep">/</span><span class="current">Fee Structures Management</span>
+  <span>EMIS</span><span class="sep">/</span><span class="current">Fee Structures</span>
 {% endblock %}
 
 {% block page_actions %}
-  <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button>
-  <button class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Fee Structure</button>
+  <a href="{% url 'finances:student_fee_status' %}" class="btn btn-emis-outline"><i class="bi bi-wallet2 me-1"></i>Student Balances</a>
+  <a href="{% url 'finances:payment_list' %}" class="btn btn-emis-outline"><i class="bi bi-receipt me-1"></i>Payment Receipts</a>
+  <a href="{% url 'finances:fee_structure_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Fee Structure</a>
 {% endblock %}
 
 {% block content %}
-  <div class="emis-card">
-    <div class="emis-card-header">
-      <h2>Fee Structures</h2>
-      <a href="#" class="small">View all</a>
-    </div>
-    <div class="emis-card-body p-0">
-      <div class="table-responsive">
-        <table class="emis-table">
-          <thead>
-            <tr>
-              <th>Exam ID</th>
-              <th>Name</th>
-              <th>Subject</th>
-              <th>Academic Year</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for cls in classes %}
-            <tr>
-              <td>{{ cls.class_id }}</td>
-              <td>{{ cls.name }}</td>
-              <td>{{ cls.section }}</td>
-              <td>{{ cls.academic_year }}</td>
-              <td>{{ cls.status }}</td>
-              <td>
-                <a href="" class="btn btn-sm btn-emis-outline">Edit</a>
-                <a href="" class="btn btn-sm btn-emis-danger">Delete</a>
-              </td>
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="6" class="text-center">No classes found.</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Institutional Fee Schedules</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Structure Name</th>
+            <th>Program</th>
+            <th>Semester</th>
+            <th>Academic Year</th>
+            <th>Tuition Fee</th>
+            <th>Lab Fee</th>
+            <th>Exam Fee</th>
+            <th>Total Fee</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fs in fee_structures %}
+          <tr>
+            <td class="fw-semibold">{{ fs.name }}</td>
+            <td><span class="badge bg-light text-dark border">{{ fs.program.code }}</span></td>
+            <td>Semester {{ fs.semester }}</td>
+            <td>{{ fs.academic_year.name }}</td>
+            <td>Rs. {{ fs.tuition_fee }}</td>
+            <td>Rs. {{ fs.lab_fee }}</td>
+            <td>Rs. {{ fs.exam_fee }}</td>
+            <td class="fw-bold text-success">Rs. {{ fs.total_fee }}</td>
+            <td class="text-end">
+              <a href="{% url 'finances:fee_structure_edit' fs.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-pencil"></i></a>
+              <form action="{% url 'finances:fee_structure_delete' fs.id %}" method="post" class="d-inline" onsubmit="return confirm('Delete this fee structure?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-emis-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9" class="text-center py-4 text-muted">No fee structures defined yet. Click 'Add Fee Structure' to define tuition & lab fees.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
-
+</div>
 {% endblock %}
