@@ -1,0 +1,88 @@
+{% extends "library/base_library.html" %}
+{% load static %}
+
+{% block title %}Book Catalog{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Book Catalog{% endblock %}
+{% block page_subtitle %}<p>Browse the catalog and check copy availability.</p>{% endblock %}
+
+{% block content %}
+
+  <div class="emis-card mb-4">
+    <div class="emis-card-body">
+      <form method="get" class="row g-2 align-items-center">
+        <div class="col-12 col-md-5">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search title, author, ISBN, publisher...">
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <select name="category" class="form-select">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+              <option value="{{ cat.id }}" {% if selected_category == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="form-check form-switch mt-2">
+            <input type="checkbox" name="available" value="1" id="availOnly" class="form-check-input" {% if available_only %}checked{% endif %}>
+            <label for="availOnly" class="form-check-label small">Available only</label>
+          </div>
+        </div>
+        <div class="col-12 col-md-2">
+          <button type="submit" class="btn btn-emis-outline w-100"><i class="bi bi-funnel me-1"></i>Filter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="emis-card">
+    <div class="emis-card-header">
+      <h2>Catalog ({{ books.count }} books)</h2>
+    </div>
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Category</th>
+              <th>ISBN</th>
+              <th>Available</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for book in books %}
+            <tr>
+              <td class="fw-semibold">{{ book.title }}</td>
+              <td>{{ book.author }}</td>
+              <td><span class="badge bg-light text-dark border">{{ book.category.name|default:"Uncategorized" }}</span></td>
+              <td class="font-mono small">{{ book.isbn|default:"—" }}</td>
+              <td>
+                {% if book.is_available %}
+                  <span class="badge bg-success">{{ book.available_copies }}/{{ book.total_copies }}</span>
+                {% else %}
+                  <span class="badge bg-danger">Out of stock</span>
+                {% endif %}
+              </td>
+              <td>{{ book.rack_location|default:"—" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">
+                <i class="bi bi-search display-6 text-muted mb-2 d-block"></i>
+                No books match your search criteria.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

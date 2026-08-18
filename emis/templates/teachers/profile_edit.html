@@ -1,0 +1,64 @@
+{% extends "teachers/base_teacher.html" %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+{% block eyebrow_text %}Profile{% endblock %}
+{% block page_title %}Edit My Profile{% endblock %}
+{% block page_subtitle %}<p>Update your contact details and qualifications. Employment fields are managed by the administration.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Profile Details</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="row g-3">
+            <div class="col-6">
+              <label class="form-label small text-muted">First Name</label>
+              {{ form.first_name }}
+              {{ form.first_name.errors }}
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">Last Name</label>
+              {{ form.last_name }}
+              {{ form.last_name.errors }}
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">Gender</label>
+              {{ form.gender }}
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">Phone</label>
+              {{ form.phone }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Email</label>
+              {{ form.email }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Qualification</label>
+              {{ form.qualification }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Specialization</label>
+              {{ form.specialization }}
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'teachers:teacher_profile' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

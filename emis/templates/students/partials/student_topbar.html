@@ -18,19 +18,15 @@
 
     <button class="stu-icon-btn" type="button" aria-label="Notifications">
       <i class="bi bi-bell"></i>
-      <span class="dot"></span>
+      {% if notices_count %}<span class="dot"></span>{% endif %}
     </button>
 
     <div class="stu-user-chip">
-      <div class="stu-user-avatar">
-        {% if request.user.is_authenticated %}{{ request.user.username|slice:":2"|upper }}{% else %}ST{% endif %}
-      </div>
+      <div class="stu-user-avatar">{{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}</div>
       <div class="stu-user-meta">
-        <div class="uname">{% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username }}{% else %}Student{% endif %}</div>
-        <div class="urole">Grade 10 — B</div>
-        <div class="stu-user-meta">
-          <a href="/logout">logout</a>
-        </div>
+        <div class="uname">{{ student.full_name }}</div>
+        <div class="urole">{{ student.program.code|default:"Student" }} · {{ student.roll_number }}</div>
+        <a href="{% url 'students:student_logout' %}" class="logout-link"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
       </div>
     </div>
 
@@ -43,32 +39,35 @@
 <!-- Horizontal nav row -->
 <nav class="stu-navbar">
   <div class="stu-nav">
-    <a href="" class="stu-nav-link {% if request.resolver_match.url_name == 'student_dashboard' %}active{% endif %}">
+    <a href="{% url 'students:student_index' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_index' %}active{% endif %}">
       <i class="bi bi-grid-1x2"></i>Dashboard
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_profile' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_profile' %}active{% endif %}">
       <i class="bi bi-person-circle"></i>My Profile
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_attendance' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_attendance' %}active{% endif %}">
       <i class="bi bi-calendar-check"></i>Attendance
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_exams' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_exams' %}active{% endif %}">
       <i class="bi bi-journal-text"></i>Exams
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_results' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_results' %}active{% endif %}">
       <i class="bi bi-graph-up"></i>Results
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_timetable' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_timetable' %}active{% endif %}">
       <i class="bi bi-calendar3"></i>Timetable
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_notices' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_notices' %}active{% endif %}">
       <i class="bi bi-megaphone"></i>Notices
-      <span class="badge-count">3</span>
+      {% if notices_count %}<span class="badge-count">{{ notices_count }}</span>{% endif %}
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_fees' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_fees' %}active{% endif %}">
       <i class="bi bi-cash-coin"></i>Fees
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'students:student_books' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_books' %}active{% endif %}">
+      <i class="bi bi-book"></i>My Books
+    </a>
+    <a href="{% url 'students:student_help' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_help' %}active{% endif %}">
       <i class="bi bi-life-preserver"></i>Help
     </a>
   </div>

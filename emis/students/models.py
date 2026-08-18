@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
+from django.db.models import Q
 
 
 class Students(models.Model):
@@ -62,3 +63,39 @@ class Students(models.Model):
         raw_password = f"emis@{self.roll_number}"
         self.password = make_password(raw_password)
         return raw_password
+
+
+class Attendance(models.Model):
+    STATUS_CHOICES = [
+        ('present', 'Present'),
+        ('absent', 'Absent'),
+        ('late', 'Late'),
+        ('leave', 'Leave'),
+    ]
+
+    student = models.ForeignKey(
+        Students, on_delete=models.CASCADE, related_name='attendance_records'
+    )
+    course_assignment = models.ForeignKey(
+        'academics.CourseAssignment', on_delete=models.CASCADE,
+        null=True, blank=True, related_name='attendance_records',
+        help_text='Set when attendance is marked by a teacher for a specific class.'
+    )
+    date = models.DateField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='present')
+    remarks = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        ordering = ['-date']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['student', 'course_assignment', 'date'],
+                condition=Q(course_assignment__isnull=False),
+                name='unique_course_attendance_per_day',
+            ),
+        ]
+        verbose_name = 'Attendance Record'
+        verbose_name_plural = 'Attendance Records'
+
+    def __str__(self):
+        return f"{self.student.roll_number} - {self.date} ({self.get_status_display()})"

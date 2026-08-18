@@ -1,0 +1,87 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}Attendance{% endblock %}
+{% block eyebrow_text %}Attendance{% endblock %}
+{% block page_title %}My Attendance{% endblock %}
+{% block page_subtitle %}<p>Monthly attendance summary and daily records for {{ month }}.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip green"><i class="bi bi-check-circle"></i></span>Present</div>
+      <div class="stat-value">{{ summary.present }}</div>
+      <div class="stat-delta flat">days attended</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-clock-history"></i></span>Late</div>
+      <div class="stat-value">{{ summary.late }}</div>
+      <div class="stat-delta flat">arrived late</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-person-dash"></i></span>Leave / Absent</div>
+      <div class="stat-value">{{ summary.leave|add:summary.absent }}</div>
+      <div class="stat-delta flat">{{ summary.leave }} leave · {{ summary.absent }} absent</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip teal"><i class="bi bi-graph-up-arrow"></i></span>Attendance Rate</div>
+      <div class="stat-value">{{ percentage }}%</div>
+      <div class="stat-delta {% if percentage >= 75 %}up{% else %}down{% endif %}">
+        {% if percentage >= 75 %}<i class="bi bi-check-lg"></i> on track{% else %}<i class="bi bi-exclamation-triangle"></i> below 75%{% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <h2>Daily Records</h2>
+    <form method="get" class="d-flex align-items-center gap-2">
+      <input type="month" name="month" value="{{ month }}" class="form-control form-control-sm" style="width: 160px;">
+      <button type="submit" class="btn btn-emis-primary btn-sm"><i class="bi bi-funnel me-1"></i>Filter</button>
+    </form>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in records %}
+          <tr>
+            <td>{{ r.date|date:"M d, Y" }}</td>
+            <td>{{ r.date|date:"l" }}</td>
+            <td>
+              {% if r.status == 'present' %}<span class="pill pill-teal">Present</span>
+              {% elif r.status == 'late' %}<span class="pill pill-blue">Late</span>
+              {% elif r.status == 'leave' %}<span class="pill pill-amber">Leave</span>
+              {% else %}<span class="pill pill-red">Absent</span>{% endif %}
+            </td>
+            <td>{{ r.remarks|default:"—" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center py-4 text-muted">No attendance records for {{ month }}.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

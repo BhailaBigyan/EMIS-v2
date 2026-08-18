@@ -93,7 +93,7 @@ class AcademicsViewsTestCase(TestCase):
 
         # Session for admin login decorator
         session = self.client.session
-        session['admin_logged_in'] = True
+        session['general_logged_in'] = True
         session.save()
 
         self.teacher = Teacher.objects.create(

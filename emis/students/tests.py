@@ -202,3 +202,167 @@ class StudentViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'text/csv')
         self.assertContains(response, 'BCA-2081-001')
+
+
+class StudentPortalTest(TestCase):
+    """Tests for the student-facing portal pages."""
+
+    def setUp(self):
+        self.client = Client()
+        self.dept = Department.objects.create(name="Computer Science", code="CS")
+        self.program = Program.objects.create(
+            name="Bachelor in Computer Application",
+            code="BCA",
+            department=self.dept,
+            is_active=True
+        )
+        self.student = Students.objects.create(
+            roll_number="BCA-2081-001",
+            first_name="Portal",
+            last_name="Student",
+            gender="M",
+            program=self.program,
+            batch="2081",
+            email="portal@example.com",
+        )
+        self.student.set_default_password()
+        self.student.save()
+
+        self.notice = None
+        from notices.models import Notice
+        self.notice = Notice.objects.create(
+            title="Holiday Notice",
+            content="The college is closed on Friday.",
+            category="general",
+        )
+
+    def login(self):
+        return self.client.post(reverse("students:student_login"), {
+            "username": self.student.roll_number,
+            "password": "emis@BCA-2081-001",
+        })
+
+    def test_login_success(self):
+        response = self.login()
+        self.assertRedirects(response, reverse("students:student_index"))
+
+    def test_pages_require_login(self):
+        for name in ["student_profile", "student_attendance", "student_exams",
+                     "student_results", "student_timetable", "student_notices",
+                     "student_fees", "student_help"]:
+            response = self.client.get(reverse(f"students:{name}"))
+            self.assertRedirects(response, reverse("students:student_login"))
+
+    def test_dashboard(self):
+        self.login()
+        response = self.client.get(reverse("students:student_index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.student.full_name)
+        self.assertContains(response, self.student.roll_number)
+
+    def test_profile_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_profile"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Portal Student")
+        self.assertContains(response, "portal@example.com")
+
+    def test_attendance_page(self):
+        self.login()
+        from django.utils import timezone
+        from students.models import Attendance
+        Attendance.objects.create(student=self.student, date=timezone.localdate(), status="present")
+        Attendance.objects.create(
+            student=self.student,
+            date=timezone.localdate() - timezone.timedelta(days=1),
+            status="absent"
+        )
+        response = self.client.get(reverse("students:student_attendance"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Attendance Rate")
+        self.assertContains(response, "50.0%")
+
+    def test_exams_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_exams"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Exam Schedule")
+
+    def test_results_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_results"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "My Results")
+
+    def test_timetable_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_timetable"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Class Timetable")
+
+    def test_notices_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_notices"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Holiday Notice")
+
+    def test_fees_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_fees"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Fee Statement")
+
+    def test_help_page(self):
+        self.login()
+        response = self.client.get(reverse("students:student_help"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Frequently Asked Questions")
+
+    def test_books_page_empty(self):
+        self.login()
+        response = self.client.get(reverse("students:student_books"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "My Borrowed Books")
+
+    def test_books_page_with_loans(self):
+        from library.models import Book, BookCategory, Borrowing, Librarian
+        from datetime import timedelta
+        from django.utils import timezone
+
+        category = BookCategory.objects.create(name="Programming")
+        book = Book.objects.create(
+            title="Django for Beginners", author="Will Vincent",
+            category=category, total_copies=2, available_copies=1,
+        )
+        librarian = Librarian.objects.create(
+            username="lib1", full_name="Librarian One"
+        )
+        active = Borrowing.objects.create(
+            student=self.student, book=book, issued_by=librarian
+        )
+        active.due_date = timezone.localdate() - timedelta(days=3)
+        active.save()
+        returned = Borrowing.objects.create(
+            student=self.student, book=book, issued_by=librarian
+        )
+        returned.return_date = timezone.localdate()
+        returned.status = "returned"
+        returned.fine_amount = 10
+        returned.save()
+
+        self.login()
+        response = self.client.get(reverse("students:student_books"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Django for Beginners")
+        self.assertContains(response, "Overdue")
+        self.assertContains(response, "days overdue")
+        self.assertContains(response, "Rs. 15")  # 3 overdue days x Rs. 5
+        self.assertContains(response, "Return History")
+
+    def test_topbar_nav_links_present(self):
+        self.login()
+        response = self.client.get(reverse("students:student_index"))
+        for name in ["student_profile", "student_attendance", "student_exams",
+                     "student_results", "student_timetable", "student_notices",
+                     "student_fees", "student_books", "student_help", "student_logout"]:
+            self.assertContains(response, reverse(f"students:{name}"))

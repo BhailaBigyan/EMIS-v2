@@ -1,0 +1,150 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}My Books{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}My Borrowed Books{% endblock %}
+{% block page_subtitle %}<p>Books issued to you, due dates, and any fines. Loans are issued at the library circulation desk by the librarian.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-book"></i></span>Active Loans</div>
+      <div class="stat-value">{{ active_loans|length }}</div>
+      <div class="stat-delta flat">of 3 allowed per student</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip {% if overdue_count %}red{% else %}green{% endif %}"><i class="bi bi-exclamation-triangle"></i></span>Overdue</div>
+      <div class="stat-value">{{ overdue_count }}</div>
+      <div class="stat-delta {% if overdue_count %}down{% else %}up{% endif %}">
+        {% if overdue_count %}<i class="bi bi-exclamation-circle"></i> return soon{% else %}<i class="bi bi-check-lg"></i> all on time{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-cash-coin"></i></span>Running Fine</div>
+      <div class="stat-value">Rs. {{ total_fine }}</div>
+      <div class="stat-delta flat">Rs. {{ fine_per_day }}/day overdue</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip teal"><i class="bi bi-arrow-counterclockwise"></i></span>Returned</div>
+      <div class="stat-value">{{ history|length }}</div>
+      <div class="stat-delta flat">books returned</div>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card mb-3">
+  <div class="emis-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <h2>Currently Borrowed</h2>
+    <span class="pill pill-neutral">{{ loan_period_days }}-day loan period</span>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Issued On</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Fine</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in active_loans %}
+          <tr>
+            <td>
+              <div class="fw-semibold">{{ b.book.title }}</div>
+              {% if b.issued_by %}<div class="small text-muted">Issued by {{ b.issued_by.full_name }}</div>{% endif %}
+            </td>
+            <td>{{ b.book.author }}</td>
+            <td>{{ b.borrowed_date|date:"M d, Y" }}</td>
+            <td>
+              {{ b.due_date|date:"M d, Y" }}
+              {% if b.is_overdue %}
+                <div class="small text-danger fw-semibold">{{ b.overdue_days }} day{% if b.overdue_days > 1 %}s{% endif %} overdue</div>
+              {% else %}
+                <div class="small text-muted">{{ b.due_date|timeuntil }} left</div>
+              {% endif %}
+            </td>
+            <td>
+              {% if b.is_overdue %}
+                <span class="pill pill-red">Overdue</span>
+              {% else %}
+                <span class="pill pill-teal">Borrowed</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if b.calculate_fine %}
+                <span class="text-danger fw-semibold">Rs. {{ b.calculate_fine }}</span>
+              {% else %}
+                <span class="text-muted">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center py-4 text-muted">
+              <i class="bi bi-book d-block fs-1 mb-2"></i>
+              You have no books issued right now. Visit the library desk to borrow books.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Return History</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Borrowed</th>
+            <th>Returned</th>
+            <th>Fine Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in history %}
+          <tr>
+            <td class="fw-semibold">{{ b.book.title }}</td>
+            <td>{{ b.book.author }}</td>
+            <td>{{ b.borrowed_date|date:"M d, Y" }}</td>
+            <td>{{ b.return_date|date:"M d, Y" }}</td>
+            <td>
+              {% if b.fine_amount > 0 %}
+                <span class="text-danger fw-semibold">Rs. {{ b.fine_amount }}</span>
+              {% else %}
+                <span class="pill pill-teal">No fine</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center py-4 text-muted">No books returned yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

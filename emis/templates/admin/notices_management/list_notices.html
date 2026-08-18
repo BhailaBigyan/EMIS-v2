@@ -4,52 +4,90 @@
 {% block title %}Notice Management{% endblock %}
 {% block eyebrow_text %}Notices{% endblock %}
 {% block page_title %}Notice Management{% endblock %}
-{% block page_subtitle %}<p>Manage notices for different programs and semesters.</p>{% endblock %}
+{% block page_subtitle %}<p>Publish and manage notices for students, faculty, and the public portal.</p>{% endblock %}
 
 {% block breadcrumb %}
   <span>EMIS</span><span class="sep">/</span><span class="current">Notice Management</span>
 {% endblock %}
 
 {% block page_actions %}
-  <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button>
-  <button class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Notice</button>
+  <a href="{% url 'notices:notice_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Notice</a>
 {% endblock %}
 
 {% block content %}
+  <div class="emis-card mb-4">
+    <div class="emis-card-body">
+      <form method="get" class="row g-2 align-items-center">
+        <div class="col-12 col-md-5">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Search by title or content...">
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <select name="category" class="form-select">
+            <option value="">All Categories</option>
+            {% for value, label in notices.model.CATEGORY_CHOICES %}
+              <option value="{{ value }}" {% if selected_category == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select name="important" class="form-select">
+            <option value="">All Notices</option>
+            <option value="1" {% if important_only %}selected{% endif %}>Important Only</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-2 d-flex gap-2">
+          <button type="submit" class="btn btn-emis-outline w-100"><i class="bi bi-funnel me-1"></i>Filter</button>
+          {% if query or selected_category or important_only %}
+            <a href="{% url 'notices:notice_list' %}" class="btn btn-emis-danger w-100"><i class="bi bi-x-lg"></i></a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="emis-card">
     <div class="emis-card-header">
-      <h2>Notices</h2>
-      <a href="#" class="small">View all</a>
+      <h2>Published Notices ({{ notices.count }})</h2>
     </div>
     <div class="emis-card-body p-0">
       <div class="table-responsive">
         <table class="emis-table">
           <thead>
             <tr>
-              <th>Notice ID</th>
-              <th>Name</th>
-              <th>Subject</th>
-              <th>Academic Year</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Important</th>
+              <th>Published Date</th>
+              <th class="text-end">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {% for cls in classes %}
+            {% for notice in notices %}
             <tr>
-              <td>{{ cls.class_id }}</td>
-              <td>{{ cls.name }}</td>
-              <td>{{ cls.section }}</td>
-              <td>{{ cls.academic_year }}</td>
-              <td>{{ cls.status }}</td>
+              <td class="fw-semibold">{{ notice.title }}</td>
+              <td><span class="badge {% if notice.category == 'exam' %}bg-warning text-dark{% elif notice.category == 'academic' %}bg-primary{% elif notice.category == 'event' %}bg-success{% else %}bg-secondary{% endif %}">{{ notice.get_category_display }}</span></td>
               <td>
-                <a href="" class="btn btn-sm btn-emis-outline">Edit</a>
-                <a href="" class="btn btn-sm btn-emis-danger">Delete</a>
+                {% if notice.is_important %}
+                  <span class="badge bg-danger"><i class="bi bi-megaphone me-1"></i>Important</span>
+                {% else %}
+                  <span class="text-muted">—</span>
+                {% endif %}
+              </td>
+              <td>{{ notice.published_date|date:"M d, Y" }}</td>
+              <td class="text-end">
+                <a href="{% url 'notices:notice_edit' notice.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-pencil"></i></a>
+                <a href="{% url 'notices:notice_delete' notice.id %}" class="btn btn-sm btn-emis-danger"><i class="bi bi-trash"></i></a>
               </td>
             </tr>
             {% empty %}
             <tr>
-              <td colspan="6" class="text-center">No classes found.</td>
+              <td colspan="5" class="text-center py-4 text-muted">
+                <i class="bi bi-megaphone display-6 text-muted mb-2 d-block"></i>
+                No notices found. Click 'Add Notice' to publish the first one.
+              </td>
             </tr>
             {% endfor %}
           </tbody>
@@ -57,5 +95,4 @@
       </div>
     </div>
   </div>
-
 {% endblock %}

@@ -3,8 +3,12 @@
 
 {% block title %}Library Dashboard{% endblock %}
 {% block eyebrow_text %}Library{% endblock %}
-{% block page_title %}Welcome to Library Services, {{ username }}{% endblock %}
-{% block page_subtitle %}<p>Browse catalog, manage reservations, and track your active book loans.</p>{% endblock %}
+{% block page_title %}Circulation Desk{% endblock %}
+{% block page_subtitle %}<p>Welcome, {{ username }}. Issue books to students and manage active loans.</p>{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'library:issue_book' %}" class="btn btn-emis-primary"><i class="bi bi-bag-plus me-1"></i>Issue Book</a>
+{% endblock %}
 
 {% block content %}
 
@@ -12,63 +16,82 @@
   <div class="row g-3 mb-4">
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip blue"><i class="bi bi-journal-bookmark"></i></span>Active Loans</div>
-        <div class="stat-value">0</div>
-        <div class="stat-delta flat">No books currently checked out</div>
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-book"></i></span>Total Copies</div>
+        <div class="stat-value">{{ total_books }}</div>
+        <div class="stat-delta flat">Across the catalog</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip amber"><i class="bi bi-alarm"></i></span>Overdue Items</div>
-        <div class="stat-value">0</div>
-        <div class="stat-delta flat">No overdue books</div>
+        <div class="label"><span class="icon-chip blue"><i class="bi bi-check2-circle"></i></span>Available Now</div>
+        <div class="stat-value">{{ available_books }}</div>
+        <div class="stat-delta flat">Ready for issue</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip red"><i class="bi bi-cash-coin"></i></span>Outstanding Fines</div>
-        <div class="stat-value">Rs 0</div>
-        <div class="stat-delta flat">Clear balance</div>
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-journal-bookmark"></i></span>Active Loans</div>
+        <div class="stat-value">{{ active_loan_count }}</div>
+        <div class="stat-delta flat">Max 3 per student</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip teal"><i class="bi bi-bookmark-heart"></i></span>Active Holds</div>
-        <div class="stat-value">0</div>
-        <div class="stat-delta flat">No active reservations</div>
+        <div class="label"><span class="icon-chip red"><i class="bi bi-alarm"></i></span>Overdue Loans</div>
+        <div class="stat-value {% if overdue_count %}text-danger{% endif %}">{{ overdue_count }}</div>
+        <div class="stat-delta flat">Fine Rs. 5/day</div>
       </div>
     </div>
   </div>
 
   <div class="row g-3">
-    <!-- Active Loans Table -->
+    <!-- Recent Loans -->
     <div class="col-lg-8">
       <div class="emis-card mb-4">
-        <div class="emis-card-header">
-          <h2>Currently Borrowed Books</h2>
+        <div class="emis-card-header d-flex justify-content-between align-items-center">
+          <h2>Recent Transactions</h2>
+          <a href="{% url 'library:library_loans' %}" class="small">View all loans</a>
         </div>
         <div class="emis-card-body p-0">
           <div class="table-responsive">
             <table class="emis-table">
               <thead>
                 <tr>
-                  <th>Book Title</th>
-                  <th>Author</th>
-                  <th>Issue Date</th>
-                  <th>Due Date</th>
+                  <th>Student</th>
+                  <th>Book</th>
+                  <th>Issued</th>
+                  <th>Due</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
+                {% for loan in recent_loans %}
+                <tr>
+                  <td class="fw-semibold">{{ loan.student.roll_number }}</td>
+                  <td>{{ loan.book.title }}</td>
+                  <td>{{ loan.borrowed_date|date:"M d, Y" }}</td>
+                  <td>{{ loan.due_date|date:"M d, Y" }}</td>
+                  <td>
+                    {% if loan.status == 'returned' %}
+                      <span class="badge bg-success">Returned</span>
+                    {% elif loan.is_overdue %}
+                      <span class="badge bg-danger">Overdue {{ loan.overdue_days }}d</span>
+                    {% else %}
+                      <span class="badge bg-primary">Borrowed</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% empty %}
                 <tr>
                   <td colspan="5" class="text-center py-4 text-muted">
                     <div class="emis-empty py-3">
                       <i class="bi bi-book display-6 text-muted mb-2 d-block"></i>
-                      <h6>No active borrowed books</h6>
-                      <p class="small text-muted mb-0">Visit the physical campus library or request a hold online.</p>
+                      <h6>No transactions yet</h6>
+                      <p class="small text-muted mb-0">Issue a book to a student to get started.</p>
                     </div>
                   </td>
                 </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -76,18 +99,32 @@
       </div>
     </div>
 
-    <!-- Library Rules & Info -->
+    <!-- Quick Guide -->
     <div class="col-lg-4">
+      <div class="emis-card mb-4">
+        <div class="emis-card-header">
+          <h2>Issue a Book</h2>
+        </div>
+        <div class="emis-card-body">
+          <ol class="small text-muted ps-3 mb-0">
+            <li class="mb-2">Click <strong>Issue Book</strong> in the top bar.</li>
+            <li class="mb-2">Select the <strong>student by roll number</strong> (e.g. BIM-2083-001).</li>
+            <li class="mb-2">Pick the book and confirm — the loan is automatically 14 days.</li>
+            <li class="mb-2">Late returns incur <strong>Rs 5/day</strong> per volume.</li>
+            <li>Students may hold up to <strong>3 books</strong> at a time.</li>
+          </ol>
+        </div>
+      </div>
       <div class="emis-card mb-4">
         <div class="emis-card-header">
           <h2>Library Regulations</h2>
         </div>
         <div class="emis-card-body">
           <ul class="small text-muted ps-3 mb-0">
-            <li class="mb-2">Students may borrow up to <strong>3 books</strong> for 14 days.</li>
-            <li class="mb-2">Late returns incur a fee of <strong>Rs 5/day</strong> per volume.</li>
-            <li class="mb-2">Reference materials must remain inside the library reading hall.</li>
-            <li>Present your valid Student/Staff ID card at the circulation desk.</li>
+            <li class="mb-2">Loan period: <strong>14 days</strong>.</li>
+            <li class="mb-2">Late return fine: <strong>Rs 5/day</strong> per volume.</li>
+            <li class="mb-2">Reference materials must remain in the reading hall.</li>
+            <li>Present valid Student ID at the circulation desk.</li>
           </ul>
         </div>
       </div>

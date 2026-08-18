@@ -1,0 +1,95 @@
+{% extends "teachers/base_teacher.html" %}
+{% load static %}
+
+{% block title %}My Leave{% endblock %}
+{% block eyebrow_text %}Leave Management{% endblock %}
+{% block page_title %}Leave Requests{% endblock %}
+{% block page_subtitle %}<p>Apply for leave and track approval status.</p>{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'teachers:teacher_leave_new' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>New Leave Request</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-hourglass-split"></i></span>Pending</div>
+      <div class="stat-value">{{ pending_count }}</div>
+      <div class="stat-delta flat">awaiting approval</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip green"><i class="bi bi-check-circle"></i></span>Approved</div>
+      <div class="stat-value">{{ approved_count }}</div>
+      <div class="stat-delta up"><i class="bi bi-check-lg"></i> sanctioned</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip red"><i class="bi bi-x-circle"></i></span>Rejected</div>
+      <div class="stat-value">{{ rejected_count }}</div>
+      <div class="stat-delta flat">not sanctioned</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-list-check"></i></span>Total Requests</div>
+      <div class="stat-value">{{ leave_requests|length }}</div>
+      <div class="stat-delta flat">all time</div>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Leave History</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Applied On</th>
+            <th>Type</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Admin Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in leave_requests %}
+          <tr>
+            <td>{{ l.applied_at|date:"M d, Y" }}</td>
+            <td>{{ l.get_leave_type_display }}</td>
+            <td>{{ l.from_date|date:"M d, Y" }}</td>
+            <td>{{ l.to_date|date:"M d, Y" }}</td>
+            <td>{{ l.days }}</td>
+            <td>{{ l.reason|default:"—"|truncatechars:50 }}</td>
+            <td>
+              {% if l.status == 'approved' %}<span class="pill pill-teal">Approved</span>
+              {% elif l.status == 'rejected' %}<span class="pill pill-red">Rejected</span>
+              {% else %}<span class="pill pill-amber">Pending</span>{% endif %}
+            </td>
+            <td>{{ l.admin_remarks|default:"—" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="8" class="text-center py-4 text-muted">
+              <i class="bi bi-person-lines-fill d-block fs-1 mb-2"></i>
+              You haven't applied for leave yet.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

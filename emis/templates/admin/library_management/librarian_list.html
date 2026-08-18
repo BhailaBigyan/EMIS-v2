@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Librarians{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Librarian Accounts{% endblock %}
+{% block page_subtitle %}<p>Manage librarian accounts. Librarians sign in at the Library Portal to issue and return books. Default password: library@username.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><span class="current">Library · Librarians</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'library:admin_book_list' %}" class="btn btn-emis-outline"><i class="bi bi-book me-1"></i>Books</a>
+  <a href="{% url 'library:admin_librarian_add' %}" class="btn btn-emis-primary"><i class="bi bi-person-plus me-1"></i>Add Librarian</a>
+{% endblock %}
+
+{% block content %}
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Librarian Accounts ({{ librarians|length }})</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Loans Issued</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lib in librarians %}
+          <tr>
+            <td class="font-mono">{{ lib.username }}</td>
+            <td class="fw-semibold">{{ lib.full_name }}</td>
+            <td>{{ lib.email|default:"—" }}</td>
+            <td>{{ lib.phone|default:"—" }}</td>
+            <td><span class="badge bg-primary">{{ lib.issued_loans.count }}</span></td>
+            <td>
+              {% if lib.is_active %}
+                <span class="badge bg-success">Active</span>
+              {% else %}
+                <span class="badge bg-secondary">Inactive</span>
+              {% endif %}
+            </td>
+            <td class="text-end">
+              <a href="{% url 'library:admin_librarian_edit' lib.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-pencil"></i></a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-4 text-muted">
+              <i class="bi bi-person-badge display-6 text-muted mb-2 d-block"></i>
+              No librarian accounts yet. Click 'Add Librarian' to create one.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

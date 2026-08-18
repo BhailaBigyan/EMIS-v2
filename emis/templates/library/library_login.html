@@ -40,13 +40,14 @@
           <i class="bi bi-book-half text-white"></i>
         </div>
         <h2 class="auth-title fw-bold" style="font-family: 'Outfit', sans-serif;">Library Portal</h2>
-        <p class="auth-subtitle">Catalog search, book reservation &amp; borrowing records</p>
+        <p class="auth-subtitle">Librarian sign in · Issue &amp; manage book circulation</p>
       </div>
 
       <!-- Portal Nav Tabs -->
       <div class="portal-nav px-3">
         <a href="{% url 'general_login' %}" class="portal-nav-item"><i class="bi bi-person-workspace me-1"></i>Admin</a>
         <a href="{% url 'students:student_login' %}" class="portal-nav-item"><i class="bi bi-mortarboard me-1"></i>Student</a>
+        <a href="{% url 'teachers:teacher_login' %}" class="portal-nav-item"><i class="bi bi-person-workspace me-1"></i>Teacher</a>
         <a href="{% url 'library:library_login' %}" class="portal-nav-item active"><i class="bi bi-book me-1"></i>Library</a>
       </div>
 
@@ -70,10 +71,10 @@
         {% csrf_token %}
 
         <div class="auth-field mb-3">
-          <label class="form-label font-weight-semibold small text-muted">Username / Library ID</label>
+          <label class="form-label font-weight-semibold small text-muted">Librarian Username</label>
           <div class="auth-input-group">
-            <i class="bi bi-journal-bookmark left-icon"></i>
-            <input type="text" name="username" id="id_username" class="auth-input" placeholder="Roll No. or Staff ID" required autofocus>
+            <i class="bi bi-person-badge left-icon"></i>
+            <input type="text" name="username" id="id_username" class="auth-input" placeholder="Your librarian username" required autofocus>
           </div>
         </div>
 
@@ -93,8 +94,8 @@
         <!-- Quick Demo Hint Badge -->
         <div class="auth-demo-badge mt-3" onclick="fillLibraryDemo()">
           <div>
-            <strong><i class="bi bi-lightbulb me-1"></i>Demo Library Login:</strong>
-            <span class="d-block font-mono small text-muted">admin / admin123</span>
+            <strong><i class="bi bi-lightbulb me-1"></i>Demo Librarian Login:</strong>
+            <span class="d-block font-mono small text-muted">librarian / library@librarian</span>
           </div>
           <span class="badge bg-secondary">Click to Fill</span>
         </div>
@@ -118,8 +119,8 @@
     }
 
     function fillLibraryDemo() {
-      document.getElementById('id_username').value = 'admin';
-      document.getElementById('id_password').value = 'admin123';
+      document.getElementById('id_username').value = 'librarian';
+      document.getElementById('id_password').value = 'library@librarian';
     }
   </script>
 </body>

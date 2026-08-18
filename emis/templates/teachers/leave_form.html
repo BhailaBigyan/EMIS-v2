@@ -1,0 +1,56 @@
+{% extends "teachers/base_teacher.html" %}
+{% load static %}
+
+{% block title %}New Leave Request{% endblock %}
+{% block eyebrow_text %}Leave Management{% endblock %}
+{% block page_title %}New Leave Request{% endblock %}
+{% block page_subtitle %}<p>Submit a leave request. The administration office will review and respond.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Leave Details</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post">
+          {% csrf_token %}
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+          {% endif %}
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label small text-muted">Leave Type</label>
+              {{ form.leave_type }}
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">From Date</label>
+              {{ form.from_date }}
+              {{ form.from_date.errors }}
+            </div>
+            <div class="col-6">
+              <label class="form-label small text-muted">To Date</label>
+              {{ form.to_date }}
+              {{ form.to_date.errors }}
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-muted">Reason</label>
+              {{ form.reason }}
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <a href="{% url 'teachers:teacher_leave' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary"><i class="bi bi-send me-1"></i>Submit Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

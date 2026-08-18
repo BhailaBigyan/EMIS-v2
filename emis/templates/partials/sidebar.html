@@ -113,6 +113,34 @@
         class="emis-nav-link {% if request.resolver_match.namespace == 'teachers' and request.resolver_match.url_name == 'teacher_add' %}active{% endif %}">
         <i class="bi bi-person-plus"></i><span>Add Teacher</span>
       </a>
+      <a href="{% url 'teachers:teacher_leave_admin' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'teachers' and request.resolver_match.url_name == 'teacher_leave_admin' %}active{% endif %}">
+        <i class="bi bi-person-lines-fill"></i><span>Leave Requests</span>
+      </a>
+      <a href="{% url 'teachers:teacher_login' %}"
+        class="emis-nav-link">
+        <i class="bi bi-box-arrow-in-right"></i><span>Teacher Portal Login</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Library</div>
+      <a href="{% url 'library:admin_book_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and request.resolver_match.url_name == 'admin_book_list' %}active{% endif %}">
+        <i class="bi bi-book"></i><span>Book Catalog</span>
+      </a>
+      <a href="{% url 'library:admin_category_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and 'category' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-tags"></i><span>Categories</span>
+      </a>
+      <a href="{% url 'library:admin_librarian_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and 'librarian' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-person-badge"></i><span>Librarians</span>
+      </a>
+      <a href="{% url 'library:admin_borrowing_list' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'admin_borrowing_list' or request.resolver_match.url_name == 'issue_book' or request.resolver_match.url_name == 'admin_return_book' %}active{% endif %}">
+        <i class="bi bi-arrow-left-right"></i><span>Circulation</span>
+      </a>
     </div>
 
     <div class="emis-nav-section">

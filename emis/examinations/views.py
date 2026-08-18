@@ -103,6 +103,7 @@ def grade_entry(request, exam_id, course_id):
     if request.method == "POST":
         # Bulk save marks
         updated_count = 0
+        error_count = 0
         for student in students:
             input_name = f"marks_{student.student_id}"
             remarks_name = f"remarks_{student.student_id}"
@@ -112,21 +113,24 @@ def grade_entry(request, exam_id, course_id):
             if marks_val != '':
                 try:
                     marks_num = float(marks_val)
-                    grade_obj, created = Grade.objects.get_or_create(
-                        student=student,
-                        exam=exam,
-                        course=course,
-                        defaults={'marks_obtained': marks_num, 'remarks': remarks_val}
-                    )
-                    if not created:
-                        grade_obj.marks_obtained = marks_num
-                        grade_obj.remarks = remarks_val
-                        grade_obj.save()
-                    updated_count += 1
                 except ValueError:
-                    pass
+                    error_count += 1
+                    continue
+                grade_obj, created = Grade.objects.get_or_create(
+                    student=student,
+                    exam=exam,
+                    course=course,
+                    defaults={'marks_obtained': marks_num, 'remarks': remarks_val}
+                )
+                if not created:
+                    grade_obj.marks_obtained = marks_num
+                    grade_obj.remarks = remarks_val
+                    grade_obj.save()
+                updated_count += 1
 
         messages.success(request, f"Successfully recorded grades for {updated_count} students.")
+        if error_count:
+            messages.warning(request, f"Skipped {error_count} invalid mark entr{'y' if error_count == 1 else 'ies'} (non-numeric values).")
         return redirect('examinations:exam_list')
 
     # Fetch existing grades

@@ -1,32 +1,22 @@
-{% extends 'base.html' %}
+{% extends "students/base_student.html" %}
 {% load static %}
 
-{% block title %}Student Profile - {{ student.full_name }}{% endblock %}
-{% block eyebrow_text %}Students{% endblock %}
-{% block page_title %}{{ student.full_name }}{% endblock %}
-{% block page_subtitle %}<p>Roll Number: <code>{{ student.roll_number }}</code> &bull; Program: {{ student.program.name|default:"Unassigned" }} (Batch {{ student.batch|default:"N/A" }})</p>{% endblock %}
-
-{% block breadcrumb %}
-  <span>EMIS</span><span class="sep">/</span><a href="{% url 'student_list' %}">Students</a><span class="sep">/</span><span class="current">{{ student.roll_number }}</span>
-{% endblock %}
-
-{% block page_actions %}
-  <a href="{% url 'student_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Directory</a>
-  <a href="{% url 'student_edit' student.student_id %}" class="btn btn-emis-primary"><i class="bi bi-pencil me-1"></i>Edit Profile</a>
-{% endblock %}
+{% block title %}My Profile{% endblock %}
+{% block eyebrow_text %}Personal & Academic{% endblock %}
+{% block page_title %}My Profile{% endblock %}
+{% block page_subtitle %}<p>Your personal details, academic summary, grades, and fee payment history.</p>{% endblock %}
 
 {% block content %}
-<div class="row g-4">
 
-  <!-- Left Sidebar Card: Core Summary -->
-  <div class="col-12 col-lg-4">
-    <div class="emis-card mb-4 text-center p-4">
-      <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+<div class="row g-3">
+  <!-- Identity Card -->
+  <div class="col-lg-4">
+    <div class="emis-card mb-3 text-center p-4">
+      <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 84px; height: 84px; font-size: 2rem;">
         {{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}
       </div>
-      <h4>{{ student.full_name }}</h4>
+      <h4 class="mb-1">{{ student.full_name }}</h4>
       <div class="text-muted font-monospace mb-2">{{ student.roll_number }}</div>
-
       <div>
         {% if student.status == 'active' %}
           <span class="pill pill-teal">Active</span>
@@ -38,11 +28,9 @@
           <span class="pill pill-red">Suspended</span>
         {% endif %}
       </div>
-
       <hr class="my-3">
-
       <div class="text-start small">
-        <div class="mb-2"><strong>Program:</strong> {{ student.program.name|default:"Not Enrolled" }}</div>
+        <div class="mb-2"><strong>Program:</strong> {{ student.program.name|default:"Not Enrolled" }} ({{ student.program.code|default:"—" }})</div>
         <div class="mb-2"><strong>Batch:</strong> {{ student.batch|default:"N/A" }}</div>
         <div class="mb-2"><strong>Semester:</strong> Semester {{ student.current_semester }}</div>
         <div class="mb-2"><strong>Section:</strong> {{ student.section|default:"A" }}</div>
@@ -50,7 +38,6 @@
       </div>
     </div>
 
-    <!-- Contact & Guardian Info -->
     <div class="emis-card">
       <div class="emis-card-header">
         <h2>Contact & Guardian</h2>
@@ -68,11 +55,9 @@
     </div>
   </div>
 
-  <!-- Right Details Tabs -->
-  <div class="col-12 col-lg-8">
-
+  <div class="col-lg-8">
     <!-- Academic Grades -->
-    <div class="emis-card mb-4">
+    <div class="emis-card mb-3">
       <div class="emis-card-header">
         <h2>Academic Grades & Performance</h2>
       </div>
@@ -94,12 +79,12 @@
                 <td>{{ g.exam.name }}</td>
                 <td>{{ g.course.name }} ({{ g.course.code }})</td>
                 <td>{{ g.marks_obtained }} / {{ g.exam.total_marks }}</td>
-                <td><span class="badge bg-primary">{{ g.grade_letter }}</span></td>
+                <td><span class="badge bg-primary">{{ g.grade_letter|default:"—" }}</span></td>
                 <td>{{ g.remarks|default:"—" }}</td>
               </tr>
               {% empty %}
               <tr>
-                <td colspan="5" class="text-center py-3 text-muted">No grade records found for this student.</td>
+                <td colspan="5" class="text-center py-3 text-muted">No grade records published yet.</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -108,10 +93,10 @@
       </div>
     </div>
 
-    <!-- Fee Payments History -->
+    <!-- Fee Payments -->
     <div class="emis-card">
-      <div class="emis-card-header d-flex justify-content-between align-items-center">
-        <h2>Fee Payments History</h2>
+      <div class="emis-card-header">
+        <h2>Fee Payment History</h2>
       </div>
       <div class="emis-card-body p-0">
         <div class="table-responsive">
@@ -122,7 +107,7 @@
                 <th>Fee Structure</th>
                 <th>Amount Paid</th>
                 <th>Date</th>
-                <th>Payment Method</th>
+                <th>Method</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -146,8 +131,7 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
+
 {% endblock %}
