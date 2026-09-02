@@ -97,7 +97,7 @@
                   <td>{{ s.course_assignment.course.name }} <span class="text-muted">({{ s.course_assignment.course.code }})</span></td>
                   <td>{{ s.course_assignment.semester.name }}</td>
                   <td>{{ s.room }}</td>
-                  <td><a href="{% url 'teachers:teacher_attendance' %}?course_assignment={{ s.course_assignment.id }}" class="small">Mark &rarr;</a></td>
+                  <td><a href="{% url 'teachers:teacher_attendance' %}?course_assignment={{ s.course_assignment.id }}" class="small fw-semibold row-action">Mark &rarr;</a></td>
                 </tr>
                 {% empty %}
                 <tr>

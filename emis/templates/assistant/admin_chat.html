@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}AI Assistant{% endblock %}
+{% block eyebrow_text %}AI Assistant{% endblock %}
+{% block page_title %}AI Assistant{% endblock %}
+{% block page_subtitle %}<p>Ask about the college — records, policies, notices, and reports are answered from live EMIS data.</p>{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/assistant_chat.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% include "assistant/chat_partial.html" %}
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    window.EMIS_ASSISTANT = {
+      apiUrl: "{{ api_url }}",
+      userName: "{{ assistant_name }}",
+      initials: "{{ assistant_initials }}",
+    };
+  </script>
+  <script src="{% static 'js/assistant_chat.js' %}"></script>
+  <script>EMISAssistant.init();</script>
+{% endblock %}

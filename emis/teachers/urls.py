@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from assistant import views as assistant_views
 
 app_name = 'teachers'
 
@@ -22,6 +23,7 @@ urlpatterns = [
     path('leave/new/', views.teacher_leave_new, name='teacher_leave_new'),
     path('profile/', views.teacher_profile, name='teacher_profile'),
     path('profile/edit/', views.teacher_profile_edit, name='teacher_profile_edit'),
+    path('assistant/', assistant_views.teacher_assistant, name='assistant'),
 
     # Admin: leave management
     path('leave-requests/', views.teacher_leave_admin, name='teacher_leave_admin'),

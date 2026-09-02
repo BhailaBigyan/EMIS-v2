@@ -1,6 +1,6 @@
 /* =========================================================
-   EMIS Student Portal — Horizontal Nav Layout
-   Builds on tokens/components defined in emis.css
+   EMIS Student & Teacher Portal — Horizontal Nav Layout
+   Builds on tokens/components defined in style.css
    ========================================================= */
 
 .stu-shell {
@@ -14,7 +14,10 @@
 
 .stu-topbar {
   height: var(--topbar-h);
-  background: var(--ink-800);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(60, 138, 122, 0.2) 0%, transparent 40%),
+    linear-gradient(135deg, var(--ink-800), var(--ink-900));
+  box-shadow: 0 2px 12px rgba(14, 26, 46, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,18 +34,19 @@
 }
 
 .stu-brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: linear-gradient(135deg, var(--teal-500), var(--ink-600));
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   color: #fff;
   flex-shrink: 0;
+  box-shadow: var(--shadow-glow-teal);
 }
 
 .stu-brand-text {
@@ -78,10 +82,11 @@
   width: 100%;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 7px 14px 7px 34px;
   font-size: 13px;
   color: #fff;
+  transition: all var(--dur-fast) ease;
 }
 
 .stu-search input::placeholder { color: rgba(244, 246, 250, 0.45); }
@@ -90,6 +95,7 @@
   outline: none;
   background: rgba(255, 255, 255, 0.14);
   border-color: var(--teal-500);
+  box-shadow: 0 0 0 3px rgba(60, 138, 122, 0.3);
 }
 
 .stu-search i {
@@ -99,6 +105,7 @@
   transform: translateY(-50%);
   color: rgba(244, 246, 250, 0.5);
   font-size: 13px;
+  pointer-events: none;
 }
 
 .stu-icon-btn {
@@ -112,19 +119,21 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: all var(--dur-fast) ease;
 }
 
-.stu-icon-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+.stu-icon-btn:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
 
 .stu-icon-btn .dot {
   position: absolute;
   top: 6px;
   right: 6px;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--amber-500);
   border: 1.5px solid var(--ink-800);
+  box-shadow: 0 0 0 3px rgba(201, 138, 62, 0.2);
 }
 
 .stu-user-chip {
@@ -132,19 +141,20 @@
   align-items: center;
   gap: 9px;
   padding: 5px 10px 5px 5px;
-  border-radius: 20px;
+  border-radius: 24px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
+  transition: background var(--dur-fast) ease;
 }
 
-.stu-user-chip:hover { background: rgba(255, 255, 255, 0.12); }
+.stu-user-chip:hover { background: rgba(255, 255, 255, 0.14); }
 
 .stu-user-avatar {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--teal-500);
+  background: linear-gradient(135deg, var(--teal-500), var(--ink-500));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,15 +194,15 @@
 /* ---------- Horizontal nav row ---------- */
 
 .stu-navbar {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
   padding: 0 24px;
   position: sticky;
   top: var(--topbar-h);
   z-index: 1020;
-  /* ledger-stripe echo: thin tick rule under the active nav row,
-     tying back to the admin sidebar's register-margin motif */
-  box-shadow: 0 1px 0 rgba(60, 138, 122, 0.15);
+  box-shadow: 0 2px 10px rgba(14, 26, 46, 0.05);
 }
 
 .stu-nav {
@@ -216,20 +226,27 @@
   white-space: nowrap;
   border-bottom: 2px solid transparent;
   flex-shrink: 0;
-  transition: color 0.12s ease, border-color 0.12s ease;
+  position: relative;
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease;
 }
 
-.stu-nav-link i { font-size: 15px; opacity: 0.8; }
+.stu-nav-link i { font-size: 15px; opacity: 0.8; transition: transform var(--dur) var(--ease-out); }
 
 .stu-nav-link:hover {
   color: var(--text-900);
+  background: rgba(246, 248, 251, 0.7);
 }
+
+.stu-nav-link:hover i { transform: translateY(-1px); }
 
 .stu-nav-link.active {
   color: var(--ink-700);
   border-bottom-color: var(--teal-500);
   font-weight: 600;
+  background: linear-gradient(to top, var(--teal-soft), transparent 70%);
 }
+
+.stu-nav-link.active i { opacity: 1; }
 
 .stu-nav-link .badge-count {
   background: var(--amber-soft);
@@ -252,7 +269,7 @@
 /* ---------- Content canvas ---------- */
 
 .stu-content {
-  padding: 26px 28px 48px;
+  padding: 28px 30px 56px;
   flex: 1;
   max-width: 1320px;
   width: 100%;
@@ -265,8 +282,11 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--surface);
+  background:
+    linear-gradient(90deg, var(--teal-soft), transparent 45%),
+    var(--surface);
   border: 1px solid var(--line);
+  border-left: 4px solid var(--teal-500);
   border-radius: var(--radius);
   padding: 18px 22px;
   margin-bottom: 22px;
@@ -274,8 +294,8 @@
 }
 
 .stu-welcome-avatar {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--teal-500), var(--ink-600));
   display: flex;
@@ -284,8 +304,9 @@
   color: #fff;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 19px;
   flex-shrink: 0;
+  box-shadow: var(--shadow-glow-teal);
 }
 
 .stu-welcome-text h2 {
@@ -302,7 +323,7 @@
 .stu-welcome-meta {
   margin-left: auto;
   display: flex;
-  gap: 22px;
+  gap: 26px;
   text-align: right;
 }
 
@@ -342,6 +363,8 @@
     z-index: 1025;
     overflow-y: auto;
     padding: 10px 16px 24px;
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
   }
 
   .stu-navbar.mobile-open .stu-nav {
@@ -366,7 +389,7 @@
 }
 
 @media (max-width: 575.98px) {
-  .stu-content { padding: 18px 14px 40px; }
+  .stu-content { padding: 20px 14px 44px; }
   .stu-topbar { padding: 0 14px; }
   .stu-navbar { padding: 0 14px; }
   .stu-brand-text .sub { display: none; }

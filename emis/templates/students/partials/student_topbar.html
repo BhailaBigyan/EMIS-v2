@@ -67,6 +67,9 @@
     <a href="{% url 'students:student_books' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_books' %}active{% endif %}">
       <i class="bi bi-book"></i>My Books
     </a>
+    <a href="{% url 'students:assistant' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">
+      <i class="bi bi-stars"></i>AI Assistant
+    </a>
     <a href="{% url 'students:student_help' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'student_help' %}active{% endif %}">
       <i class="bi bi-life-preserver"></i>Help
     </a>

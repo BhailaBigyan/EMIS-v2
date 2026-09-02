@@ -17,6 +17,10 @@
         class="emis-nav-link {% if request.resolver_match.url_name == 'general_dashboard' %}active{% endif %}">
         <i class="bi bi-grid-1x2"></i><span>Dashboard</span>
       </a>
+      <a href="{% url 'assistant' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">
+        <i class="bi bi-stars"></i><span>AI Assistant</span>
+      </a>
     </div>
 
     <div class="emis-nav-section">
@@ -37,6 +41,10 @@
 
     <div class="emis-nav-section">
       <div class="emis-nav-label">Academics</div>
+      <a href="{% url 'academics:classes_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and request.resolver_match.url_name == 'classes' %}active{% endif %}">
+        <i class="bi bi-building"></i><span>Academic Management</span>
+      </a>
       <a href="{% url 'academics:department_list' %}"
         class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'department' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-building"></i><span>Departments</span>

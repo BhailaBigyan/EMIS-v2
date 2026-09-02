@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'finances',
     'notices',
     'teachers',
+    'assistant',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Admin credentials (from .env)
 ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+
+# AI Assistant configuration
+# Leave AI_API_KEY empty to run in built-in demo mode (simulated streaming answers
+# built from live EMIS data). Set a key to use an OpenAI-compatible API
+# (OpenAI, DeepSeek, Ollama, OpenRouter, etc.) via AI_BASE_URL.
+AI_API_KEY = os.environ.get('AI_API_KEY', '')
+AI_BASE_URL = os.environ.get('AI_BASE_URL', 'https://api.openai.com/v1')
+AI_MODEL = os.environ.get('AI_MODEL', 'gpt-4o-mini')

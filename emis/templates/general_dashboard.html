@@ -103,7 +103,7 @@
                 {% endif %}
               </td>
               <td class="text-end">
-                <a href="{% url 'student_profile' student.student_id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-eye"></i> Profile</a>
+                <a href="{% url 'student_profile' student.student_id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-eye"></i> Profile</a>
               </td>
             </tr>
             {% empty %}
@@ -143,7 +143,7 @@
                   <td>{{ exam.semester.name }}</td>
                   <td>{{ exam.start_date|date:"M d" }} &ndash; {{ exam.end_date|date:"M d, Y" }}</td>
                   <td class="text-end">
-                    <a href="{% url 'examinations:schedule_list' exam.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-calendar-week me-1"></i>Routine</a>
+                    <a href="{% url 'examinations:schedule_list' exam.id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-calendar-week me-1"></i>Routine</a>
                   </td>
                 </tr>
                 {% empty %}
@@ -183,7 +183,7 @@
                   <td class="fw-semibold">{{ p.student.roll_number }}</td>
                   <td class="fw-bold text-success">Rs. {{ p.amount_paid }}</td>
                   <td class="text-end">
-                    <a href="{% url 'finances:payment_receipt' p.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-printer"></i> Print</a>
+                    <a href="{% url 'finances:payment_receipt' p.id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-printer"></i> Print</a>
                   </td>
                 </tr>
                 {% empty %}
@@ -202,7 +202,7 @@
   <!-- Quick Management Links Strip -->
   <div class="row g-3">
     <div class="col-md-3">
-      <div class="emis-card h-100">
+      <div class="emis-card hover-lift h-100">
         <div class="emis-card-body d-flex align-items-center gap-3">
           <span class="icon-chip blue flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
             <i class="bi bi-person-badge"></i>
@@ -217,7 +217,7 @@
     </div>
 
     <div class="col-md-3">
-      <div class="emis-card h-100">
+      <div class="emis-card hover-lift h-100">
         <div class="emis-card-body d-flex align-items-center gap-3">
           <span class="icon-chip teal flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
             <i class="bi bi-journal-bookmark"></i>
@@ -232,7 +232,7 @@
     </div>
 
     <div class="col-md-3">
-      <div class="emis-card h-100">
+      <div class="emis-card hover-lift h-100">
         <div class="emis-card-body d-flex align-items-center gap-3">
           <span class="icon-chip amber flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
             <i class="bi bi-cash-stack"></i>
@@ -247,7 +247,7 @@
     </div>
 
     <div class="col-md-3">
-      <div class="emis-card h-100">
+      <div class="emis-card hover-lift h-100">
         <div class="emis-card-body d-flex align-items-center gap-3">
           <span class="icon-chip red flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
             <i class="bi bi-journal-check"></i>

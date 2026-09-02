@@ -3,6 +3,7 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from assistant import views as assistant_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,6 +44,10 @@ urlpatterns = [
 
     # Library Portal URLs
     path('library/', include(('library.urls', 'library'), namespace='library')),
+
+    # AI Assistant
+    path('assistant/', include(('assistant.urls', 'assistant'), namespace='assistant')),
+    path('dashboard/assistant/', assistant_views.admin_assistant, name='assistant'),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,154 @@
+{% load static %}
+
+<div class="ai-shell" id="aiShell" data-api-url="{{ api_url }}">
+
+  <!-- Chat header -->
+  <div class="ai-header">
+    <div class="ai-header-avatar">
+      <i class="bi bi-stars"></i>
+    </div>
+    <div class="ai-header-text">
+      <div class="ai-header-title">EMIS AI Assistant</div>
+      <div class="ai-header-status">
+        <span class="ai-status-dot"></span>
+        <span id="aiStatusText">Online · answers from live college records</span>
+      </div>
+    </div>
+    <div class="ai-header-model" title="Model / mode">
+      {% if assistant_mode %}{{ assistant_mode }}{% else %}Smart mode{% endif %}
+    </div>
+  </div>
+
+  <!-- Messages scroll area -->
+  <div class="ai-scroll" id="aiScroll" aria-live="polite">
+    <div class="ai-messages" id="aiMessages">
+      <!-- Empty-state hero (rendered by JS when no messages) -->
+      <div class="ai-hero" id="aiHero">
+        <div class="ai-hero-icon"><i class="bi bi-stars"></i></div>
+        <h3>Ask me anything about the college</h3>
+        <p>Notices, programs, fees, exams, library, attendance and more — answered from live EMIS data.</p>
+        <div class="ai-hero-chips" id="aiHeroChips">
+          <button type="button" class="ai-chip" data-prompt="What are the latest notices?">
+            <i class="bi bi-megaphone"></i> Latest notices
+          </button>
+          <button type="button" class="ai-chip" data-prompt="How much are the fees for each program?">
+            <i class="bi bi-cash-coin"></i> Fee structures
+          </button>
+          <button type="button" class="ai-chip" data-prompt="Which programs does the college offer?">
+            <i class="bi bi-mortarboard"></i> Programs offered
+          </button>
+          <button type="button" class="ai-chip" data-prompt="How do I borrow books from the library?">
+            <i class="bi bi-book"></i> Library guide
+          </button>
+          <button type="button" class="ai-chip" data-prompt="How do I log in to each portal?">
+            <i class="bi bi-key"></i> Portal logins
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Composer -->
+  <div class="ai-composer-wrap">
+    <div class="ai-cmd-menu" id="aiCmdMenu" hidden>
+      <div class="ai-cmd-title">Commands</div>
+      <button type="button" class="ai-cmd-item" data-command="/help">
+        <code>/help</code><span>What can you do?</span>
+      </button>
+      <button type="button" class="ai-cmd-item" data-command="/notices">
+        <code>/notices</code><span>Latest announcements</span>
+      </button>
+      <button type="button" class="ai-cmd-item" data-command="/programs">
+        <code>/programs</code><span>Programs offered</span>
+      </button>
+      <button type="button" class="ai-cmd-item" data-command="/fees">
+        <code>/fees</code><span>Fee structures</span>
+      </button>
+      <button type="button" class="ai-cmd-item" data-command="/clear">
+        <code>/clear</code><span>Clear this conversation</span>
+      </button>
+    </div>
+
+    <form class="ai-composer" id="aiForm" autocomplete="off">
+      <button type="button" class="ai-composer-command" id="aiCmdToggle" title="Commands">
+        <i class="bi bi-slash-lg"></i>
+      </button>
+      <textarea
+        id="aiInput"
+        class="ai-input"
+        rows="1"
+        placeholder="Ask about notices, fees, exams, library…  (Enter to send, Shift+Enter for new line)"
+        aria-label="Message the AI assistant"></textarea>
+      <button type="submit" class="ai-send" id="aiSendBtn" title="Send message">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+    </form>
+    <div class="ai-composer-hint">
+      <span><kbd>Enter</kbd> send</span>
+      <span><kbd>Shift</kbd>+<kbd>Enter</kbd> new line</span>
+      <span>Type <code>/</code> for commands</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Message templates used by JS -->
+<template id="aiTplUser">
+  <div class="ai-msg ai-msg-user">
+    <div class="ai-avatar ai-avatar-user">{{ assistant_initials|default:"U" }}</div>
+    <div class="ai-bubble ai-bubble-user">
+      <div class="ai-bubble-text"></div>
+      <div class="ai-msg-meta"><span>You</span></div>
+    </div>
+  </div>
+</template>
+
+<template id="aiTplAssistant">
+  <div class="ai-msg ai-msg-ai">
+    <div class="ai-avatar ai-avatar-ai"><i class="bi bi-stars"></i></div>
+    <div class="ai-bubble ai-bubble-ai">
+      <div class="ai-tool-chip" hidden>
+        <span class="ai-spinner"></span><span class="ai-tool-label"></span>
+      </div>
+      <div class="ai-typing" hidden>
+        <span class="ai-typing-dot"></span><span class="ai-typing-dot"></span><span class="ai-typing-dot"></span>
+        <span class="ai-typing-label">thinking</span>
+      </div>
+      <div class="ai-bubble-text"></div>
+      <div class="ai-msg-actions">
+        <button type="button" class="ai-act" data-action="copy" title="Copy to clipboard">
+          <i class="bi bi-clipboard"></i><span>Copy</span>
+        </button>
+        <button type="button" class="ai-act" data-action="regenerate" title="Regenerate response">
+          <i class="bi bi-arrow-clockwise"></i><span>Regenerate</span>
+        </button>
+        <button type="button" class="ai-act" data-action="edit" title="Edit prompt">
+          <i class="bi bi-pencil"></i><span>Edit</span>
+        </button>
+        <span class="ai-msg-meta">EMIS AI</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="aiTplError">
+  <div class="ai-msg ai-msg-ai">
+    <div class="ai-avatar ai-avatar-ai"><i class="bi bi-stars"></i></div>
+    <div class="ai-bubble ai-bubble-ai">
+      <div class="ai-error-card">
+        <div class="ai-error-head">
+          <i class="bi bi-emoji-frown"></i>
+          <span class="ai-error-title"></span>
+        </div>
+        <p class="ai-error-msg"></p>
+        <div class="ai-error-suggestions">
+          <button type="button" class="ai-chip" data-prompt="What are the latest notices?">Try asking about notices</button>
+          <button type="button" class="ai-chip" data-prompt="How much are the fees?">Fee structures</button>
+          <button type="button" class="ai-act ai-act-retry" data-action="retry">
+            <i class="bi bi-arrow-clockwise"></i><span>Try again</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

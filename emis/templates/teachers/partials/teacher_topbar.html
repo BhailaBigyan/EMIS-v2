@@ -44,6 +44,9 @@
     <a href="{% url 'teachers:teacher_leave' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_leave' or request.resolver_match.url_name == 'teacher_leave_new' %}active{% endif %}">
       <i class="bi bi-person-lines-fill"></i>Leave
     </a>
+    <a href="{% url 'teachers:assistant' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">
+      <i class="bi bi-stars"></i>AI Assistant
+    </a>
     <a href="{% url 'teachers:teacher_profile' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_profile' or request.resolver_match.url_name == 'teacher_profile_edit' %}active{% endif %}">
       <i class="bi bi-person-circle"></i>My Profile
     </a>
