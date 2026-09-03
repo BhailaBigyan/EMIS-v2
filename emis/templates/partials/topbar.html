@@ -2,12 +2,12 @@
 
   <div class="emis-topbar-left">
     <button class="emis-sidebar-toggle" data-emis-sidebar-toggle type="button" aria-label="Toggle sidebar">
-      <i class="bi bi-list"></i>
+      <i class="bi bi-layout-sidebar-inset"></i>
     </button>
 
     <div class="emis-breadcrumb">
       {% block breadcrumb %}
-        <span>EMIS</span><span class="sep">/</span><span class="current">Dashboard</span>
+        <span>KhEC</span><span class="sep">/</span><span>EMIS</span><span class="sep">/</span><span class="current">Dashboard</span>
       {% endblock %}
     </div>
   </div>
@@ -15,17 +15,28 @@
   <div class="emis-topbar-right">
     <div class="emis-search">
       <i class="bi bi-search"></i>
-      <input type="text" placeholder="Search students, staff, records…">
+      <input type="text" placeholder="Search students, staff…" id="emis-global-search" autocomplete="off">
+      <span class="emis-search-kbd">
+        <kbd>Ctrl</kbd><kbd>K</kbd>
+      </span>
     </div>
+
+    <div class="emis-topbar-divider"></div>
 
     <button class="emis-icon-btn" type="button" aria-label="Notifications">
       <i class="bi bi-bell"></i>
-      <span class="dot"></span>
+      {% if messages %}<span class="dot"></span>{% endif %}
     </button>
 
-    <button class="emis-icon-btn" type="button" aria-label="Help">
-      <i class="bi bi-question-circle"></i>
-    </button>
+    <a href="{% url 'general_logout' %}" class="emis-topbar-user" title="Logout">
+      <div class="emis-topbar-user-avatar">
+        {% if request.user.is_authenticated %}{{ request.user.username|slice:":2"|upper }}{% else %}AD{% endif %}
+      </div>
+      <span class="emis-topbar-user-name d-none d-md-inline-block">
+        {% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username|truncatechars:16 }}{% else %}Admin{% endif %}
+      </span>
+      <i class="bi bi-box-arrow-right text-danger small"></i>
+    </a>
   </div>
 
 </header>

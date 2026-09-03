@@ -2,13 +2,13 @@
 
 <!-- Brand / utility row -->
 <header class="stu-topbar">
-  <div class="stu-brand">
+  <a href="{% url 'library:library_dashboard' %}" class="stu-brand">
     <div class="stu-brand-mark">E</div>
     <div class="stu-brand-text">
       <div class="name">EMIS</div>
       <div class="sub">Library Portal</div>
     </div>
-  </div>
+  </a>
 
   <div class="stu-topbar-right">
     <form action="{% url 'library:library_catalog' %}" method="get" class="stu-search">
@@ -24,18 +24,20 @@
       </div>
     </div>
 
-    <a href="{% url 'library:library_logout' %}" class="stu-icon-btn" aria-label="Logout">
+    <a href="{% url 'library:library_logout' %}" class="stu-logout-btn" aria-label="Logout">
       <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
     </a>
 
     <button class="stu-mobile-toggle" type="button" data-stu-nav-toggle aria-label="Toggle menu">
       <i class="bi bi-list"></i>
+      <i class="bi bi-x"></i>
     </button>
   </div>
 </header>
 
 <!-- Horizontal nav row -->
-<nav class="stu-navbar">
+<nav class="stu-navbar" id="stu-navbar">
   <div class="stu-nav">
     <a href="{% url 'library:library_dashboard' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'library_dashboard' %}active{% endif %}">
       <i class="bi bi-grid-1x2"></i>Dashboard
@@ -48,9 +50,6 @@
     </a>
     <a href="{% url 'library:library_catalog' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'library_catalog' %}active{% endif %}">
       <i class="bi bi-search"></i>Catalog
-    </a>
-    <a href="{% url 'library:library_logout' %}" class="stu-nav-link">
-      <i class="bi bi-box-arrow-right"></i>Logout
     </a>
   </div>
 </nav>

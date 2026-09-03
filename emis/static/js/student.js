@@ -3,21 +3,37 @@ document.addEventListener('DOMContentLoaded', function () {
   var navbar = document.querySelector('.stu-navbar');
 
   if (toggleBtn && navbar) {
-    toggleBtn.addEventListener('click', function () {
-      navbar.classList.toggle('mobile-open');
-      var icon = toggleBtn.querySelector('i');
-      if (icon) {
-        icon.classList.toggle('bi-list');
-        icon.classList.toggle('bi-x-lg');
+    toggleBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = navbar.classList.toggle('mobile-open');
+      toggleBtn.classList.toggle('open', isOpen);
+    });
+
+    // Close when clicking outside on mobile
+    document.addEventListener('click', function (e) {
+      if (navbar.classList.contains('mobile-open')) {
+        if (!navbar.contains(e.target) && !toggleBtn.contains(e.target)) {
+          navbar.classList.remove('mobile-open');
+          toggleBtn.classList.remove('open');
+        }
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navbar.classList.contains('mobile-open')) {
+        navbar.classList.remove('mobile-open');
+        toggleBtn.classList.remove('open');
       }
     });
   }
 
-  // auto-dismiss alerts (shared behavior with admin shell)
+  // Auto-dismiss alerts (shared behavior with admin shell)
   document.querySelectorAll('.emis-alert[data-autodismiss]').forEach(function (el) {
     setTimeout(function () {
-      el.style.transition = 'opacity 0.3s ease';
+      el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       el.style.opacity = '0';
+      el.style.transform = 'translateY(-6px)';
       setTimeout(function () { el.remove(); }, 300);
     }, 4000);
   });

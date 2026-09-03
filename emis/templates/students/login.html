@@ -8,7 +8,7 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   
   <!-- Bootstrap 5 & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,35 +17,22 @@
   <!-- EMIS Styles -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body class="auth-page" style="background: var(--khec-bg-gradient);">
+<body class="auth-page">
 
   <div class="auth-container">
-    <div class="auth-card shadow-lg rounded-4 border-0">
+    <div class="auth-card">
       
-      <!-- Top College Branding Banner -->
-      <div class="text-center p-3 bg-dark text-white rounded-top-4 border-bottom border-warning">
-        <div class="d-flex align-items-center justify-content-center gap-2">
-          <div class="khec-brand-logo" style="width: 38px; height: 38px; font-size: 18px;">
-            <i class="bi bi-bank"></i>
-          </div>
-          <div class="text-start">
-            <h6 class="mb-0 fw-bold font-display" style="font-family: 'Outfit', sans-serif;">Khwopa Engineering College</h6>
-            <div class="small text-warning" style="font-size: 11px;">Bhaktapur Municipality Undertaking</div>
-          </div>
-        </div>
+      <div class="auth-header">
+        <a href="{% url 'home' %}" class="auth-logo text-decoration-none">
+          E
+        </a>
+        <h2 class="auth-title">Student Portal</h2>
+        <p class="auth-subtitle">Access grades, attendance &amp; fee statements</p>
       </div>
 
-      <div class="auth-header pt-4">
-        <div class="auth-logo" style="background: linear-gradient(135deg, #1D4ED8, #0F172A);">
-          <i class="bi bi-mortarboard-fill text-white"></i>
-        </div>
-        <h2 class="auth-title fw-bold" style="font-family: 'Outfit', sans-serif;">Student Portal</h2>
-        <p class="auth-subtitle">Access grades, class routine &amp; fee statements</p>
-      </div>
-
-      <!-- Portal Nav Tabs -->
-      <div class="portal-nav px-3">
-        <a href="{% url 'general_login' %}" class="portal-nav-item"><i class="bi bi-person-workspace me-1"></i>Admin</a>
+      <!-- Uniform Segmented Portal Nav -->
+      <div class="portal-nav mb-3">
+        <a href="{% url 'general_login' %}" class="portal-nav-item"><i class="bi bi-shield-lock me-1"></i>Admin</a>
         <a href="{% url 'students:student_login' %}" class="portal-nav-item active"><i class="bi bi-mortarboard me-1"></i>Student</a>
         <a href="{% url 'teachers:teacher_login' %}" class="portal-nav-item"><i class="bi bi-person-workspace me-1"></i>Teacher</a>
         <a href="{% url 'library:library_login' %}" class="portal-nav-item"><i class="bi bi-book me-1"></i>Library</a>
@@ -53,53 +40,58 @@
 
       {% if messages %}
         {% for message in messages %}
-          <div class="alert alert-dismissible fade show p-2 px-3 small {% if message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %}" role="alert">
-            <i class="bi bi-info-circle me-1"></i>{{ message }}
-            <button type="button" class="btn-close p-2" data-bs-dismiss="alert"></button>
+          <div class="emis-alert {% if message.tags == 'error' %}error{% else %}info{% endif %} mb-3">
+            <i class="bi bi-info-circle"></i>
+            <span>{{ message }}</span>
           </div>
         {% endfor %}
       {% endif %}
 
       {% if error %}
-        <div class="alert alert-danger alert-dismissible fade show p-2 px-3 small ms-4 me-4" role="alert">
-          <i class="bi bi-exclamation-triangle-fill me-1"></i>{{ error }}
-          <button type="button" class="btn-close p-2" data-bs-dismiss="alert"></button>
+        <div class="emis-alert error mb-3">
+          <i class="bi bi-exclamation-triangle"></i>
+          <span>{{ error }}</span>
         </div>
       {% endif %}
 
-      <form action="{% url 'students:student_login' %}" method="post" class="px-4 pb-4">
+      <form action="{% url 'students:student_login' %}" method="post">
         {% csrf_token %}
 
-        <div class="auth-field mb-3">
-          <label class="form-label font-weight-semibold small text-muted">Student Roll Number</label>
+        <div class="auth-field">
+          <label>Student Roll Number</label>
           <div class="auth-input-group">
             <i class="bi bi-card-text left-icon"></i>
-            <input type="text" name="username" id="id_username" class="auth-input" placeholder="e.g. BCA-2081-001" required autofocus>
+            <input type="text" name="username" id="id_username" class="auth-input" placeholder="e.g. BCA-2081-001" required autofocus autocomplete="username">
           </div>
         </div>
 
-        <div class="auth-field mb-4">
-          <label class="form-label font-weight-semibold small text-muted">Password</label>
+        <div class="auth-field">
+          <label>Password</label>
           <div class="auth-input-group">
             <i class="bi bi-key left-icon"></i>
-            <input type="password" name="password" id="id_password" class="auth-input" placeholder="Default: emis@{roll_number}" required>
-            <i class="bi bi-eye toggle-password" id="togglePasswordBtn"></i>
+            <input type="password" name="password" id="id_password" class="auth-input" placeholder="Default: emis@{roll_number}" required autocomplete="current-password">
+            <i class="bi bi-eye toggle-password" id="togglePasswordBtn" title="Toggle password visibility"></i>
           </div>
         </div>
 
-        <button type="submit" class="auth-btn w-100 py-2.5" style="background: linear-gradient(135deg, #1D4ED8, #0F172A);">
-          <i class="bi bi-box-arrow-in-right"></i> Sign In to Student Portal
+        <button type="submit" class="auth-btn mt-3">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Sign In to Student Portal</span>
         </button>
 
-        <!-- Quick Demo Hint Badge -->
-        <div class="auth-demo-badge mt-3" onclick="fillStudentDemo()">
+        <!-- One-Click Demo Credentials Autofill -->
+        <div class="auth-demo-badge" onclick="fillStudentDemo()">
           <div>
-            <strong><i class="bi bi-lightbulb me-1"></i>Demo Roll Number:</strong>
-            <span class="d-block font-mono small text-muted">BCA-2081-001 / emis@BCA-2081-001</span>
+            <strong class="d-block mb-0.5"><i class="bi bi-lightning-charge-fill text-warning me-1"></i>Demo Student Login:</strong>
+            <span class="font-mono text-muted">BCA-2081-001 / emis@BCA-2081-001</span>
           </div>
-          <span class="badge bg-secondary">Click to Fill</span>
+          <span class="badge bg-secondary text-white small">Auto-Fill</span>
         </div>
       </form>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'home' %}" class="small text-muted text-decoration-none">&larr; Back to Home</a>
+      </div>
 
     </div>
   </div>

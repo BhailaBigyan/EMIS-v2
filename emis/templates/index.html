@@ -4,163 +4,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khwopa Engineering College · EMIS Portal</title>
-  <meta name="description" content="Education Management & Information System (EMIS) for Khwopa Engineering College, Bhaktapur, Nepal. An Undertaking of Bhaktapur Municipality.">
+  <title>Khwopa Engineering College · EMIS</title>
+  <meta name="description" content="Education Management & Information System (EMIS) for Khwopa Engineering College, Bhaktapur, Nepal.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   
   <!-- Bootstrap 5 & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
   <!-- EMIS Custom Styles -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3.0">
 </head>
 <body class="khec-landing">
 
-  <!-- KhEC Top Contact Strip -->
-  <div class="khec-topbar">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <div>
-        <i class="bi bi-building me-1 text-warning"></i>
-        <strong class="text-white">An Undertaking of Bhaktapur Municipality</strong>
-        <span class="mx-2 opacity-50">|</span>
-        <i class="bi bi-geo-alt me-1"></i>Libali-8, Bhaktapur, Nepal
-      </div>
-      <div class="d-flex align-items-center gap-3">
-        <a href="tel:015122094" class="text-white text-decoration-none small"><i class="bi bi-telephone me-1"></i>01-5122094</a>
-        <span class="opacity-50">|</span>
-        <a href="mailto:info@khwopa.edu.np" class="text-white text-decoration-none small"><i class="bi bi-envelope me-1"></i>info@khwopa.edu.np</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header Navigation -->
+  <!-- Minimal Header Navigation -->
   <header class="khec-header">
-    <div class="container d-flex justify-content-between align-items-center py-2">
+    <div class="container d-flex justify-content-between align-items-center py-3">
       <a href="{% url 'home' %}" class="d-flex align-items-center gap-3 text-decoration-none">
-        <div class="khec-brand-logo">
-          <i class="bi bi-bank"></i>
-        </div>
+        <div class="khec-brand-logo">E</div>
         <div>
-          <h4 class="mb-0 fw-bold text-dark font-display">Khwopa Engineering College</h4>
-          <div class="small text-muted fw-medium">Education Management &amp; Information System (EMIS)</div>
+          <h5 class="mb-0 fw-bold text-dark font-display" style="font-size: 16px;">Khwopa Engineering College</h5>
+          <div class="small text-muted" style="font-size: 11.5px;">Education Management &amp; Information System</div>
         </div>
       </a>
 
-      <div class="d-flex align-items-center gap-2">
-        <a href="#portals" class="btn btn-outline-danger btn-sm px-3 fw-semibold"><i class="bi bi-grid-1x2 me-1"></i>EMIS Portals</a>
-        <a href="#notices" class="btn btn-light btn-sm border px-3 fw-semibold"><i class="bi bi-megaphone me-1"></i>Notices</a>
+      <div class="d-flex align-items-center gap-3">
+        <div class="d-none d-md-flex align-items-center gap-4 small fw-medium">
+          <a href="#portals" class="text-secondary text-decoration-none">Portals</a>
+          <a href="#programs" class="text-secondary text-decoration-none">Programs</a>
+          <a href="#notices" class="text-secondary text-decoration-none">Notices</a>
+        </div>
+        <a href="#login-panel" class="btn btn-emis-primary btn-sm px-3">
+          <i class="bi bi-person-circle me-1"></i>Sign In
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- KhEC Hero Section -->
+  <!-- Hero with Unified Login Panel -->
   <section class="khec-hero">
-    <div class="container position-relative z-1">
+    <div class="container">
       <div class="row align-items-center g-5">
+        
+        <!-- Left Hero Content -->
         <div class="col-12 col-lg-7">
           <div class="khec-badge">
-            <i class="bi bi-award-fill text-warning"></i>
-            <span>Affiliated to Purbanchal University &amp; Tribhuvan University</span>
+            <i class="bi bi-shield-check text-primary"></i>
+            <span>An Undertaking of Bhaktapur Municipality · KhEC EMIS</span>
           </div>
 
-          <h1 class="display-5 fw-bold mb-3 font-display" style="line-height: 1.15;">
-            Welcome to Khwopa Engineering College <span class="text-warning">EMIS</span>
+          <h1 class="display-6 fw-bold mb-3 font-display">
+            Unified Academic &amp; Campus Management
           </h1>
 
-          <p class="lead-text mb-4 fw-normal">
-            Nepal’s premier community-undertaking engineering institution. Dedicated to providing quality engineering education at affordable costs for nation building.
+          <p class="lead-text mb-4">
+            A single streamlined platform connecting students, faculty, examination controllers, library resources, and administration.
           </p>
 
-          <div class="d-flex flex-wrap gap-3 mb-4">
-            <a href="#admin-portal" class="btn btn-warning btn-lg fw-bold px-4 shadow-sm" style="color: #4A0E10;">
-              <i class="bi bi-shield-lock-fill me-2"></i>Sign In to Admin
-            </a>
-            <a href="{% url 'students:student_login' %}" class="btn btn-outline-light btn-lg fw-semibold px-4">
-              <i class="bi bi-mortarboard-fill me-2"></i>Student Portal
-            </a>
+          <div class="d-flex flex-wrap gap-4 text-muted small mb-4">
+            <div><i class="bi bi-check2-circle text-success me-1"></i> ISO 9001:2015 Certified</div>
+            <div><i class="bi bi-check2-circle text-success me-1"></i> PU &amp; TU Affiliated</div>
+            <div><i class="bi bi-check2-circle text-success me-1"></i> Community Undertaking</div>
           </div>
 
-          <div class="d-flex align-items-center gap-4 text-white-50 small">
-            <div><i class="bi bi-check-circle-fill text-warning me-1"></i> ISO 9001:2015 Certified</div>
-            <div><i class="bi bi-check-circle-fill text-warning me-1"></i> Community Undertaking</div>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#portals" class="btn btn-emis-outline px-4 py-2">
+              <i class="bi bi-grid-1x2 me-1.5"></i>Explore All Portals
+            </a>
+            <a href="#programs" class="btn btn-emis-outline px-4 py-2">
+              <i class="bi bi-mortarboard me-1.5"></i>Academic Programs
+            </a>
           </div>
         </div>
 
-        <!-- Login Form Box in Hero -->
-        <div class="col-12 col-lg-5" id="admin-portal">
-          <div class="hero-login-card">
+        <!-- Right: Unified Login Panel -->
+        <div class="col-12 col-lg-5" id="login-panel">
+          <div class="auth-card">
             
-            <div class="p-3 bg-light border-bottom text-center">
-              <!-- Portal Nav Tabs -->
-              <div class="portal-nav m-0">
-                <a href="{% url 'general_login' %}" class="portal-nav-item active"><i class="bi bi-person-workspace me-1"></i>Admin</a>
-                <a href="{% url 'students:student_login' %}" class="portal-nav-item"><i class="bi bi-mortarboard me-1"></i>Student</a>
-                <a href="{% url 'teachers:teacher_login' %}" class="portal-nav-item"><i class="bi bi-person-workspace me-1"></i>Teacher</a>
-                <a href="{% url 'library:library_login' %}" class="portal-nav-item"><i class="bi bi-book me-1"></i>Library</a>
-              </div>
+            <div class="text-center mb-3">
+              <h5 class="fw-bold text-dark mb-1" id="panel-title">EMIS Portal Sign In</h5>
+              <p class="small text-muted mb-0" id="panel-desc">Select your portal role to sign in</p>
             </div>
 
-            <div class="card-body p-4">
-              <div class="text-center mb-3">
-                <h5 class="fw-bold text-dark mb-1"><i class="bi bi-person-badge-fill me-1 text-danger"></i>Admin &amp; Faculty Console</h5>
-                <p class="small text-muted mb-0">Enter your credentials to access system management</p>
+            <!-- Unified Segmented Portal Switcher -->
+            <div class="portal-nav mb-3">
+              <button type="button" class="portal-nav-item active" onclick="switchPortal('admin')">
+                <i class="bi bi-shield-lock me-1"></i>Admin
+              </button>
+              <button type="button" class="portal-nav-item" onclick="switchPortal('student')">
+                <i class="bi bi-mortarboard me-1"></i>Student
+              </button>
+              <button type="button" class="portal-nav-item" onclick="switchPortal('teacher')">
+                <i class="bi bi-person-workspace me-1"></i>Teacher
+              </button>
+              <button type="button" class="portal-nav-item" onclick="switchPortal('library')">
+                <i class="bi bi-book me-1"></i>Library
+              </button>
+            </div>
+
+            {% if messages %}
+              {% for message in messages %}
+                <div class="emis-alert {% if message.tags == 'error' %}error{% else %}info{% endif %} mb-3">
+                  <i class="bi bi-info-circle"></i>
+                  <span>{{ message }}</span>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            {% if error %}
+              <div class="emis-alert error mb-3">
+                <i class="bi bi-exclamation-triangle"></i>
+                <span>{{ error }}</span>
+              </div>
+            {% endif %}
+
+            <form id="unifiedLoginForm" action="{% url 'general_login' %}" method="post">
+              {% csrf_token %}
+
+              <div class="auth-field">
+                <label id="username-label">Username</label>
+                <div class="auth-input-group">
+                  <i class="bi bi-person left-icon"></i>
+                  <input type="text" name="username" id="id_username" class="auth-input" placeholder="e.g. admin" required autofocus autocomplete="username">
+                </div>
               </div>
 
-              {% if messages %}
-                {% for message in messages %}
-                  <div class="alert alert-dismissible fade show p-2 px-3 small {% if message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %}" role="alert">
-                    <i class="bi bi-info-circle me-1"></i>{{ message }}
-                    <button type="button" class="btn-close p-2" data-bs-dismiss="alert"></button>
-                  </div>
-                {% endfor %}
-              {% endif %}
-
-              {% if error %}
-                <div class="alert alert-danger alert-dismissible fade show p-2 px-3 small" role="alert">
-                  <i class="bi bi-exclamation-triangle-fill me-1"></i>{{ error }}
-                  <button type="button" class="btn-close p-2" data-bs-dismiss="alert"></button>
+              <div class="auth-field">
+                <label>Password</label>
+                <div class="auth-input-group">
+                  <i class="bi bi-key left-icon"></i>
+                  <input type="password" name="password" id="id_password" class="auth-input" placeholder="••••••••" required autocomplete="current-password">
+                  <i class="bi bi-eye toggle-password" id="togglePasswordBtn" title="Toggle password visibility"></i>
                 </div>
-              {% endif %}
+              </div>
 
-              <form action="{% url 'general_login' %}" method="post">
-                {% csrf_token %}
+              <button type="submit" class="auth-btn mt-3" id="submit-btn">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span id="btn-text">Sign In to Admin Console</span>
+              </button>
 
-                <div class="auth-field mb-3">
-                  <label class="form-label font-weight-semibold small text-muted">Admin / Staff Username</label>
-                  <div class="auth-input-group">
-                    <i class="bi bi-person left-icon"></i>
-                    <input type="text" name="username" id="id_username" class="auth-input" placeholder="e.g. admin" required autofocus>
-                  </div>
-                </div>
-
-                <div class="auth-field mb-3">
-                  <label class="form-label font-weight-semibold small text-muted">Password</label>
-                  <div class="auth-input-group">
-                    <i class="bi bi-key left-icon"></i>
-                    <input type="password" name="password" id="id_password" class="auth-input" placeholder="••••••••" required>
-                    <i class="bi bi-eye toggle-password" id="togglePasswordBtn"></i>
-                  </div>
-                </div>
-
-                <button type="submit" class="auth-btn w-100 py-2.5 btn-danger" style="background: var(--khec-maroon);">
-                  <i class="bi bi-box-arrow-in-right"></i> Sign In to Admin Console
-                </button>
-              </form>
-
-              <!-- Quick Demo Autofill Hint -->
-              <div class="auth-demo-badge mt-3" onclick="fillAdminDemo()">
+              <!-- One-Click Demo Credentials Autofill -->
+              <div class="auth-demo-badge" onclick="fillDemoCredentials()">
                 <div>
-                  <strong><i class="bi bi-lightbulb me-1"></i>Demo Admin Login:</strong>
-                  <span class="d-block font-mono small text-muted">admin / admin123</span>
+                  <strong class="d-block mb-0.5"><i class="bi bi-lightning-charge-fill text-warning me-1"></i>Demo Login:</strong>
+                  <span class="font-mono text-muted" id="demo-text">admin / admin123</span>
                 </div>
-                <span class="badge bg-secondary">Click to Fill</span>
+                <span class="badge bg-secondary text-white small">Auto-Fill</span>
               </div>
+            </form>
 
-            </div>
           </div>
         </div>
 
@@ -168,10 +163,10 @@
     </div>
   </section>
 
-  <!-- Institutional Stats Strip -->
+  <!-- Minimal Institutional Stats Bar -->
   <section class="khec-stat-strip">
     <div class="container">
-      <div class="row g-4">
+      <div class="row g-3">
         <div class="col-6 col-md-3">
           <div class="khec-stat-item">
             <div class="khec-stat-num">25+</div>
@@ -187,7 +182,7 @@
         <div class="col-6 col-md-3">
           <div class="khec-stat-item">
             <div class="khec-stat-num">2,500+</div>
-            <div class="khec-stat-lbl">Qualified Engineers Graduated</div>
+            <div class="khec-stat-lbl">Engineers Graduated</div>
           </div>
         </div>
         <div class="col-6 col-md-3">
@@ -201,59 +196,74 @@
   </section>
 
   <!-- Portals Grid Section -->
-  <section class="py-5 bg-light" id="portals">
-    <div class="container py-4">
-      <div class="text-center mb-5">
-        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-1 mb-2 fw-semibold">Access Gateways</span>
-        <h2 class="fw-bold font-display">Select Your EMIS Portal</h2>
-        <p class="text-muted">Choose your role below to log into the integrated Education Management Portal.</p>
+  <section class="py-5" id="portals">
+    <div class="container py-2">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold font-display" style="font-size: 22px;">EMIS Gateways</h2>
+        <p class="text-muted small mb-0">Direct access to individual portal consoles</p>
       </div>
 
-      <div class="row g-4">
+      <div class="row g-3">
         <!-- Admin Portal Card -->
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-lg-3">
           <div class="khec-portal-card">
             <div>
               <div class="khec-portal-icon admin">
-                <i class="bi bi-shield-lock-fill"></i>
+                <i class="bi bi-shield-lock"></i>
               </div>
-              <h4 class="fw-bold mb-2">Admin &amp; Faculty</h4>
-              <p class="text-muted small">Manage student directory, academic courses, timetable, exams, fees collection, and staff records.</p>
+              <h5 class="fw-bold mb-1" style="font-size: 15px;">Admin Console</h5>
+              <p class="text-muted small mb-0" style="font-size: 12.5px; line-height: 1.5;">Manage student records, faculty routines, examinations, and fee collections.</p>
             </div>
             <div class="mt-4 pt-3 border-top">
-              <a href="#admin-portal" class="btn btn-outline-danger w-100 font-weight-semibold">Admin Sign In &rarr;</a>
+              <button type="button" onclick="switchPortal('admin'); document.getElementById('login-panel').scrollIntoView({behavior:'smooth'});" class="btn btn-emis-outline w-100 btn-sm font-weight-semibold">Sign In &rarr;</button>
             </div>
           </div>
         </div>
 
         <!-- Student Portal Card -->
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-lg-3">
           <div class="khec-portal-card">
             <div>
               <div class="khec-portal-icon student">
-                <i class="bi bi-mortarboard-fill"></i>
+                <i class="bi bi-mortarboard"></i>
               </div>
-              <h4 class="fw-bold mb-2">Student Portal</h4>
-              <p class="text-muted small">View your academic profile, semester class routines, exam result cards, and fee payment status.</p>
+              <h5 class="fw-bold mb-1" style="font-size: 15px;">Student Portal</h5>
+              <p class="text-muted small mb-0" style="font-size: 12.5px; line-height: 1.5;">Access semester attendance, routines, exam results, fees, and books.</p>
             </div>
             <div class="mt-4 pt-3 border-top">
-              <a href="{% url 'students:student_login' %}" class="btn btn-primary w-100 font-weight-semibold">Student Sign In &rarr;</a>
+              <button type="button" onclick="switchPortal('student'); document.getElementById('login-panel').scrollIntoView({behavior:'smooth'});" class="btn btn-emis-outline w-100 btn-sm font-weight-semibold">Sign In &rarr;</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Portal Card -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="khec-portal-card">
+            <div>
+              <div class="khec-portal-icon teacher">
+                <i class="bi bi-person-workspace"></i>
+              </div>
+              <h5 class="fw-bold mb-1" style="font-size: 15px;">Teacher Portal</h5>
+              <p class="text-muted small mb-0" style="font-size: 12.5px; line-height: 1.5;">Record daily class attendance, view teaching routine, and submit leave requests.</p>
+            </div>
+            <div class="mt-4 pt-3 border-top">
+              <button type="button" onclick="switchPortal('teacher'); document.getElementById('login-panel').scrollIntoView({behavior:'smooth'});" class="btn btn-emis-outline w-100 btn-sm font-weight-semibold">Sign In &rarr;</button>
             </div>
           </div>
         </div>
 
         <!-- Library Portal Card -->
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6 col-lg-3">
           <div class="khec-portal-card">
             <div>
               <div class="khec-portal-icon library">
-                <i class="bi bi-book-half"></i>
+                <i class="bi bi-book"></i>
               </div>
-              <h4 class="fw-bold mb-2">Library &amp; E-Resources</h4>
-              <p class="text-muted small">Search central library catalog, reserve textbooks, view borrowed history, and access digital journals.</p>
+              <h5 class="fw-bold mb-1" style="font-size: 15px;">Library Portal</h5>
+              <p class="text-muted small mb-0" style="font-size: 12.5px; line-height: 1.5;">Search the textbook catalog, process book loans, and manage circulation.</p>
             </div>
             <div class="mt-4 pt-3 border-top">
-              <a href="{% url 'library:library_login' %}" class="btn btn-warning text-dark w-100 font-weight-semibold">Library Sign In &rarr;</a>
+              <button type="button" onclick="switchPortal('library'); document.getElementById('login-panel').scrollIntoView({behavior:'smooth'});" class="btn btn-emis-outline w-100 btn-sm font-weight-semibold">Sign In &rarr;</button>
             </div>
           </div>
         </div>
@@ -261,79 +271,76 @@
     </div>
   </section>
 
-  <!-- Academic Programs & Notices Section -->
-  <section class="py-5" id="notices">
-    <div class="container py-3">
-      <div class="row g-5">
+  <!-- Programs & Notices Section -->
+  <section class="py-4 bg-white border-top border-bottom" id="programs">
+    <div class="container py-2">
+      <div class="row g-4">
         
         <!-- Left: Academic Programs -->
         <div class="col-12 col-lg-7">
-          <div class="d-flex align-items-center justify-content-between mb-4">
-            <div>
-              <h3 class="fw-bold mb-1 font-display">Engineering Programs</h3>
-              <p class="text-muted small mb-0">Degree courses offered at Khwopa Engineering College</p>
-            </div>
+          <div class="mb-3">
+            <h4 class="fw-bold mb-1 font-display" style="font-size: 18px;">Offered Programs</h4>
+            <p class="text-muted small mb-0">Undergraduate engineering faculties at KhEC</p>
           </div>
 
-          <div class="row g-3">
+          <div class="row g-2">
             <div class="col-6">
               <div class="khec-program-card">
-                <span class="badge bg-danger mb-2">B.E. Computer</span>
-                <h6 class="fw-bold mb-1">Computer Engineering</h6>
-                <p class="small text-muted mb-0">Software engineering, AI, algorithms &amp; networking.</p>
+                <span class="pill pill-neutral mb-1.5">B.E. Computer</span>
+                <div class="fw-semibold small">Computer Engineering</div>
+                <div class="small text-muted" style="font-size: 11.5px;">Software, AI, Systems &amp; Networks</div>
               </div>
             </div>
 
             <div class="col-6">
               <div class="khec-program-card">
-                <span class="badge bg-primary mb-2">B.E. Civil</span>
-                <h6 class="fw-bold mb-1">Civil Engineering</h6>
-                <p class="small text-muted mb-0">Structural design, hydraulics, surveying &amp; construction.</p>
+                <span class="pill pill-neutral mb-1.5">B.E. Civil</span>
+                <div class="fw-semibold small">Civil Engineering</div>
+                <div class="small text-muted" style="font-size: 11.5px;">Structures, Hydraulics &amp; Surveying</div>
               </div>
             </div>
 
             <div class="col-6">
               <div class="khec-program-card">
-                <span class="badge bg-success mb-2">B.E. Electrical</span>
-                <h6 class="fw-bold mb-1">Electrical Engineering</h6>
-                <p class="small text-muted mb-0">Power systems, electronics &amp; renewable energy.</p>
+                <span class="pill pill-neutral mb-1.5">B.E. Electrical</span>
+                <div class="fw-semibold small">Electrical Engineering</div>
+                <div class="small text-muted" style="font-size: 11.5px;">Power Systems &amp; Electronics</div>
               </div>
             </div>
 
             <div class="col-6">
               <div class="khec-program-card">
-                <span class="badge bg-warning text-dark mb-2">B. Architecture</span>
-                <h6 class="fw-bold mb-1">Architecture</h6>
-                <p class="small text-muted mb-0">Building design, urban planning &amp; heritage conservation.</p>
+                <span class="pill pill-neutral mb-1.5">B. Architecture</span>
+                <div class="fw-semibold small">Architecture</div>
+                <div class="small text-muted" style="font-size: 11.5px;">Building Design &amp; Urban Planning</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Live Notice Board -->
-        <div class="col-12 col-lg-5">
-          <div class="card border shadow-sm rounded-3 khec-notices-card">
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
-              <h5 class="mb-0 fw-bold"><i class="bi bi-megaphone me-2 text-warning"></i>Latest Notices</h5>
-              <span class="badge bg-warning text-dark">Notice Board</span>
-            </div>
-            <div class="card-body p-0">
-              <div class="list-group list-group-flush">
-                {% for notice in notices %}
-                <div class="list-group-item p-3">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="badge {% if notice.is_important %}bg-danger{% else %}bg-secondary{% endif %}">
-                      {{ notice.get_category_display }}
-                    </span>
-                    <small class="text-muted">{{ notice.published_date|date:"M d, Y" }}</small>
-                  </div>
-                  <h6 class="fw-bold mb-1">{{ notice.title }}</h6>
-                  <p class="small text-muted mb-0">{{ notice.content|truncatewords:15 }}</p>
+        <!-- Right: Notices -->
+        <div class="col-12 col-lg-5" id="notices">
+          <div class="mb-3">
+            <h4 class="fw-bold mb-1 font-display" style="font-size: 18px;">Latest Notices</h4>
+            <p class="text-muted small mb-0">Official institutional updates</p>
+          </div>
+
+          <div class="khec-notices-card">
+            <div class="list-group list-group-flush">
+              {% for notice in notices|slice:":3" %}
+              <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="pill {% if notice.is_important %}pill-red{% else %}pill-neutral{% endif %}">
+                    {{ notice.get_category_display }}
+                  </span>
+                  <span class="small text-muted" style="font-size: 11px;">{{ notice.published_date|date:"M d, Y" }}</span>
                 </div>
-                {% empty %}
-                <div class="text-center py-4 text-muted small">No active notices published yet.</div>
-                {% endfor %}
+                <div class="fw-semibold small mb-1">{{ notice.title }}</div>
+                <div class="small text-muted" style="font-size: 12px;">{{ notice.content|truncatewords:12 }}</div>
               </div>
+              {% empty %}
+              <div class="text-center py-4 text-muted small">No active notices published yet.</div>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -342,57 +349,138 @@
     </div>
   </section>
 
-  <!-- Institutional Footer -->
+  <!-- Minimal Institutional Footer -->
   <footer class="khec-footer">
     <div class="container">
-      <div class="row g-4 pb-4">
-        <div class="col-12 col-md-5">
-          <div class="d-flex align-items-center gap-3 mb-3">
-            <div class="khec-brand-logo" style="width: 40px; height: 40px; font-size: 20px;">
-              <i class="bi bi-bank"></i>
-            </div>
-            <div>
-              <h5 class="mb-0 text-white font-display">Khwopa Engineering College</h5>
-              <div class="small text-warning">An Undertaking of Bhaktapur Municipality</div>
-            </div>
+      <div class="row g-4 pb-3">
+        <div class="col-12 col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="khec-brand-logo" style="width: 28px; height: 28px; font-size: 13px;">E</div>
+            <span class="fw-bold text-white">Khwopa Engineering College</span>
           </div>
-          <p class="small text-slate-400 mb-2">
-            Providing high quality engineering education with cultural heritage and nation-building values.
+          <p class="small text-muted mb-1" style="max-width: 440px;">
+            An Undertaking of Bhaktapur Municipality. Affiliated to Purbanchal University &amp; Tribhuvan University.
           </p>
-          <div class="small"><i class="bi bi-geo-alt me-1 text-warning"></i>Libali-8, Bhaktapur, Nepal</div>
+          <div class="small text-muted"><i class="bi bi-geo-alt me-1"></i>Libali-8, Bhaktapur, Nepal</div>
         </div>
 
         <div class="col-6 col-md-3">
-          <h5>Quick Portals</h5>
-          <ul class="list-unstyled small mb-0 d-flex flex-column gap-2">
-            <li><a href="{% url 'general_login' %}"><i class="bi bi-chevron-right me-1"></i>Admin &amp; Staff Login</a></li>
-            <li><a href="{% url 'students:student_login' %}"><i class="bi bi-chevron-right me-1"></i>Student Portal</a></li>
-            <li><a href="{% url 'library:library_login' %}"><i class="bi bi-chevron-right me-1"></i>Library Portal</a></li>
+          <h5>Portals</h5>
+          <ul class="list-unstyled small mb-0 d-flex flex-column gap-1.5">
+            <li><a href="{% url 'general_login' %}">Admin Console</a></li>
+            <li><a href="{% url 'students:student_login' %}">Student Portal</a></li>
+            <li><a href="{% url 'teachers:teacher_login' %}">Teacher Portal</a></li>
+            <li><a href="{% url 'library:library_login' %}">Library Portal</a></li>
           </ul>
         </div>
 
-        <div class="col-6 col-md-4">
-          <h5>Contact Info</h5>
-          <ul class="list-unstyled small mb-0 d-flex flex-column gap-2 text-slate-400">
-            <li><i class="bi bi-telephone text-warning me-2"></i>+977-01-5122094, 5122098</li>
-            <li><i class="bi bi-envelope text-warning me-2"></i>info@khwopa.edu.np</li>
-            <li><i class="bi bi-globe text-warning me-2"></i>www.khwopa.edu.np</li>
+        <div class="col-6 col-md-3">
+          <h5>Contact</h5>
+          <ul class="list-unstyled small mb-0 d-flex flex-column gap-1.5 text-muted">
+            <li>+977-01-5122094</li>
+            <li>info@khwopa.edu.np</li>
+            <li>www.khwopa.edu.np</li>
           </ul>
         </div>
       </div>
 
-      <div class="pt-3 border-top border-secondary d-flex flex-wrap justify-content-between align-items-center small text-muted">
-        <div>&copy; 2026 Khwopa Engineering College · EMIS Portal v2.0</div>
-        <div>Built for Bhaktapur Municipality</div>
+      <div class="pt-3 border-top border-secondary border-opacity-25 d-flex flex-wrap justify-content-between align-items-center small text-muted">
+        <div>&copy; 2026 Khwopa Engineering College · EMIS</div>
+        <div>Bhaktapur Municipality</div>
       </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // Portal Configuration Data
+    const portals = {
+      admin: {
+        action: "{% url 'general_login' %}",
+        title: "Admin Console Sign In",
+        desc: "Management & system administration",
+        userLabel: "Username",
+        userPlaceholder: "e.g. admin",
+        btnText: "Sign In to Admin Console",
+        demoUser: "admin",
+        demoPass: "admin123",
+        demoText: "admin / admin123"
+      },
+      student: {
+        action: "{% url 'students:student_login' %}",
+        title: "Student Portal Sign In",
+        desc: "Grades, attendance & fee statements",
+        userLabel: "Student Roll Number",
+        userPlaceholder: "e.g. BCA-2081-001",
+        btnText: "Sign In to Student Portal",
+        demoUser: "BCA-2081-001",
+        demoPass: "emis@BCA-2081-001",
+        demoText: "BCA-2081-001 / emis@BCA-2081-001"
+      },
+      teacher: {
+        action: "{% url 'teachers:teacher_login' %}",
+        title: "Teacher Portal Sign In",
+        desc: "Mark attendance, routines & leaves",
+        userLabel: "Employee ID",
+        userPlaceholder: "e.g. TCH-001",
+        btnText: "Sign In to Teacher Portal",
+        demoUser: "TCH-001",
+        demoPass: "tch@TCH-001",
+        demoText: "TCH-001 / tch@TCH-001"
+      },
+      library: {
+        action: "{% url 'library:library_login' %}",
+        title: "Library Portal Sign In",
+        desc: "Book circulation & catalog management",
+        userLabel: "Librarian Username",
+        userPlaceholder: "e.g. librarian",
+        btnText: "Sign In to Library Portal",
+        demoUser: "librarian",
+        demoPass: "library@librarian",
+        demoText: "librarian / library@librarian"
+      }
+    };
+
+    let currentPortal = 'admin';
+
+    function switchPortal(portalKey) {
+      if (!portals[portalKey]) return;
+      currentPortal = portalKey;
+      const config = portals[portalKey];
+
+      // Update active nav button
+      document.querySelectorAll('.portal-nav-item').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(portalKey)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Update Form properties
+      const form = document.getElementById('unifiedLoginForm');
+      form.action = config.action;
+      document.getElementById('panel-title').textContent = config.title;
+      document.getElementById('panel-desc').textContent = config.desc;
+      document.getElementById('username-label').textContent = config.userLabel;
+      document.getElementById('id_username').placeholder = config.userPlaceholder;
+      document.getElementById('btn-text').textContent = config.btnText;
+      document.getElementById('demo-text').textContent = config.demoText;
+
+      // Clear input fields
+      document.getElementById('id_username').value = '';
+      document.getElementById('id_password').value = '';
+      document.getElementById('id_username').focus();
+    }
+
+    function fillDemoCredentials() {
+      const config = portals[currentPortal];
+      document.getElementById('id_username').value = config.demoUser;
+      document.getElementById('id_password').value = config.demoPass;
+    }
+
+    // Toggle password visibility
     const togglePasswordBtn = document.getElementById('togglePasswordBtn');
     const passwordInput = document.getElementById('id_password');
-
     if (togglePasswordBtn && passwordInput) {
       togglePasswordBtn.addEventListener('click', function() {
         const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -400,11 +488,6 @@
         this.classList.toggle('bi-eye');
         this.classList.toggle('bi-eye-slash');
       });
-    }
-
-    function fillAdminDemo() {
-      document.getElementById('id_username').value = 'admin';
-      document.getElementById('id_password').value = 'admin123';
     }
   </script>
 </body>
