@@ -1,0 +1,111 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}Results{% endblock %}
+{% block eyebrow_text %}Results & Performance{% endblock %}
+{% block page_title %}My Results{% endblock %}
+{% block page_subtitle %}<p>Semester results, GPA, and subject-wise marks published by the examination office.</p>{% endblock %}
+
+{% block content %}
+
+{% if results %}
+<div class="row g-3 mb-4">
+  {% for r in results %}
+  <div class="col-12 col-lg-4">
+    <div class="emis-card text-center p-4 h-100">
+      <div class="text-muted small mb-1">{{ r.semester.name }}</div>
+      <div class="display-6 fw-bold mb-1">{{ r.percentage }}%</div>
+      <div class="mb-2">
+        {% if r.status == 'pass' %}<span class="pill pill-teal">Pass</span>
+        {% elif r.status == 'fail' %}<span class="pill pill-red">Fail</span>
+        {% else %}<span class="pill pill-amber">Pending</span>{% endif %}
+      </div>
+      <div class="small text-muted">
+        Obtained <strong>{{ r.obtained_marks }}</strong> / {{ r.total_marks }} marks<br>
+        GPA: <strong>{{ r.gpa }}</strong>{% if r.rank %} · Rank: <strong>#{{ r.rank }}</strong>{% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="emis-card mb-3">
+  <div class="emis-card-header">
+    <h2>Semester Results</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Semester</th>
+            <th>Total Marks</th>
+            <th>Obtained</th>
+            <th>Percentage</th>
+            <th>GPA</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+          <tr>
+            <td>{{ r.semester.name }}</td>
+            <td>{{ r.total_marks }}</td>
+            <td>{{ r.obtained_marks }}</td>
+            <td>{{ r.percentage }}%</td>
+            <td>{{ r.gpa }}</td>
+            <td>
+              {% if r.status == 'pass' %}<span class="pill pill-teal">Pass</span>
+              {% elif r.status == 'fail' %}<span class="pill pill-red">Fail</span>
+              {% else %}<span class="pill pill-amber">Pending</span>{% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center py-4 text-muted">No results published yet. Results appear here once the examination office publishes them.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Subject-wise Marks</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Exam</th>
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Grade</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for g in grades %}
+          <tr>
+            <td>{{ g.exam.name }}</td>
+            <td>{{ g.course.name }} ({{ g.course.code }})</td>
+            <td>{{ g.marks_obtained }} / {{ g.exam.total_marks }}</td>
+            <td><span class="badge bg-primary">{{ g.grade_letter|default:"—" }}</span></td>
+            <td>{{ g.remarks|default:"—" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center py-4 text-muted">No subject marks published yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

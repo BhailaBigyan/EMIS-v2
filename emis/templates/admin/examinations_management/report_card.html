@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Report Card - {{ student.roll_number }}{% endblock %}
+{% block eyebrow_text %}Examinations{% endblock %}
+{% block page_title %}Student Academic Report Card{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'examinations:result_list' %}">Results</a><span class="sep">/</span><span class="current">Report Card</span>
+{% endblock %}
+
+{% block page_actions %}
+  <button onclick="window.print();" class="btn btn-emis-primary"><i class="bi bi-printer me-1"></i>Print Report Card</button>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10">
+    <div class="card shadow-sm p-4 border bg-white rounded">
+      
+      <!-- Institutional Header -->
+      <div class="text-center border-bottom pb-3 mb-4">
+        <h2 class="fw-bold text-primary mb-1">EDUCATIONAL MANAGEMENT INFORMATION SYSTEM</h2>
+        <div class="text-uppercase tracking-wide text-muted small fw-semibold">Official Semester Grade Sheet &bull; Transcript</div>
+      </div>
+
+      <!-- Student & Semester Info -->
+      <div class="row mb-4 bg-light p-3 rounded mx-0">
+        <div class="col-6 col-md-3 mb-2">
+          <span class="text-muted small d-block">Student Name</span>
+          <strong class="fs-6 text-dark">{{ student.full_name }}</strong>
+        </div>
+        <div class="col-6 col-md-3 mb-2">
+          <span class="text-muted small d-block">Roll Number / ID</span>
+          <strong class="fs-6 font-monospace text-primary">{{ student.roll_number }}</strong>
+        </div>
+        <div class="col-6 col-md-3 mb-2">
+          <span class="text-muted small d-block">Academic Program</span>
+          <strong class="fs-6 text-dark">{{ student.program.name }} ({{ student.program.code }})</strong>
+        </div>
+        <div class="col-6 col-md-3 mb-2">
+          <span class="text-muted small d-block">Semester &amp; Academic Year</span>
+          <strong class="fs-6 text-dark">{{ semester.name }} ({{ semester.academic_year.name }})</strong>
+        </div>
+      </div>
+
+      <!-- Grades Table -->
+      <div class="table-responsive mb-4">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Course Code</th>
+              <th>Course Title</th>
+              <th>Credit Hours</th>
+              <th>Exam Title</th>
+              <th>Marks Obtained</th>
+              <th>Grade Letter</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for g in grades %}
+            <tr>
+              <td class="font-monospace fw-bold">{{ g.course.code }}</td>
+              <td class="fw-semibold">{{ g.course.name }}</td>
+              <td>{{ g.course.credit_hours }} Cr.</td>
+              <td>{{ g.exam.name }}</td>
+              <td class="fw-bold">{{ g.marks_obtained }} / {{ g.exam.total_marks }}</td>
+              <td>
+                {% if g.grade_letter == 'F' %}
+                  <span class="badge bg-danger">{{ g.grade_letter }}</span>
+                {% else %}
+                  <span class="badge bg-success">{{ g.grade_letter }}</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">No grade records found for this semester.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Result Summary -->
+      {% if result %}
+      <div class="row bg-light p-3 rounded mx-0 mb-4 align-items-center">
+        <div class="col-6 col-md-3 text-center border-end">
+          <span class="text-muted small d-block">Total Obtained</span>
+          <h4 class="mb-0 fw-bold">{{ result.obtained_marks }} / {{ result.total_marks }}</h4>
+        </div>
+        <div class="col-6 col-md-3 text-center border-end">
+          <span class="text-muted small d-block">Overall Percentage</span>
+          <h4 class="mb-0 fw-bold text-primary">{{ result.percentage }}%</h4>
+        </div>
+        <div class="col-6 col-md-3 text-center border-end">
+          <span class="text-muted small d-block">Semester GPA (SGPA)</span>
+          <h4 class="mb-0 fw-bold text-success">{{ result.gpa }}</h4>
+        </div>
+        <div class="col-6 col-md-3 text-center">
+          <span class="text-muted small d-block">Final Result Status</span>
+          {% if result.status == 'pass' %}
+            <span class="badge bg-success fs-6">PASSED</span>
+          {% else %}
+            <span class="badge bg-danger fs-6">FAILED</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Footer Signatures -->
+      <div class="row pt-5 mt-4 text-center">
+        <div class="col-4">
+          <div class="border-top pt-2 fw-semibold text-muted small">Prepared By</div>
+        </div>
+        <div class="col-4">
+          <div class="border-top pt-2 fw-semibold text-muted small">Checked By</div>
+        </div>
+        <div class="col-4">
+          <div class="border-top pt-2 fw-semibold text-muted small">Controller of Examinations</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

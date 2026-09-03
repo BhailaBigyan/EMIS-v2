@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block eyebrow_text %}Examinations{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'examinations:exam_list' %}">Examinations</a><span class="sep">/</span><span class="current">{{ title }}</span>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Exam Title / Name <span class="text-danger">*</span></label>
+            {{ form.name }}
+            {% if form.name.errors %}<div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Exam Type <span class="text-danger">*</span></label>
+              {{ form.exam_type }}
+              {% if form.exam_type.errors %}<div class="text-danger small mt-1">{{ form.exam_type.errors.0 }}</div>{% endif %}
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Semester / Term <span class="text-danger">*</span></label>
+              {{ form.semester }}
+              {% if form.semester.errors %}<div class="text-danger small mt-1">{{ form.semester.errors.0 }}</div>{% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Start Date <span class="text-danger">*</span></label>
+              {{ form.start_date }}
+              {% if form.start_date.errors %}<div class="text-danger small mt-1">{{ form.start_date.errors.0 }}</div>{% endif %}
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">End Date <span class="text-danger">*</span></label>
+              {{ form.end_date }}
+              {% if form.end_date.errors %}<div class="text-danger small mt-1">{{ form.end_date.errors.0 }}</div>{% endif %}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Total Marks</label>
+              {{ form.total_marks }}
+              {% if form.total_marks.errors %}<div class="text-danger small mt-1">{{ form.total_marks.errors.0 }}</div>{% endif %}
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Pass Marks</label>
+              {{ form.pass_marks }}
+              {% if form.pass_marks.errors %}<div class="text-danger small mt-1">{{ form.pass_marks.errors.0 }}</div>{% endif %}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Description / Guidelines</label>
+            {{ form.description }}
+            {% if form.description.errors %}<div class="text-danger small mt-1">{{ form.description.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div class="mb-4 form-check">
+            {{ form.is_published }}
+            <label class="form-check-label fw-semibold" for="{{ form.is_published.id_for_label }}">Publish Exam Session</label>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'examinations:exam_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary"><i class="bi bi-check-lg me-1"></i>Save Exam</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Financial Analytics{% endblock %}
+{% block eyebrow_text %}Finances{% endblock %}
+{% block page_title %}Financial Dashboard & Overview{% endblock %}
+{% block page_subtitle %}<p>Revenue summary, pending dues, fee collection metrics, and financial records.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'finances:fee_structure_list' %}">Finances</a><span class="sep">/</span><span class="current">Dashboard</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'finances:fee_structure_list' %}" class="btn btn-emis-outline"><i class="bi bi-gear me-1"></i>Fee Structures</a>
+  <a href="{% url 'finances:student_fee_status' %}" class="btn btn-emis-outline"><i class="bi bi-wallet2 me-1"></i>Student Balances</a>
+  <a href="{% url 'finances:record_payment' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Record Payment</a>
+{% endblock %}
+
+{% block content %}
+<!-- Metric Cards -->
+<div class="row g-3 mb-4">
+  <div class="col-12 col-sm-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip teal"><i class="bi bi-cash-coin"></i></span>Total Collections</div>
+      <div class="stat-value text-success">Rs. {{ total_collections }}</div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip red"><i class="bi bi-exclamation-circle"></i></span>Pending Dues</div>
+      <div class="stat-value text-danger">Rs. {{ total_pending_dues }}</div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-receipt-cutoff"></i></span>Total Receipts</div>
+      <div class="stat-value">{{ total_payments_count }}</div>
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-calculator"></i></span>Total Billed</div>
+      <div class="stat-value">Rs. {{ total_due }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Recent Transactions -->
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Recent Fee Payments</h2>
+    <a href="{% url 'finances:payment_list' %}" class="btn btn-sm btn-emis-outline">View All Payments</a>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Receipt No</th>
+            <th>Student</th>
+            <th>Fee Structure</th>
+            <th>Amount Paid</th>
+            <th>Date</th>
+            <th>Method</th>
+            <th class="text-end">Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in recent_payments %}
+          <tr>
+            <td class="id-cell font-monospace fw-bold">{{ p.receipt_number }}</td>
+            <td class="fw-semibold">{{ p.student.roll_number }} — {{ p.student.full_name }}</td>
+            <td>{{ p.fee_structure.name }}</td>
+            <td class="fw-bold text-success">Rs. {{ p.amount_paid }}</td>
+            <td>{{ p.payment_date|date:"M d, Y" }}</td>
+            <td>{{ p.get_payment_method_display }}</td>
+            <td class="text-end">
+              <a href="{% url 'finances:payment_receipt' p.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-printer me-1"></i>Print</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-4 text-muted">No fee payment records found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

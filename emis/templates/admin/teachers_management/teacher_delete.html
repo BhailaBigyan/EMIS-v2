@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirm Delete - {{ teacher.full_name }}{% endblock %}
+{% block eyebrow_text %}Faculty & Staff{% endblock %}
+{% block page_title %}Delete Teacher Record{% endblock %}
+{% block page_subtitle %}<p>Please confirm that you want to remove this faculty record.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span>
+  <a href="{% url 'teachers:teacher_list' %}">Faculty Management</a><span class="sep">/</span>
+  <span class="current">Delete {{ teacher.employee_id }}</span>
+{% endblock %}
+
+{% block content %}
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="emis-card border-danger">
+        <div class="emis-card-header bg-danger-subtle text-danger">
+          <h2 class="text-danger mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Deletion</h2>
+        </div>
+        <div class="emis-card-body">
+          <p>Are you sure you want to permanently delete the teacher record for <strong>{{ teacher.full_name }}</strong> (Employee ID: <code>{{ teacher.employee_id }}</code>)?</p>
+          
+          <div class="p-3 bg-light rounded border mb-4">
+            <div class="row g-2 text-muted small">
+              <div class="col-6"><strong>Designation:</strong> {{ teacher.get_designation_display }}</div>
+              <div class="col-6"><strong>Department:</strong> {{ teacher.department.name|default:"Unassigned" }}</div>
+              <div class="col-6"><strong>Email:</strong> {{ teacher.email|default:"N/A" }}</div>
+              <div class="col-6"><strong>Phone:</strong> {{ teacher.phone|default:"N/A" }}</div>
+            </div>
+          </div>
+
+          <form method="post" class="d-flex justify-content-end gap-2">
+            {% csrf_token %}
+            <a href="{% url 'teachers:teacher_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Delete Teacher Record</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

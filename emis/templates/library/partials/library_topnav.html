@@ -2,68 +2,54 @@
 
 <!-- Brand / utility row -->
 <header class="stu-topbar">
-  <div class="stu-brand">
+  <a href="{% url 'library:library_dashboard' %}" class="stu-brand">
     <div class="stu-brand-mark">E</div>
     <div class="stu-brand-text">
       <div class="name">EMIS</div>
       <div class="sub">Library Portal</div>
     </div>
-  </div>
+  </a>
 
   <div class="stu-topbar-right">
-    <div class="stu-search">
+    <form action="{% url 'library:library_catalog' %}" method="get" class="stu-search">
       <i class="bi bi-search"></i>
-      <input type="text" placeholder="Search title, author, ISBN…">
-    </div>
-
-    <button class="stu-icon-btn" type="button" aria-label="Notifications">
-      <i class="bi bi-bell"></i>
-      <span class="dot"></span>
-    </button>
+      <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search title, author, ISBN…">
+    </form>
 
     <div class="stu-user-chip">
-      <div class="stu-user-avatar">
-        {% if request.user.is_authenticated %}{{ request.user.username|slice:":2"|upper }}{% else %}ST{% endif %}
-      </div>
+      <div class="stu-user-avatar">{{ username|slice:":2"|upper }}</div>
       <div class="stu-user-meta">
-        <div class="uname">{% if request.user.is_authenticated %}{{ request.user.get_full_name|default:request.user.username }}{% else %}Student{% endif %}</div>
-        <div class="urole">Grade 10 — B</div>
+        <div class="uname">{{ username }}</div>
+        <div class="urole">Librarian</div>
       </div>
     </div>
+
+    <a href="{% url 'library:library_logout' %}" class="stu-logout-btn" aria-label="Logout">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </a>
 
     <button class="stu-mobile-toggle" type="button" data-stu-nav-toggle aria-label="Toggle menu">
       <i class="bi bi-list"></i>
+      <i class="bi bi-x"></i>
     </button>
   </div>
 </header>
 
 <!-- Horizontal nav row -->
-<nav class="stu-navbar">
+<nav class="stu-navbar" id="stu-navbar">
   <div class="stu-nav">
-    <a href="" class="stu-nav-link {% if request.resolver_match.url_name == 'library_dashboard' %}active{% endif %}">
+    <a href="{% url 'library:library_dashboard' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'library_dashboard' %}active{% endif %}">
       <i class="bi bi-grid-1x2"></i>Dashboard
     </a>
-    <a href="#" class="stu-nav-link">
+    <a href="{% url 'library:issue_book' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'issue_book' %}active{% endif %}">
+      <i class="bi bi-bag-plus"></i>Issue Book
+    </a>
+    <a href="{% url 'library:library_loans' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'library_loans' or request.resolver_match.url_name == 'return_book' %}active{% endif %}">
+      <i class="bi bi-journal-bookmark"></i>Loans &amp; Returns
+    </a>
+    <a href="{% url 'library:library_catalog' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'library_catalog' %}active{% endif %}">
       <i class="bi bi-search"></i>Catalog
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-journal-bookmark"></i>My Borrowed Books
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-clock-history"></i>History
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-bookmark-heart"></i>Reservations
-      <span class="badge-count">1</span>
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-cash-coin"></i>Fines
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-megaphone"></i>Notices
-    </a>
-    <a href="#" class="stu-nav-link">
-      <i class="bi bi-life-preserver"></i>Help
     </a>
   </div>
 </nav>

@@ -1,0 +1,134 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}Fees{% endblock %}
+{% block eyebrow_text %}Fees & Payments{% endblock %}
+{% block page_title %}Fee Statement{% endblock %}
+{% block page_subtitle %}<p>Your fee structure, payment status, and receipt history.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-cash-stack"></i></span>Total Due</div>
+      <div class="stat-value">Rs. {{ total_due }}</div>
+      <div class="stat-delta flat">across {{ accounts|length }} structure(s)</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip green"><i class="bi bi-check-circle"></i></span>Total Paid</div>
+      <div class="stat-value">Rs. {{ total_paid }}</div>
+      <div class="stat-delta up"><i class="bi bi-check-lg"></i> recorded payments</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-hourglass-split"></i></span>Balance</div>
+      <div class="stat-value">Rs. {{ balance }}</div>
+      <div class="stat-delta {% if balance <= 0 %}up{% else %}down{% endif %}">
+        {% if balance <= 0 %}<i class="bi bi-check-lg"></i> fully settled{% else %}outstanding amount{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip teal"><i class="bi bi-receipt"></i></span>Payments</div>
+      <div class="stat-value">{{ payments|length }}</div>
+      <div class="stat-delta flat">receipts on record</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Fee Structures</h2>
+      </div>
+      <div class="emis-card-body p-0">
+        <div class="table-responsive">
+          <table class="emis-table">
+            <thead>
+              <tr>
+                <th>Structure</th>
+                <th>Due</th>
+                <th>Paid</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for a in accounts %}
+              <tr>
+                <td>
+                  {{ a.fee_structure.name }}
+                  <div class="small text-muted">
+                    Tuition Rs. {{ a.fee_structure.tuition_fee }} · Lab Rs. {{ a.fee_structure.lab_fee }}<br>
+                    Library Rs. {{ a.fee_structure.library_fee }} · Exam Rs. {{ a.fee_structure.exam_fee }} · Other Rs. {{ a.fee_structure.other_fee }}
+                  </div>
+                </td>
+                <td>Rs. {{ a.total_due }}</td>
+                <td>Rs. {{ a.total_paid }}</td>
+                <td>
+                  {% if a.balance <= 0 %}
+                    <span class="pill pill-teal">Cleared</span>
+                  {% else %}
+                    <span class="pill pill-amber">Rs. {{ a.balance }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="4" class="text-center py-4 text-muted">No fee structure assigned yet.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Payment History</h2>
+      </div>
+      <div class="emis-card-body p-0">
+        <div class="table-responsive">
+          <table class="emis-table">
+            <thead>
+              <tr>
+                <th>Receipt No</th>
+                <th>Fee Structure</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Method</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in payments %}
+              <tr>
+                <td class="font-monospace fw-semibold">{{ p.receipt_number }}</td>
+                <td>{{ p.fee_structure.name }}</td>
+                <td>Rs. {{ p.amount_paid }}</td>
+                <td>{{ p.payment_date|date:"M d, Y" }}</td>
+                <td>{{ p.get_payment_method_display }}</td>
+                <td><span class="pill pill-teal">{{ p.get_status_display }}</span></td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center py-4 text-muted">No payments recorded yet.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

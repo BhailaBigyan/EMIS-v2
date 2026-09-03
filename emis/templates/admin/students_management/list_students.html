@@ -1,61 +1,164 @@
 {% extends 'base.html' %}
-{$ load static %}
+{% load static %}
 
 {% block title %}Students Management{% endblock %}
 {% block eyebrow_text %}Students{% endblock %}
 {% block page_title %}Students Management{% endblock %}
-{% block page_subtitle %}<p>Manage student records, enrollment, and academic information.</p>{% endblock %}
+{% block page_subtitle %}<p>Manage student records, enrollment, bulk CSV/Excel import, and academic information.</p>{% endblock %}
 
 {% block breadcrumb %}
   <span>EMIS</span><span class="sep">/</span><span class="current">Students Management</span>
 {% endblock %}
 
 {% block page_actions %}
-  <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button>
-  <button class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Student / Import</button>
+  <a href="{% url 'student_export_csv' %}" class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export CSV</a>
+  <a href="{% url 'student_bulk_upload' %}" class="btn btn-emis-outline"><i class="bi bi-file-earmark-spreadsheet me-1"></i>Bulk Import</a>
+  <a href="{% url 'student_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Student</a>
 {% endblock %}
 
 {% block content %}
+
+  <!-- Filter & Search Bar -->
+  <div class="emis-card mb-4">
+    <div class="emis-card-body">
+      <form method="get" action="{% url 'student_list' %}" class="row g-2 align-items-center">
+        <div class="col-12 col-md-4">
+          <div class="input-group">
+            <span class="input-group-text bg-transparent border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" name="q" value="{{ query }}" class="form-control border-start-0" placeholder="Search by name, roll no, email, phone...">
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <select name="program" class="form-select">
+            <option value="">-- All Programs --</option>
+            {% for prog in programs %}
+              <option value="{{ prog.id }}" {% if selected_program == prog.id|stringformat:"i" %}selected{% endif %}>{{ prog.code }} - {{ prog.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select name="status" class="form-select">
+            <option value="">-- All Status --</option>
+            <option value="active" {% if selected_status == 'active' %}selected{% endif %}>Active</option>
+            <option value="inactive" {% if selected_status == 'inactive' %}selected{% endif %}>Inactive</option>
+            <option value="graduated" {% if selected_status == 'graduated' %}selected{% endif %}>Graduated</option>
+            <option value="suspended" {% if selected_status == 'suspended' %}selected{% endif %}>Suspended</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select name="batch" class="form-select">
+            <option value="">-- All Batches --</option>
+            {% for b in batches %}
+              <option value="{{ b }}" {% if selected_batch == b %}selected{% endif %}>Batch {{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-6 col-md-1">
+          <button type="submit" class="btn btn-emis-primary w-100"><i class="bi bi-funnel"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Student Table Card -->
   <div class="emis-card">
-    <div class="emis-card-header">
-      <h2>Student List</h2>
-      <a href="#" class="small">View all</a>
+    <div class="emis-card-header d-flex justify-content-between align-items-center">
+      <h2>Student Directory <span class="badge bg-secondary ms-2" style="font-size: 0.75rem;">Total: {{ total_count }}</span></h2>
+      {% if query or selected_program or selected_status or selected_batch %}
+        <a href="{% url 'student_list' %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-x-circle me-1"></i>Clear Filters</a>
+      {% endif %}
     </div>
     <div class="emis-card-body p-0">
       <div class="table-responsive">
         <table class="emis-table">
           <thead>
             <tr>
-              <th>Student ID</th>
-              <th>Name</th>
-              <th>Class</th>
-              <th>Enrollment Date</th>
+              <th>Roll No. (Username)</th>
+              <th>Student Name</th>
+              <th>Program</th>
+              <th>Batch</th>
+              <th>Gender</th>
+              <th>Contact</th>
               <th>Status</th>
-              <th>Actions</th>
+              <th class="text-end">Actions</th>
             </tr>
           </thead>
           <tbody>
             {% for student in students %}
             <tr>
-              <td>{{ student.student_id }}</td>
-              <td>{{ student.username }}</td>
-              <td>{{ student.password }}</td>
-              <td>{{ student.enrollment_date|date:"M d, Y" }}</td>
-              <td>{{ student.status }}</td>
+              <td class="id-cell">
+                <a href="{% url 'student_profile' student.student_id %}" class="fw-semibold text-decoration-none">
+                  {{ student.roll_number }}
+                </a>
+              </td>
               <td>
-                <a href="" class="btn btn-sm btn-emis-outline">Edit</a>
-                <a href="" class="btn btn-sm btn-emis-danger">Delete</a>
+                <div class="fw-medium">{{ student.full_name }}</div>
+                {% if student.email %}<div class="small text-muted">{{ student.email }}</div>{% endif %}
+              </td>
+              <td>{% if student.program %}<span class="badge bg-light text-dark border">{{ student.program.code }}</span>{% else %}<span class="text-muted">—</span>{% endif %}</td>
+              <td>{{ student.batch|default:"—" }}</td>
+              <td>{{ student.get_gender_display }}</td>
+              <td>{{ student.phone|default:"—" }}</td>
+              <td>
+                {% if student.status == 'active' %}
+                  <span class="pill pill-teal">Active</span>
+                {% elif student.status == 'inactive' %}
+                  <span class="pill pill-amber">Inactive</span>
+                {% elif student.status == 'graduated' %}
+                  <span class="pill pill-blue">Graduated</span>
+                {% else %}
+                  <span class="pill pill-red">Suspended</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <a href="{% url 'student_profile' student.student_id %}" class="btn btn-sm btn-emis-outline" title="View Profile"><i class="bi bi-eye"></i></a>
+                <a href="{% url 'student_edit' student.student_id %}" class="btn btn-sm btn-emis-outline" title="Edit"><i class="bi bi-pencil"></i></a>
+                <a href="{% url 'student_delete' student.student_id %}" class="btn btn-sm btn-emis-danger" title="Delete"><i class="bi bi-trash"></i></a>
               </td>
             </tr>
             {% empty %}
             <tr>
-              <td colspan="6" class="text-center">No students found.</td>
+              <td colspan="8" class="text-center py-4">
+                <div class="emis-empty">
+                  <i class="bi bi-people text-muted display-6"></i>
+                  <h5 class="mt-2">No students found</h5>
+                  <p class="text-muted">Try adjusting your filters or add a new student.</p>
+                  <a href="{% url 'student_add' %}" class="btn btn-sm btn-emis-primary mt-2"><i class="bi bi-plus-lg me-1"></i>Add Student</a>
+                </div>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
+
+    <!-- Pagination -->
+    {% if students.has_other_pages %}
+    <div class="emis-card-footer d-flex justify-content-between align-items-center p-3 border-top">
+      <div class="small text-muted">
+        Showing {{ students.start_index }} to {{ students.end_index }} of {{ total_count }} students
+      </div>
+      <ul class="pagination pagination-sm mb-0">
+        {% if students.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_batch %}&batch={{ selected_batch }}{% endif %}">&laquo; Previous</a></li>
+        {% endif %}
+
+        {% for num in students.paginator.page_range %}
+          {% if students.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > students.number|add:'-3' and num < students.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_batch %}&batch={{ selected_batch }}{% endif %}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if students.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if selected_program %}&program={{ selected_program }}{% endif %}{% if selected_status %}&status={{ selected_status }}{% endif %}{% if selected_batch %}&batch={{ selected_batch }}{% endif %}">Next &raquo;</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
+
   </div>
 
 {% endblock %}

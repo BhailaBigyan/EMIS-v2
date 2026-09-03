@@ -1,0 +1,137 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+{% block eyebrow_text %}Personal & Academic{% endblock %}
+{% block page_title %}My Profile{% endblock %}
+{% block page_subtitle %}<p>Your personal details, academic summary, grades, and fee payment history.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row g-3">
+  <!-- Identity Card -->
+  <div class="col-lg-4">
+    <div class="emis-card mb-3 text-center p-4">
+      <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 84px; height: 84px; font-size: 2rem;">
+        {{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}
+      </div>
+      <h4 class="mb-1">{{ student.full_name }}</h4>
+      <div class="text-muted font-monospace mb-2">{{ student.roll_number }}</div>
+      <div>
+        {% if student.status == 'active' %}
+          <span class="pill pill-teal">Active</span>
+        {% elif student.status == 'inactive' %}
+          <span class="pill pill-amber">Inactive</span>
+        {% elif student.status == 'graduated' %}
+          <span class="pill pill-blue">Graduated</span>
+        {% else %}
+          <span class="pill pill-red">Suspended</span>
+        {% endif %}
+      </div>
+      <hr class="my-3">
+      <div class="text-start small">
+        <div class="mb-2"><strong>Program:</strong> {{ student.program.name|default:"Not Enrolled" }} ({{ student.program.code|default:"—" }})</div>
+        <div class="mb-2"><strong>Batch:</strong> {{ student.batch|default:"N/A" }}</div>
+        <div class="mb-2"><strong>Semester:</strong> Semester {{ student.current_semester }}</div>
+        <div class="mb-2"><strong>Section:</strong> {{ student.section|default:"A" }}</div>
+        <div class="mb-2"><strong>Enrolled On:</strong> {{ student.enrollment_date|date:"M d, Y" }}</div>
+      </div>
+    </div>
+
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Contact & Guardian</h2>
+      </div>
+      <div class="emis-card-body small">
+        <div class="mb-2"><strong>Email:</strong> {{ student.email|default:"Not provided" }}</div>
+        <div class="mb-2"><strong>Phone:</strong> {{ student.phone|default:"Not provided" }}</div>
+        <div class="mb-2"><strong>Gender:</strong> {{ student.get_gender_display }}</div>
+        <div class="mb-2"><strong>DOB:</strong> {{ student.date_of_birth|date:"M d, Y"|default:"Not provided" }}</div>
+        <div class="mb-2"><strong>Address:</strong> {{ student.address|default:"Not provided" }}</div>
+        <hr>
+        <div class="mb-2"><strong>Guardian Name:</strong> {{ student.guardian_name|default:"Not provided" }}</div>
+        <div class="mb-2"><strong>Guardian Phone:</strong> {{ student.guardian_phone|default:"Not provided" }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <!-- Academic Grades -->
+    <div class="emis-card mb-3">
+      <div class="emis-card-header">
+        <h2>Academic Grades & Performance</h2>
+      </div>
+      <div class="emis-card-body p-0">
+        <div class="table-responsive">
+          <table class="emis-table">
+            <thead>
+              <tr>
+                <th>Exam</th>
+                <th>Course</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for g in grades %}
+              <tr>
+                <td>{{ g.exam.name }}</td>
+                <td>{{ g.course.name }} ({{ g.course.code }})</td>
+                <td>{{ g.marks_obtained }} / {{ g.exam.total_marks }}</td>
+                <td><span class="badge bg-primary">{{ g.grade_letter|default:"—" }}</span></td>
+                <td>{{ g.remarks|default:"—" }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5" class="text-center py-3 text-muted">No grade records published yet.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fee Payments -->
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Fee Payment History</h2>
+      </div>
+      <div class="emis-card-body p-0">
+        <div class="table-responsive">
+          <table class="emis-table">
+            <thead>
+              <tr>
+                <th>Receipt No</th>
+                <th>Fee Structure</th>
+                <th>Amount Paid</th>
+                <th>Date</th>
+                <th>Method</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in fee_payments %}
+              <tr>
+                <td class="font-monospace fw-semibold">{{ p.receipt_number }}</td>
+                <td>{{ p.fee_structure.name }}</td>
+                <td>Rs. {{ p.amount_paid }}</td>
+                <td>{{ p.payment_date|date:"M d, Y" }}</td>
+                <td>{{ p.get_payment_method_display }}</td>
+                <td><span class="pill pill-teal">{{ p.get_status_display }}</span></td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center py-3 text-muted">No fee payment records found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

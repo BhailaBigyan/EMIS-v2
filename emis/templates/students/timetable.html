@@ -1,0 +1,67 @@
+{% extends "students/base_student.html" %}
+{% load static %}
+
+{% block title %}Timetable{% endblock %}
+{% block eyebrow_text %}Class Schedule{% endblock %}
+{% block page_title %}Class Timetable{% endblock %}
+{% block page_subtitle %}<p>Weekly class schedule {% if semester %}for {{ semester.name }} (Section {{ student.section|default:"A" }}){% endif %}.</p>{% endblock %}
+
+{% block content %}
+
+{% if not semester %}
+  <div class="emis-card">
+    <div class="emis-card-body text-center py-5">
+      <i class="bi bi-calendar-x display-4 text-muted"></i>
+      <h4 class="mt-3">No active semester found</h4>
+      <p class="text-muted mb-0">Your timetable will appear here once your semester schedule is published.</p>
+    </div>
+  </div>
+{% else %}
+  <div class="emis-card">
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table text-center align-top">
+          <thead>
+            <tr>
+              <th style="min-width: 120px;">Day</th>
+              <th>Classes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for code, label, slots in grid %}
+            <tr>
+              <td class="fw-semibold">{{ label }}</td>
+              <td class="align-top">
+                {% for s in slots %}
+                  <div class="border rounded p-2 mb-2 text-start d-flex justify-content-between align-items-center" style="background: #f8fafc;">
+                    <div>
+                      <div class="fw-semibold small">{{ s.course_assignment.course.name }}</div>
+                      <div class="small text-muted">{{ s.course_assignment.course.code }} · {{ s.start_time|time:"g:i A" }} – {{ s.end_time|time:"g:i A" }}</div>
+                    </div>
+                    <div class="text-end small">
+                      <div><i class="bi bi-geo-alt me-1"></i>{{ s.room }}</div>
+                      {% if s.course_assignment.teacher %}
+                      <div class="text-muted"><i class="bi bi-person me-1"></i>{{ s.course_assignment.teacher.full_name }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% empty %}
+                  <div class="text-muted small py-3">No classes scheduled</div>
+                {% endfor %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% if not any_slots %}
+          <div class="text-center py-4 text-muted">
+            <i class="bi bi-calendar2-week d-block fs-1 mb-2"></i>
+            No timetable slots have been published for your section yet.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock %}

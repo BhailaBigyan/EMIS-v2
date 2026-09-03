@@ -1,14 +1,14 @@
 from django.db import models
-from django.conf import settings
 
 
 class Department(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=20, unique=True)
     description = models.TextField(blank=True)
-    # head = models.ForeignKey(
-       
-    # )
+    head = models.ForeignKey(
+        'teachers.Teacher', on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='headed_departments'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -21,8 +21,11 @@ class Department(models.Model):
 class Program(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=20, unique=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name='programs')
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE, related_name='programs'
+    )
     duration_years = models.IntegerField(default=4)
+    total_semesters = models.IntegerField(default=8)
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -36,7 +39,9 @@ class Program(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=20, unique=True)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name='courses')
+    program = models.ForeignKey(
+        Program, on_delete=models.CASCADE, related_name='courses'
+    )
     credit_hours = models.IntegerField(default=3)
     description = models.TextField(blank=True)
     semester = models.IntegerField(default=1)
@@ -68,7 +73,9 @@ class AcademicYear(models.Model):
 
 
 class Semester(models.Model):
-    academic_year = models.ForeignKey(AcademicYear, on_delete=models.CASCADE, related_name='semesters')
+    academic_year = models.ForeignKey(
+        AcademicYear, on_delete=models.CASCADE, related_name='semesters'
+    )
     name = models.CharField(max_length=50)
     number = models.IntegerField()
     start_date = models.DateField()
@@ -89,13 +96,16 @@ class Semester(models.Model):
 
 
 class CourseAssignment(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='assignments')
-    # teacher = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-    #     related_name='course_assignments',
-    #     limit_choices_to={'role': 'teacher'}
-    # )
-    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='assignments')
+    course = models.ForeignKey(
+        Course, on_delete=models.CASCADE, related_name='assignments'
+    )
+    teacher = models.ForeignKey(
+        'teachers.Teacher', on_delete=models.CASCADE,
+        related_name='course_assignments'
+    )
+    semester = models.ForeignKey(
+        Semester, on_delete=models.CASCADE, related_name='assignments'
+    )
     section = models.CharField(max_length=10, default='A')
     max_students = models.IntegerField(default=60)
 
@@ -104,15 +114,17 @@ class CourseAssignment(models.Model):
         ordering = ['course__code']
 
     def __str__(self):
-        return f"{self.course.code} - {self.teacher.get_full_name()} (Sec {self.section})"
+        return f"{self.course.code} - {self.teacher.full_name} (Sec {self.section})"
 
 
 class Timetable(models.Model):
     DAY_CHOICES = [
-        ('MON', 'Monday'), ('TUE', 'Tuesday'), ('WED', 'Wednesday'),
-        ('THU', 'Thursday'), ('FRI', 'Friday'),
+        ('SUN', 'Sunday'), ('MON', 'Monday'), ('TUE', 'Tuesday'),
+        ('WED', 'Wednesday'), ('THU', 'Thursday'), ('FRI', 'Friday'),
     ]
-    course_assignment = models.ForeignKey(CourseAssignment, on_delete=models.CASCADE, related_name='timetable_slots')
+    course_assignment = models.ForeignKey(
+        CourseAssignment, on_delete=models.CASCADE, related_name='timetable_slots'
+    )
     day_of_week = models.CharField(max_length=3, choices=DAY_CHOICES)
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -123,3 +135,22 @@ class Timetable(models.Model):
 
     def __str__(self):
         return f"{self.course_assignment.course.code} - {self.get_day_of_week_display()} {self.start_time}"
+
+
+class Batch(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    program = models.ForeignKey(
+        Program, on_delete=models.CASCADE, related_name='batches', null=True, blank=True
+    )
+    start_year = models.IntegerField(default=2024)
+    end_year = models.IntegerField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-name']
+
+    def __str__(self):
+        if self.program:
+            return f"{self.name} ({self.program.code})"
+        return self.name
+

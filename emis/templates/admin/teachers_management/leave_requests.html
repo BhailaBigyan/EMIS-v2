@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Leave Requests{% endblock %}
+{% block eyebrow_text %}Teachers{% endblock %}
+{% block page_title %}Leave Requests{% endblock %}
+{% block page_subtitle %}<p>Review and decide on teacher leave requests.</p>{% endblock %}
+
+{% block content %}
+
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-hourglass-split"></i></span>Pending</div>
+      <div class="stat-value">{{ counts.pending }}</div>
+      <div class="stat-delta flat">need review</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip green"><i class="bi bi-check-circle"></i></span>Approved</div>
+      <div class="stat-value">{{ counts.approved }}</div>
+      <div class="stat-delta up">sanctioned</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip red"><i class="bi bi-x-circle"></i></span>Rejected</div>
+      <div class="stat-value">{{ counts.rejected }}</div>
+      <div class="stat-delta flat">declined</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-list-check"></i></span>Total</div>
+      <div class="stat-value">{{ leaves|length }}</div>
+      <div class="stat-delta flat">requests</div>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <h2>All Requests</h2>
+    <div class="btn-group btn-group-sm" role="group">
+      <a href="{% url 'teachers:teacher_leave_admin' %}" class="btn {% if not status %}btn-emis-primary{% else %}btn-emis-outline{% endif %}">All</a>
+      <a href="{% url 'teachers:teacher_leave_admin' %}?status=pending" class="btn {% if status == 'pending' %}btn-emis-primary{% else %}btn-emis-outline{% endif %}">Pending</a>
+      <a href="{% url 'teachers:teacher_leave_admin' %}?status=approved" class="btn {% if status == 'approved' %}btn-emis-primary{% else %}btn-emis-outline{% endif %}">Approved</a>
+      <a href="{% url 'teachers:teacher_leave_admin' %}?status=rejected" class="btn {% if status == 'rejected' %}btn-emis-primary{% else %}btn-emis-outline{% endif %}">Rejected</a>
+    </div>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Teacher</th>
+            <th>Type</th>
+            <th>Period</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in leaves %}
+          <tr>
+            <td>
+              <div class="fw-semibold">{{ l.teacher.full_name }}</div>
+              <div class="small text-muted font-monospace">{{ l.teacher.employee_id }}</div>
+            </td>
+            <td>{{ l.get_leave_type_display }}</td>
+            <td>{{ l.from_date|date:"M d, Y" }} – {{ l.to_date|date:"M d, Y" }}</td>
+            <td>{{ l.days }}</td>
+            <td>{{ l.reason|default:"—"|truncatechars:60 }}</td>
+            <td>
+              {% if l.status == 'approved' %}<span class="pill pill-teal">Approved</span>
+              {% elif l.status == 'rejected' %}<span class="pill pill-red">Rejected</span>
+              {% else %}<span class="pill pill-amber">Pending</span>{% endif %}
+              {% if l.admin_remarks %}<div class="small text-muted">{{ l.admin_remarks|truncatechars:40 }}</div>{% endif %}
+            </td>
+            <td>
+              {% if l.status == 'pending' %}
+              <form method="post" action="{% url 'teachers:teacher_leave_decision' l.id %}" class="d-flex gap-1">
+                {% csrf_token %}
+                <input type="text" name="admin_remarks" class="form-control form-control-sm" placeholder="Remarks (optional)" style="width: 110px;">
+                <button type="submit" name="action" value="approve" class="btn btn-sm btn-emis-primary" title="Approve"><i class="bi bi-check-lg"></i></button>
+                <button type="submit" name="action" value="reject" class="btn btn-sm btn-emis-danger" title="Reject"><i class="bi bi-x-lg"></i></button>
+              </form>
+              {% else %}
+                <span class="text-muted small">{{ l.decided_at|date:"M d, Y"|default:"—" }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-4 text-muted">No leave requests found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

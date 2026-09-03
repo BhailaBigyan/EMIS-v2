@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Receipt #{{ payment.receipt_number }}{% endblock %}
+{% block eyebrow_text %}Finances{% endblock %}
+{% block page_title %}Official Payment Receipt{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'finances:payment_list' %}">Payments</a><span class="sep">/</span><span class="current">Receipt {{ payment.receipt_number }}</span>
+{% endblock %}
+
+{% block page_actions %}
+  <button onclick="window.print()" class="btn btn-emis-primary"><i class="bi bi-printer me-1"></i>Print Official Receipt</button>
+  <a href="{% url 'finances:payment_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Payments</a>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8">
+    <div class="card border shadow p-4 bg-white" id="printable-receipt">
+      
+      <!-- Receipt Header -->
+      <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom">
+        <div>
+          <h3 class="fw-bold text-primary mb-0">EMIS ACADEMIC INSTITUTION</h3>
+          <div class="text-muted small">Higher Education Management &amp; Information System</div>
+          <div class="text-muted small">Kathmandu, Nepal &bull; Phone: +977-1-4000000</div>
+        </div>
+        <div class="text-end">
+          <h4 class="fw-bold mb-0">FEE RECEIPT</h4>
+          <div class="font-monospace fw-bold text-danger">{{ payment.receipt_number }}</div>
+          <div class="small text-muted">Date: {{ payment.payment_date|date:"M d, Y" }}</div>
+        </div>
+      </div>
+
+      <!-- Student & Fee Details -->
+      <div class="row mb-4">
+        <div class="col-6">
+          <div class="p-3 bg-light rounded">
+            <h6 class="fw-bold text-uppercase text-secondary mb-2">Student Information</h6>
+            <div><strong>Name:</strong> {{ payment.student.full_name }}</div>
+            <div><strong>Roll Number:</strong> <code>{{ payment.student.roll_number }}</code></div>
+            <div><strong>Program:</strong> {{ payment.student.program.code|default:"N/A" }} (Batch {{ payment.student.batch|default:"N/A" }})</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="p-3 bg-light rounded">
+            <h6 class="fw-bold text-uppercase text-secondary mb-2">Payment Details</h6>
+            <div><strong>Fee Structure:</strong> {{ payment.fee_structure.name }}</div>
+            <div><strong>Payment Method:</strong> {{ payment.get_payment_method_display }}</div>
+            <div><strong>Transaction Ref:</strong> {{ payment.transaction_id|default:"N/A" }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Table -->
+      <table class="table table-bordered mb-4">
+        <thead class="table-dark">
+          <tr>
+            <th>Description</th>
+            <th class="text-end">Amount (NPR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fee Payment for {{ payment.fee_structure.name }}</td>
+            <td class="text-end fw-bold">Rs. {{ payment.amount_paid }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="text-end">TOTAL PAID:</th>
+            <th class="text-end text-success fs-5">Rs. {{ payment.amount_paid }}</th>
+          </tr>
+        </tfoot>
+      </table>
+
+      <!-- Footer & Signatures -->
+      <div class="row mt-5 pt-4">
+        <div class="col-6 text-center">
+          <div class="border-top pt-2 text-muted small">Student Signature</div>
+        </div>
+        <div class="col-6 text-center">
+          <div class="border-top pt-2 text-muted small">Authorized Accountant Stamp &amp; Signature</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

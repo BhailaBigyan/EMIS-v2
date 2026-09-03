@@ -14,79 +14,148 @@
     <div class="emis-nav-section">
       <div class="emis-nav-label">General</div>
       <a href="{% url 'general_dashboard' %}"
-        class="emis-nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        class="emis-nav-link {% if request.resolver_match.url_name == 'general_dashboard' %}active{% endif %}">
         <i class="bi bi-grid-1x2"></i><span>Dashboard</span>
+      </a>
+      <a href="{% url 'assistant' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">
+        <i class="bi bi-stars"></i><span>AI Assistant</span>
       </a>
     </div>
 
     <div class="emis-nav-section">
       <div class="emis-nav-label">Student Management</div>
-      <a href="{% url 'student_list' %}" class="emis-nav-link">
-        <i class="bi bi-people"></i><span>Students</span>
+      <a href="{% url 'student_list' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'student_list' or request.resolver_match.url_name == 'student_profile' or request.resolver_match.url_name == 'student_edit' %}active{% endif %}">
+        <i class="bi bi-people"></i><span>All Students</span>
       </a>
-
-      <a href="{% url 'academics:classes_list' %}" class="emis-nav-link">
-        <i class="bi bi-collection"></i><span>Classes &amp; Sections</span>
+      <a href="{% url 'student_add' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'student_add' %}active{% endif %}">
+        <i class="bi bi-person-plus"></i><span>Add Student</span>
+      </a>
+      <a href="{% url 'student_bulk_upload' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'student_bulk_upload' or request.resolver_match.url_name == 'student_bulk_summary' %}active{% endif %}">
+        <i class="bi bi-file-earmark-spreadsheet"></i><span>Bulk Import</span>
       </a>
     </div>
 
     <div class="emis-nav-section">
-      <div class="emis-nav-label">Attendance</div>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-calendar-check"></i><span>Daily Attendance</span>
+      <div class="emis-nav-label">Academics</div>
+      <a href="{% url 'academics:classes_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and request.resolver_match.url_name == 'classes' %}active{% endif %}">
+        <i class="bi bi-building"></i><span>Academic Management</span>
       </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-bar-chart-steps"></i><span>Attendance Reports</span>
+      <a href="{% url 'academics:department_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'department' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-building"></i><span>Departments</span>
+      </a>
+      <a href="{% url 'academics:program_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'program' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-mortarboard"></i><span>Programs</span>
+      </a>
+      <a href="{% url 'academics:course_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'course' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-book"></i><span>Courses</span>
+      </a>
+      <a href="{% url 'academics:assignment_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'assignment' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-person-workspace"></i><span>Teacher Allocations</span>
+      </a>
+      <a href="{% url 'academics:timetable_view' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'academics' and 'timetable' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-calendar3"></i><span>Routine &amp; Timetable</span>
       </a>
     </div>
 
     <div class="emis-nav-section">
       <div class="emis-nav-label">Examination &amp; Grades</div>
-      <a href="{% url 'examinations:exam_list' %}" class="emis-nav-link">
-        <i class="bi bi-journal-text"></i><span>Exams</span>
+      <a href="{% url 'examinations:exam_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'examinations' and 'exam' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-journal-text"></i><span>Exams &amp; Routines</span>
       </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-graph-up"></i><span>Results &amp; Grades</span>
+      <a href="{% url 'examinations:result_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'examinations' and request.resolver_match.url_name == 'result_list' %}active{% endif %}">
+        <i class="bi bi-award"></i><span>Semester Results</span>
       </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-award"></i><span>Report Cards</span>
+      <a href="{% url 'examinations:result_generate' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'examinations' and request.resolver_match.url_name == 'result_generate' %}active{% endif %}">
+        <i class="bi bi-cpu"></i><span>Compile Results</span>
       </a>
     </div>
 
     <div class="emis-nav-section">
       <div class="emis-nav-label">Finances</div>
-      <a href="{% url 'finances:fee_structure_list' %}" class="emis-nav-link">
+      <a href="{% url 'finances:finance_dashboard' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and request.resolver_match.url_name == 'finance_dashboard' %}active{% endif %}">
+        <i class="bi bi-graph-up-arrow"></i><span>Financial Overview</span>
+      </a>
+      <a href="{% url 'finances:fee_structure_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and 'fee_structure' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-cash-stack"></i><span>Fee Structures</span>
       </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-receipt"></i><span>Payments &amp; Invoices</span>
+      <a href="{% url 'finances:payment_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and request.resolver_match.url_name == 'payment_list' %}active{% endif %}">
+        <i class="bi bi-receipt"></i><span>Payments &amp; Receipts</span>
+      </a>
+      <a href="{% url 'finances:record_payment' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and request.resolver_match.url_name == 'record_payment' %}active{% endif %}">
+        <i class="bi bi-cash-coin"></i><span>Record Payment</span>
+      </a>
+      <a href="{% url 'finances:student_fee_status' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and request.resolver_match.url_name == 'student_fee_status' %}active{% endif %}">
+        <i class="bi bi-wallet2"></i><span>Student Fee Status</span>
+      </a>
+      <a href="{% url 'finances:salary_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'finances' and 'salary' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-person-badge"></i><span>Faculty Salaries</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Faculty &amp; Staff</div>
+      <a href="{% url 'teachers:teacher_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'teachers' and request.resolver_match.url_name == 'teacher_list' %}active{% endif %}">
+        <i class="bi bi-person-workspace"></i><span>Teachers &amp; Staff</span>
+      </a>
+      <a href="{% url 'teachers:teacher_add' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'teachers' and request.resolver_match.url_name == 'teacher_add' %}active{% endif %}">
+        <i class="bi bi-person-plus"></i><span>Add Teacher</span>
+      </a>
+      <a href="{% url 'teachers:teacher_leave_admin' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'teachers' and request.resolver_match.url_name == 'teacher_leave_admin' %}active{% endif %}">
+        <i class="bi bi-person-lines-fill"></i><span>Leave Requests</span>
+      </a>
+      <a href="{% url 'teachers:teacher_login' %}"
+        class="emis-nav-link">
+        <i class="bi bi-box-arrow-in-right"></i><span>Teacher Portal Login</span>
+      </a>
+    </div>
+
+    <div class="emis-nav-section">
+      <div class="emis-nav-label">Library</div>
+      <a href="{% url 'library:admin_book_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and request.resolver_match.url_name == 'admin_book_list' %}active{% endif %}">
+        <i class="bi bi-book"></i><span>Book Catalog</span>
+      </a>
+      <a href="{% url 'library:admin_category_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and 'category' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-tags"></i><span>Categories</span>
+      </a>
+      <a href="{% url 'library:admin_librarian_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'library' and 'librarian' in request.resolver_match.url_name %}active{% endif %}">
+        <i class="bi bi-person-badge"></i><span>Librarians</span>
+      </a>
+      <a href="{% url 'library:admin_borrowing_list' %}"
+        class="emis-nav-link {% if request.resolver_match.url_name == 'admin_borrowing_list' or request.resolver_match.url_name == 'issue_book' or request.resolver_match.url_name == 'admin_return_book' %}active{% endif %}">
+        <i class="bi bi-arrow-left-right"></i><span>Circulation</span>
       </a>
     </div>
 
     <div class="emis-nav-section">
       <div class="emis-nav-label">Notices</div>
-      <a href="{% url 'notices:notice_list' %}" class="emis-nav-link">
-        <i class="bi bi-megaphone"></i><span>Notices</span>
-      </a>
-    </div>
-
-    <div class="emis-nav-section">
-      <div class="emis-nav-label">Staff &amp; Access</div>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-person-badge"></i><span>Teachers &amp; Staff</span>
-      </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-shield-lock"></i><span>Roles &amp; Permissions</span>
-      </a>
-    </div>
-
-    <div class="emis-nav-section">
-      <div class="emis-nav-label">System</div>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-gear"></i><span>Settings</span>
-      </a>
-      <a href="#" class="emis-nav-link">
-        <i class="bi bi-clock-history"></i><span>Activity Log</span>
+      <a href="{% url 'notices:notice_list' %}"
+        class="emis-nav-link {% if request.resolver_match.namespace == 'notices' %}active{% endif %}">
+        <i class="bi bi-megaphone"></i><span>Notice Board</span>
       </a>
     </div>
 

@@ -1,0 +1,2838 @@
+[
+{
+    "model": "sessions.session",
+    "pk": "022mctvm77bpls46l19537z43bfsghpq",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1ww8GN:DeP3p0Tvn2YNY64CUJyNmnvS8c6f1Ka32HwdmWlmu6E",
+        "expire_date": "2026-09-01T01:05:11.651Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2rlvzmk7n6rgdnlz8jqly31pxv033yfd",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1wtjXW:d2CH_dJEJfgPd8Z_QT3ldRpK4PghXWRW8-eas9evxZI",
+        "expire_date": "2026-08-25T10:16:58.516Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b4qn48d6cqgx7qso4xfsn25prursws5a",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1x1ZPD:KPy-J40lvjEdzEsPaVwsEnHjhnVeqJPBTlFDNDqu0X0",
+        "expire_date": "2026-09-16T01:04:47.725Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b7z7t7guh81qcpmuc0i4n3r6v6pc51pj",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouqbn5CiEQMaVaAJ8qGSg:1wvsY5:07JDyma7kpqqlW4FU-5fW7IWqEhQ6Oe6aTlrAcsREhw",
+        "expire_date": "2026-08-31T08:18:25.652Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "chdqyjmml4qn6xqfqzt8kjcr1yhqgx2v",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouqbn5CiEQMaVaAJ8qGSg:1wvsXv:z0kUHv83f_4bMwBXewitw_w-shk9P1QSwsUfuKnKxfc",
+        "expire_date": "2026-08-31T08:18:15.913Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "eoggfpbriehmfzzt1gj411q8rl5vu178",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouRXoKjjmJeQohpUWZeelKtQDnJBng:1wvsXx:JJu-pNe9mcYdqw8xoh4MeUtgXNIa4mnRFlw30wArQZY",
+        "expire_date": "2026-08-31T08:18:17.014Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "excqjslkfpyubez73um6ebu99eok8ork",
+    "fields": {
+        "session_data": "eyJsaWJyYXJ5X2xvZ2dlZF9pbiI6dHJ1ZSwibGlicmFyeV91c2VybmFtZSI6ImFkbWluIn0:1wuCfs:kdtNWLpF5hGm_SrGsn4L6vK8BX9_lrYkvAJk19s3L5k",
+        "expire_date": "2026-08-26T17:23:32.689Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "gx1251rhq2hct5sdy1pf2ong3pdyjjo2",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1ww8Gn:pg0VDVSnvQ-3j_79zg1pLkS4aGasgdBhnoIQ3UeABEk",
+        "expire_date": "2026-09-01T01:05:37.067Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "jnsuzeimgmcg5rf699zdpnhm3ukzlf3a",
+    "fields": {
+        "session_data": ".eJyrViouKU1JzSuJz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuEX5OTlKVkpOnr66RgYWxroGBoZKCNm8xNxUJSuloMRcheCMxKLcRKVaANIaIYE:1ww8Uk:ZFQqRdQlhq-yk-BxqrrMgRZ_fLn5MHcVxNzSJARjDc8",
+        "expire_date": "2026-09-01T01:20:02.952Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "kyq7tydhjj0fvmkw9kr7aawvfowpsacw",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouRXoKjjmJeQohpUWZeelKtQDnJBng:1ww8Gq:IcENbPR3Ca6J8Foqv-c52cm-1PyS_UNoIFvOdoG8GoM",
+        "expire_date": "2026-09-01T01:05:40.553Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mwcgu3ygxxe2ngne84zye8bpjgd6m882",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouRXoKjjmJeQohpUWZeelKtQDnJBng:1ww8G3:Tz4CphzDCjZJdJS_f4ggFNJj6qkPqFtgGCnxZB0qXgs",
+        "expire_date": "2026-09-01T01:04:51.750Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nluieh1ra721r8exgm7jjh7xq0zqdp0s",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1ww8Uk:Ynocc90pvKSuhemd3wZf5k_fDI4eXwFRv94gfu7eV-I",
+        "expire_date": "2026-09-01T01:20:02.183Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nopwegw69um4qrn9njhnr6yuqkt0mr1h",
+    "fields": {
+        "session_data": ".eJyrViouKU1JzSuJz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuEX5OTlKVkpOnr66RgYWxroGBoZKCNm8xNxUJSuloMRcheCMxKLcRKVaANIaIYE:1ww8Gp:ps2cJuxfIOpXjsnorkVVl39Tm42U3aXU45vayDckg-A",
+        "expire_date": "2026-09-01T01:05:39.654Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "qtvajr8l5ylw95fhnfl2p306uo9dzf5f",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1ww8G2:gTHTxYR-h25JwefITr5rKxcWcBR_3xlJMLigab2L99s",
+        "expire_date": "2026-09-01T01:04:50.191Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "voew1gbxr0l73l9mkrqr32uygbzxxfc6",
+    "fields": {
+        "session_data": ".eJyrVipJTUzOSC2Kz8lPT09Nic_MU7IqKSpN1YFLZKYoWRkiuHmJualKVkouRXoKjjmJeQohpUWZeelKtQDnJBng:1ww8GO:UowwHispSCddODfuaghfuUpn8HsJvbZvLkdeay-0qM4",
+        "expire_date": "2026-09-01T01:05:12.799Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "x9pwi8rtev5n5ugpwq4l406c32gcpiu6",
+    "fields": {
+        "session_data": "eyJnZW5lcmFsX2xvZ2dlZF9pbiI6dHJ1ZSwiZ2VuZXJhbF91c2VybmFtZSI6ImFkbWluIn0:1wvrzU:OL46siXGja9KIdQGVEf4KfLzvP3Vn3jpuJFMQiRqZ2w",
+        "expire_date": "2026-08-31T07:42:40.437Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 4,
+    "fields": {
+        "roll_number": "BCE-2083-001",
+        "password": "pbkdf2_sha256$600000$P2tRM09n7x2O6Q8P7RQ0lj$+FFpi6BW/j0Zr++QUEtYsN7J7wGVYiZfi+ZHZPKQ4eo=",
+        "first_name": "Ram",
+        "last_name": "Sharma",
+        "email": "ram@example.com",
+        "phone": "9841234567",
+        "date_of_birth": "2005-03-15",
+        "gender": "M",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Hari Sharma",
+        "guardian_phone": "9801234567",
+        "created_at": "2026-09-02T00:47:01.497Z",
+        "updated_at": "2026-09-02T00:47:01.497Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 5,
+    "fields": {
+        "roll_number": "BCE-2083-002",
+        "password": "pbkdf2_sha256$600000$ZUODj3oz9uXSN4mZa5LFRa$NkZlxkY38dCJvBGVnPtrdcEQ0G6B7D1LFPc8CkR9Xh8=",
+        "first_name": "Sita",
+        "last_name": "Gurung",
+        "email": "sita@example.com",
+        "phone": "9851234567",
+        "date_of_birth": "2005-06-20",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Gita Gurung",
+        "guardian_phone": "9811234567",
+        "created_at": "2026-09-02T00:47:03.091Z",
+        "updated_at": "2026-09-02T00:47:03.091Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 6,
+    "fields": {
+        "roll_number": "BCE-2083-003",
+        "password": "pbkdf2_sha256$600000$AEDmqZHPtYEuqUV9r8xy0Z$mag+673EfsiuasOtYUQNjQpJop2ab290XZpxQo+x/Zk=",
+        "first_name": "Aarav",
+        "last_name": "Karki",
+        "email": "aarav.karki1@example.com",
+        "phone": "9839958838",
+        "date_of_birth": "2004-10-12",
+        "gender": "M",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Nirajan Karki",
+        "guardian_phone": "9883197857",
+        "created_at": "2026-09-02T00:47:04.669Z",
+        "updated_at": "2026-09-02T00:47:04.669Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 7,
+    "fields": {
+        "roll_number": "BCE-2083-004",
+        "password": "pbkdf2_sha256$600000$zaDpsEMZL7Mq6gaABfAovX$N6pKwYFSgwd4mee98x5aAhdzjs4Vqe36pykC6upLY3w=",
+        "first_name": "Suraj",
+        "last_name": "Bhattarai",
+        "email": "suraj.bhattarai2@example.com",
+        "phone": "9813999315",
+        "date_of_birth": "2004-07-10",
+        "gender": "M",
+        "address": "Bhaktapur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Saroj Bhattarai",
+        "guardian_phone": "9841227216",
+        "created_at": "2026-09-02T00:47:06.212Z",
+        "updated_at": "2026-09-02T00:47:06.212Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 8,
+    "fields": {
+        "roll_number": "BCE-2083-005",
+        "password": "pbkdf2_sha256$600000$76BTciwOnPNND6LfeiLPQG$3zZntOdEA7KR1Q7RnMrvBTwm0XHXH4JNEF4FdttA9t4=",
+        "first_name": "Suman",
+        "last_name": "Thapa",
+        "email": "suman.thapa3@example.com",
+        "phone": "9866306997",
+        "date_of_birth": "2005-03-27",
+        "gender": "M",
+        "address": "Biratnagar, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Anish Thapa",
+        "guardian_phone": "9889089901",
+        "created_at": "2026-09-02T00:47:07.665Z",
+        "updated_at": "2026-09-02T00:47:07.665Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 9,
+    "fields": {
+        "roll_number": "BCE-2083-006",
+        "password": "pbkdf2_sha256$600000$745EkoYW7LaTlgYtcJ6vKC$+GLE2AMnNogn1PNOzkS09tooyRGWuaAK92pTfnh6Buk=",
+        "first_name": "Aayusha",
+        "last_name": "Poudel",
+        "email": "aayusha.poudel4@example.com",
+        "phone": "9855667651",
+        "date_of_birth": "2005-07-23",
+        "gender": "F",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sujan Poudel",
+        "guardian_phone": "9838898923",
+        "created_at": "2026-09-02T00:47:09.193Z",
+        "updated_at": "2026-09-02T00:47:09.194Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 10,
+    "fields": {
+        "roll_number": "BCE-2083-007",
+        "password": "pbkdf2_sha256$600000$teeSck3FBb0DNsd7kvY4dV$WRdSGNVN2X5aMN8xdQWqQpv6Wyur3QqXogITBxvEzVQ=",
+        "first_name": "Isha",
+        "last_name": "Pandey",
+        "email": "isha.pandey5@example.com",
+        "phone": "9822981052",
+        "date_of_birth": "2006-01-05",
+        "gender": "F",
+        "address": "Butwal, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Deepak Pandey",
+        "guardian_phone": "9891030736",
+        "created_at": "2026-09-02T00:47:10.905Z",
+        "updated_at": "2026-09-02T00:47:10.905Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 11,
+    "fields": {
+        "roll_number": "BCE-2083-008",
+        "password": "pbkdf2_sha256$600000$lSl3NKzMnbzKZTra8aYWH3$C1ZQe/Fj/pypry9bjX7JFaILnWJHfed6qio1YiFqkIE=",
+        "first_name": "Anushka",
+        "last_name": "Thapa",
+        "email": "anushka.thapa6@example.com",
+        "phone": "9826753883",
+        "date_of_birth": "2006-02-14",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Bibek Thapa",
+        "guardian_phone": "9884093639",
+        "created_at": "2026-09-02T00:47:12.329Z",
+        "updated_at": "2026-09-02T00:47:12.329Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 12,
+    "fields": {
+        "roll_number": "BCE-2083-009",
+        "password": "pbkdf2_sha256$600000$4mZCxeqTaxqeGUFmhmtHJk$3v1sgDpwd6FgBAOB1MvtH1vZEYyOMmto6VMazcNsr2s=",
+        "first_name": "Sujata",
+        "last_name": "Thakuri",
+        "email": "sujata.thakuri7@example.com",
+        "phone": "9835808537",
+        "date_of_birth": "2004-05-22",
+        "gender": "F",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sabin Thakuri",
+        "guardian_phone": "9898753260",
+        "created_at": "2026-09-02T00:47:13.690Z",
+        "updated_at": "2026-09-02T00:47:13.690Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 13,
+    "fields": {
+        "roll_number": "BCE-2083-010",
+        "password": "pbkdf2_sha256$600000$ur47pnsl6GY27Oe9G366Hq$YMBPJ8X8lSEesXEVQkjQZLtN7327kPdYrdfZZC8waBM=",
+        "first_name": "Prakash",
+        "last_name": "Karki",
+        "email": "prakash.karki8@example.com",
+        "phone": "9823556182",
+        "date_of_birth": "2006-02-17",
+        "gender": "M",
+        "address": "Chitwan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Deepak Karki",
+        "guardian_phone": "9870855700",
+        "created_at": "2026-09-02T00:47:15.357Z",
+        "updated_at": "2026-09-02T00:47:15.357Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 14,
+    "fields": {
+        "roll_number": "BCE-2083-011",
+        "password": "pbkdf2_sha256$600000$wF6GwsABN09khjLFTmtO1N$0mkCpt7N4Ql9Cvx/HApmjW3Dso2K5fqIxD27IbYKdTk=",
+        "first_name": "Pooja",
+        "last_name": "Neupane",
+        "email": "pooja.neupane9@example.com",
+        "phone": "9838119557",
+        "date_of_birth": "2005-06-30",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sabin Neupane",
+        "guardian_phone": "9891756179",
+        "created_at": "2026-09-02T00:47:16.770Z",
+        "updated_at": "2026-09-02T00:47:16.771Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 15,
+    "fields": {
+        "roll_number": "BCE-2083-012",
+        "password": "pbkdf2_sha256$600000$ykMxxJlFNo8tydobb1lDb4$1YQX9b09RfqdWSPcdidelqlG+XQkXj6xi0WWjuXXZvw=",
+        "first_name": "Suman",
+        "last_name": "Jha",
+        "email": "suman.jha10@example.com",
+        "phone": "9872043515",
+        "date_of_birth": "2006-02-16",
+        "gender": "M",
+        "address": "Chitwan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Kiran Jha",
+        "guardian_phone": "9895899313",
+        "created_at": "2026-09-02T00:47:18.346Z",
+        "updated_at": "2026-09-02T00:47:18.346Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 16,
+    "fields": {
+        "roll_number": "BCE-2083-013",
+        "password": "pbkdf2_sha256$600000$LI2vI7zdNwS0EE6kYVwqRK$M+94HSKg21b/0pBEFLQsZOZk4cMhhJ3CodQpbi8fm00=",
+        "first_name": "Prashant",
+        "last_name": "Karki",
+        "email": "prashant.karki11@example.com",
+        "phone": "9814308421",
+        "date_of_birth": "2005-10-08",
+        "gender": "M",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Bikash Karki",
+        "guardian_phone": "9845935572",
+        "created_at": "2026-09-02T00:47:19.830Z",
+        "updated_at": "2026-09-02T00:47:19.830Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 17,
+    "fields": {
+        "roll_number": "BCE-2083-014",
+        "password": "pbkdf2_sha256$600000$yHm1aKrciFBOxVAGE4X6WE$YX2V1mAitptm6GFzAQxvD7OLnsAHLrfI1eQpZv2B8Oo=",
+        "first_name": "Anish",
+        "last_name": "Maharjan",
+        "email": "anish.maharjan12@example.com",
+        "phone": "9838538251",
+        "date_of_birth": "2006-10-19",
+        "gender": "M",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Suraj Maharjan",
+        "guardian_phone": "9896282117",
+        "created_at": "2026-09-02T00:47:21.365Z",
+        "updated_at": "2026-09-02T00:47:21.365Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 18,
+    "fields": {
+        "roll_number": "BCE-2083-015",
+        "password": "pbkdf2_sha256$600000$kCSU6SAlI8L5X5cVdlGpcW$DKYfF9J8PIGRe8vHQ11ghKk7YWHG2rJvL22qROhXGUY=",
+        "first_name": "Kriti",
+        "last_name": "Giri",
+        "email": "kriti.giri13@example.com",
+        "phone": "9843101783",
+        "date_of_birth": "2005-06-22",
+        "gender": "F",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Nirajan Giri",
+        "guardian_phone": "9867503414",
+        "created_at": "2026-09-02T00:47:22.830Z",
+        "updated_at": "2026-09-02T00:47:22.830Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 19,
+    "fields": {
+        "roll_number": "BCE-2083-016",
+        "password": "pbkdf2_sha256$600000$veowYfV7XMeBdA9P638mUd$Se7FplonDOTD5f9Dgsw5am30i/8w1IG5lU4SEp5lsgo=",
+        "first_name": "Srishti",
+        "last_name": "Giri",
+        "email": "srishti.giri14@example.com",
+        "phone": "9878387461",
+        "date_of_birth": "2006-10-07",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Kiran Giri",
+        "guardian_phone": "9816323852",
+        "created_at": "2026-09-02T00:47:24.351Z",
+        "updated_at": "2026-09-02T00:47:24.351Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 20,
+    "fields": {
+        "roll_number": "BCE-2083-017",
+        "password": "pbkdf2_sha256$600000$7vUNvVt0b1dSxk6GRcbTTz$Xtep5gX/MkK728qVnuj82v5NLaIwnAjyVNRquhgLHoM=",
+        "first_name": "Rohan",
+        "last_name": "Poudel",
+        "email": "rohan.poudel15@example.com",
+        "phone": "9890048665",
+        "date_of_birth": "2004-05-10",
+        "gender": "M",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sujan Poudel",
+        "guardian_phone": "9861220073",
+        "created_at": "2026-09-02T00:47:25.954Z",
+        "updated_at": "2026-09-02T00:47:25.955Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 21,
+    "fields": {
+        "roll_number": "BCE-2083-018",
+        "password": "pbkdf2_sha256$600000$1znvfmasQ69jE38fOOUbTr$LBiIWld+ZK9O5sio5dG9znmyrVOuK9V5OSHqSDTwdE8=",
+        "first_name": "Nisha",
+        "last_name": "Thapa",
+        "email": "nisha.thapa16@example.com",
+        "phone": "9811540956",
+        "date_of_birth": "2004-08-22",
+        "gender": "F",
+        "address": "Hetauda, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Nirajan Thapa",
+        "guardian_phone": "9845812670",
+        "created_at": "2026-09-02T00:47:27.543Z",
+        "updated_at": "2026-09-02T00:47:27.543Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 22,
+    "fields": {
+        "roll_number": "BCE-2083-019",
+        "password": "pbkdf2_sha256$600000$f5s9r6AJySu4ZT7S5elUjh$JjYbMmebahy7WdcFX98F2b29Hqo4n87mSjasuhQNlLo=",
+        "first_name": "Isha",
+        "last_name": "Poudel",
+        "email": "isha.poudel17@example.com",
+        "phone": "9831227574",
+        "date_of_birth": "2006-07-18",
+        "gender": "F",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Prakash Poudel",
+        "guardian_phone": "9845351479",
+        "created_at": "2026-09-02T00:47:28.975Z",
+        "updated_at": "2026-09-02T00:47:28.975Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 23,
+    "fields": {
+        "roll_number": "BCE-2083-020",
+        "password": "pbkdf2_sha256$600000$vir9nqdd1aSrh2tQ9DrWMY$oUyclACuV4P7UecU9fsuYR/ypRdNYzWajN/7E6KjtiI=",
+        "first_name": "Nishan",
+        "last_name": "Lama",
+        "email": "nishan.lama18@example.com",
+        "phone": "9895758349",
+        "date_of_birth": "2006-11-05",
+        "gender": "M",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Aayush Lama",
+        "guardian_phone": "9836697396",
+        "created_at": "2026-09-02T00:47:30.501Z",
+        "updated_at": "2026-09-02T00:47:30.501Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 24,
+    "fields": {
+        "roll_number": "BCE-2083-021",
+        "password": "pbkdf2_sha256$600000$FTgCENAgJ7lVy36Gk7UXkd$v62oeeqmw70DC/x5Sfkq8V68KRPDViKyex3wCkbnzDQ=",
+        "first_name": "Sabin",
+        "last_name": "Thapa",
+        "email": "sabin.thapa19@example.com",
+        "phone": "9881182864",
+        "date_of_birth": "2004-01-02",
+        "gender": "M",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sujan Thapa",
+        "guardian_phone": "9853507489",
+        "created_at": "2026-09-02T00:47:32.207Z",
+        "updated_at": "2026-09-02T00:47:32.207Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 25,
+    "fields": {
+        "roll_number": "BCE-2083-022",
+        "password": "pbkdf2_sha256$600000$KdRsVIevCxDQkXfODEQ14O$W37Ye2mE+t5f2hiOFkQfXVRiHOstG5oHQsKx+4OyBzI=",
+        "first_name": "Aayusha",
+        "last_name": "Neupane",
+        "email": "aayusha.neupane20@example.com",
+        "phone": "9851273847",
+        "date_of_birth": "2005-05-05",
+        "gender": "F",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Aayush Neupane",
+        "guardian_phone": "9842329237",
+        "created_at": "2026-09-02T00:47:33.612Z",
+        "updated_at": "2026-09-02T00:47:33.612Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 26,
+    "fields": {
+        "roll_number": "BCE-2083-023",
+        "password": "pbkdf2_sha256$600000$wP7uRiwuHjwttIbmNkVxwi$3FwuviE4HLTZ1uYpUUVo1Y0gAe+2lKSqG+KG0t49k0w=",
+        "first_name": "Deepak",
+        "last_name": "Chhetri",
+        "email": "deepak.chhetri21@example.com",
+        "phone": "9881498611",
+        "date_of_birth": "2004-09-14",
+        "gender": "M",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Manish Chhetri",
+        "guardian_phone": "9898550256",
+        "created_at": "2026-09-02T00:47:35.244Z",
+        "updated_at": "2026-09-02T00:47:35.244Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 27,
+    "fields": {
+        "roll_number": "BCE-2083-024",
+        "password": "pbkdf2_sha256$600000$1l7MYfbkjXpvihsyhlthHO$hRHPSWRplkqF7Q/SymdbxWfBSGQ2CcILYukVcjlgAQQ=",
+        "first_name": "Roshani",
+        "last_name": "Khatri",
+        "email": "roshani.khatri22@example.com",
+        "phone": "9880823176",
+        "date_of_birth": "2006-05-16",
+        "gender": "F",
+        "address": "Bhaktapur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sujan Khatri",
+        "guardian_phone": "9882383095",
+        "created_at": "2026-09-02T00:47:36.740Z",
+        "updated_at": "2026-09-02T00:47:36.740Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 28,
+    "fields": {
+        "roll_number": "BCE-2083-025",
+        "password": "pbkdf2_sha256$600000$rV7aO25LOsMD6GrWU1gu5N$Tfa2mMEQCinZaKN1y0t0xo584N8xkiTHuHHP7Oq3Bh0=",
+        "first_name": "Prakash",
+        "last_name": "Neupane",
+        "email": "prakash.neupane23@example.com",
+        "phone": "9868800797",
+        "date_of_birth": "2006-11-25",
+        "gender": "M",
+        "address": "Biratnagar, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sandesh Neupane",
+        "guardian_phone": "9826240908",
+        "created_at": "2026-09-02T00:47:38.236Z",
+        "updated_at": "2026-09-02T00:47:38.236Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 29,
+    "fields": {
+        "roll_number": "BCE-2083-026",
+        "password": "pbkdf2_sha256$600000$9mBI9U5wwFxlsamr51sxID$XfiJoF56kUyZDjLE+45lG7gqb1tju9VprNL+CrJ4Nt4=",
+        "first_name": "Kiran",
+        "last_name": "Maharjan",
+        "email": "kiran.maharjan24@example.com",
+        "phone": "9812823170",
+        "date_of_birth": "2005-04-16",
+        "gender": "M",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Deepak Maharjan",
+        "guardian_phone": "9839557077",
+        "created_at": "2026-09-02T00:47:39.743Z",
+        "updated_at": "2026-09-02T00:47:39.743Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 30,
+    "fields": {
+        "roll_number": "BCE-2083-027",
+        "password": "pbkdf2_sha256$600000$VcwbdC0rKaDu9ceddwGSzx$OJcdAzQsRYCrfvPG56VxlM5QUeF5JkJBjXhOjxp4RZ8=",
+        "first_name": "Deepak",
+        "last_name": "Karki",
+        "email": "deepak.karki25@example.com",
+        "phone": "9819046318",
+        "date_of_birth": "2004-03-05",
+        "gender": "M",
+        "address": "Butwal, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Bikash Karki",
+        "guardian_phone": "9819510312",
+        "created_at": "2026-09-02T00:47:41.376Z",
+        "updated_at": "2026-09-02T00:47:41.377Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 31,
+    "fields": {
+        "roll_number": "BCE-2083-028",
+        "password": "pbkdf2_sha256$600000$t64LRNqP8kZ3BdMqo9POAp$t0K/CPAinuqQTG+SUaSuLJRBdHv/PFPF1OMsoO26v+E=",
+        "first_name": "Nirajan",
+        "last_name": "Joshi",
+        "email": "nirajan.joshi26@example.com",
+        "phone": "9882374753",
+        "date_of_birth": "2004-09-27",
+        "gender": "M",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Manish Joshi",
+        "guardian_phone": "9887337818",
+        "created_at": "2026-09-02T00:47:42.915Z",
+        "updated_at": "2026-09-02T00:47:42.915Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 32,
+    "fields": {
+        "roll_number": "BCE-2083-029",
+        "password": "pbkdf2_sha256$600000$3lyAAy1vLHf2AzjTbQYQCy$SdWRNgX8OICEeJ+OWGL5ykLxhdsYC8xXUG3Y+qTNfB8=",
+        "first_name": "Riya",
+        "last_name": "Poudel",
+        "email": "riya.poudel27@example.com",
+        "phone": "9835556386",
+        "date_of_birth": "2004-07-12",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Manish Poudel",
+        "guardian_phone": "9898447167",
+        "created_at": "2026-09-02T00:47:44.326Z",
+        "updated_at": "2026-09-02T00:47:44.326Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 33,
+    "fields": {
+        "roll_number": "BCE-2083-030",
+        "password": "pbkdf2_sha256$600000$9Vgnd73lWKm5udaE84TQKp$t1mrt4y9m92ixizK+l6kIXpMlMmaWgTO+q7yHwWQy7Q=",
+        "first_name": "Srishti",
+        "last_name": "Poudel",
+        "email": "srishti.poudel28@example.com",
+        "phone": "9872682989",
+        "date_of_birth": "2004-04-20",
+        "gender": "F",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Saroj Poudel",
+        "guardian_phone": "9818135295",
+        "created_at": "2026-09-02T00:47:45.851Z",
+        "updated_at": "2026-09-02T00:47:45.851Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 34,
+    "fields": {
+        "roll_number": "BCE-2083-031",
+        "password": "pbkdf2_sha256$600000$txpYujMFnuX4ZGWJF0t8Uv$I/MoVAkEDCGtaGSXM26w5hNK1aFjRb57JLod+DPzAhQ=",
+        "first_name": "Sneha",
+        "last_name": "Karki",
+        "email": "sneha.karki29@example.com",
+        "phone": "9835714784",
+        "date_of_birth": "2005-01-24",
+        "gender": "F",
+        "address": "Hetauda, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Aayush Karki",
+        "guardian_phone": "9870211891",
+        "created_at": "2026-09-02T00:47:47.409Z",
+        "updated_at": "2026-09-02T00:47:47.409Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 35,
+    "fields": {
+        "roll_number": "BCE-2083-032",
+        "password": "pbkdf2_sha256$600000$mVao14jtC7C4R5KDV1lYiF$8lc5jHu46T3RUDD1lygnDnUaJl0iNgGJnLGqlBNu3n0=",
+        "first_name": "Saroj",
+        "last_name": "Khatri",
+        "email": "saroj.khatri30@example.com",
+        "phone": "9872092888",
+        "date_of_birth": "2005-05-26",
+        "gender": "M",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sujan Khatri",
+        "guardian_phone": "9869476001",
+        "created_at": "2026-09-02T00:47:48.847Z",
+        "updated_at": "2026-09-02T00:47:48.847Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 36,
+    "fields": {
+        "roll_number": "BCE-2083-033",
+        "password": "pbkdf2_sha256$600000$iL41bmW6EPU0VskoozYFjR$IrsTlnNAslMVH43pqJRgrpW+jM3/tx+fjir8BFAO1as=",
+        "first_name": "Bikash",
+        "last_name": "Adhikari",
+        "email": "bikash.adhikari31@example.com",
+        "phone": "9822517517",
+        "date_of_birth": "2005-04-29",
+        "gender": "M",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Suman Adhikari",
+        "guardian_phone": "9864547971",
+        "created_at": "2026-09-02T00:47:50.380Z",
+        "updated_at": "2026-09-02T00:47:50.380Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 37,
+    "fields": {
+        "roll_number": "BCE-2083-034",
+        "password": "pbkdf2_sha256$600000$s1fROr3uoDQzDRKWMvJPwG$kkWMGZJ7ZKG0RcojGTLj773hTjU3S+qCeCKsq2UGN1s=",
+        "first_name": "Karuna",
+        "last_name": "Pandey",
+        "email": "karuna.pandey32@example.com",
+        "phone": "9817869910",
+        "date_of_birth": "2004-12-03",
+        "gender": "F",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Anish Pandey",
+        "guardian_phone": "9810289289",
+        "created_at": "2026-09-02T00:47:52.062Z",
+        "updated_at": "2026-09-02T00:47:52.063Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 38,
+    "fields": {
+        "roll_number": "BCE-2083-035",
+        "password": "pbkdf2_sha256$600000$6QVjGp6Bi0WWe6r3VMcx1T$Zy1g+jxNBxCf24zL3QmCo9s2/pgyDl6J03xNYrpYGNU=",
+        "first_name": "Samikshya",
+        "last_name": "Lama",
+        "email": "samikshya.lama33@example.com",
+        "phone": "9866775103",
+        "date_of_birth": "2006-09-23",
+        "gender": "F",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Bibek Lama",
+        "guardian_phone": "9835487660",
+        "created_at": "2026-09-02T00:47:53.613Z",
+        "updated_at": "2026-09-02T00:47:53.613Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 39,
+    "fields": {
+        "roll_number": "BCE-2083-036",
+        "password": "pbkdf2_sha256$600000$xvFM4gGNpDabwA2gNyr0IM$KPGtEXsOdcE/yIQwk6r/OTBDafKWy8/ZaAMqg6YzKXY=",
+        "first_name": "Priya",
+        "last_name": "Thakuri",
+        "email": "priya.thakuri34@example.com",
+        "phone": "9882772208",
+        "date_of_birth": "2004-05-04",
+        "gender": "F",
+        "address": "Butwal, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Bikash Thakuri",
+        "guardian_phone": "9817672593",
+        "created_at": "2026-09-02T00:47:55.140Z",
+        "updated_at": "2026-09-02T00:47:55.140Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 40,
+    "fields": {
+        "roll_number": "BCE-2083-037",
+        "password": "pbkdf2_sha256$600000$qFR6Y1CGlbz3FRShVCkzKB$jwEz0pY491wVH46m79WAaL8Mkqn4mXBRjmqqbVWGjwI=",
+        "first_name": "Suraj",
+        "last_name": "Tamang",
+        "email": "suraj.tamang35@example.com",
+        "phone": "9881286543",
+        "date_of_birth": "2004-11-18",
+        "gender": "M",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Manish Tamang",
+        "guardian_phone": "9878159587",
+        "created_at": "2026-09-02T00:47:56.633Z",
+        "updated_at": "2026-09-02T00:47:56.633Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 41,
+    "fields": {
+        "roll_number": "BCE-2083-038",
+        "password": "pbkdf2_sha256$600000$qlpyABblfLQhqLX5XgVZn1$wh8ZgCv7VXShsdKuAIp/JPC3AMKdJnGXsWBHvKl81iE=",
+        "first_name": "Sujan",
+        "last_name": "Yadav",
+        "email": "sujan.yadav36@example.com",
+        "phone": "9819121552",
+        "date_of_birth": "2005-04-26",
+        "gender": "M",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Deepak Yadav",
+        "guardian_phone": "9826090908",
+        "created_at": "2026-09-02T00:47:58.054Z",
+        "updated_at": "2026-09-02T00:47:58.054Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 42,
+    "fields": {
+        "roll_number": "BCE-2083-039",
+        "password": "pbkdf2_sha256$600000$LIYG6lA1CtzUg9d8OFI3UM$0M2aNUz82r3X4cfMhYhUMqrBaBrSktak+Xr9Ad/x7U4=",
+        "first_name": "Suraj",
+        "last_name": "Bhattarai",
+        "email": "suraj.bhattarai37@example.com",
+        "phone": "9893131979",
+        "date_of_birth": "2004-06-16",
+        "gender": "M",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Dinesh Bhattarai",
+        "guardian_phone": "9898231132",
+        "created_at": "2026-09-02T00:47:59.577Z",
+        "updated_at": "2026-09-02T00:47:59.577Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 43,
+    "fields": {
+        "roll_number": "BCE-2083-040",
+        "password": "pbkdf2_sha256$600000$RGAK2dSFsjUgTUIXTKUDTy$dUA/4JSZKOT6l38O8rm4Y0dfBZUhyk0vOmItlf13fBo=",
+        "first_name": "Samikshya",
+        "last_name": "Maharjan",
+        "email": "samikshya.maharjan38@example.com",
+        "phone": "9842035886",
+        "date_of_birth": "2005-06-27",
+        "gender": "F",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Anish Maharjan",
+        "guardian_phone": "9827566185",
+        "created_at": "2026-09-02T00:48:01.056Z",
+        "updated_at": "2026-09-02T00:48:01.056Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 44,
+    "fields": {
+        "roll_number": "BCE-2083-041",
+        "password": "pbkdf2_sha256$600000$R5QiZiaJafkn8FzdN4eyXe$X775jOClHbzw30DJ06z+h9npd9Y0XuHl89/F+FPeq7g=",
+        "first_name": "Barsha",
+        "last_name": "Chhetri",
+        "email": "barsha.chhetri39@example.com",
+        "phone": "9811250299",
+        "date_of_birth": "2006-07-27",
+        "gender": "F",
+        "address": "Itahari, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Prashant Chhetri",
+        "guardian_phone": "9885563727",
+        "created_at": "2026-09-02T00:48:02.588Z",
+        "updated_at": "2026-09-02T00:48:02.588Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 45,
+    "fields": {
+        "roll_number": "BCE-2083-042",
+        "password": "pbkdf2_sha256$600000$uuocduBDQaPggPPBGvkkOS$/Xv29x0MzrSig52GPJqvXoYivr4hDOzkOyXSJMZeOkM=",
+        "first_name": "Deepak",
+        "last_name": "Joshi",
+        "email": "deepak.joshi40@example.com",
+        "phone": "9877898694",
+        "date_of_birth": "2005-06-27",
+        "gender": "M",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Suman Joshi",
+        "guardian_phone": "9856843172",
+        "created_at": "2026-09-02T00:48:04.110Z",
+        "updated_at": "2026-09-02T00:48:04.110Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 46,
+    "fields": {
+        "roll_number": "BCE-2083-043",
+        "password": "pbkdf2_sha256$600000$BaQBIifujuL2mRJeOqBwG2$QhKhtGmhGRXR46n/cD1N6KUbDCuF1iI/wi6HEVJr8Hk=",
+        "first_name": "Kiran",
+        "last_name": "Lama",
+        "email": "kiran.lama41@example.com",
+        "phone": "9831172421",
+        "date_of_birth": "2006-06-16",
+        "gender": "M",
+        "address": "Hetauda, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sabin Lama",
+        "guardian_phone": "9850603163",
+        "created_at": "2026-09-02T00:48:05.674Z",
+        "updated_at": "2026-09-02T00:48:05.674Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 47,
+    "fields": {
+        "roll_number": "BCE-2083-044",
+        "password": "pbkdf2_sha256$600000$NEVhtcSpcSYzWiJEsWx4Qo$iOCRje3I/d309otHwOlZUON9Q7jcjBVfoRcCfz2w5V8=",
+        "first_name": "Suman",
+        "last_name": "Dahal",
+        "email": "suman.dahal42@example.com",
+        "phone": "9828024248",
+        "date_of_birth": "2005-06-25",
+        "gender": "M",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Prakash Dahal",
+        "guardian_phone": "9824366125",
+        "created_at": "2026-09-02T00:48:07.233Z",
+        "updated_at": "2026-09-02T00:48:07.233Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 48,
+    "fields": {
+        "roll_number": "BCE-2083-045",
+        "password": "pbkdf2_sha256$600000$hsbl5YxwdYG6BSd66g4xez$t/eFr5WsC0UlzhK6FuiOlrst6c/UQbvk2jiRGQoT5EA=",
+        "first_name": "Nirajan",
+        "last_name": "Yadav",
+        "email": "nirajan.yadav43@example.com",
+        "phone": "9838270233",
+        "date_of_birth": "2005-12-03",
+        "gender": "M",
+        "address": "Bhaktapur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Prakash Yadav",
+        "guardian_phone": "9895125977",
+        "created_at": "2026-09-02T00:48:08.797Z",
+        "updated_at": "2026-09-02T00:48:08.797Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 49,
+    "fields": {
+        "roll_number": "BCE-2083-046",
+        "password": "pbkdf2_sha256$600000$lwGEZvcj6XNfUvZ9quEt7o$kbJ+vz/UiEIR2kzOMvQZBJUbnjfi1d/YVr4Sau4IdJg=",
+        "first_name": "Nisha",
+        "last_name": "Khatri",
+        "email": "nisha.khatri44@example.com",
+        "phone": "9816818112",
+        "date_of_birth": "2004-07-08",
+        "gender": "F",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Manish Khatri",
+        "guardian_phone": "9847135391",
+        "created_at": "2026-09-02T00:48:10.378Z",
+        "updated_at": "2026-09-02T00:48:10.378Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 50,
+    "fields": {
+        "roll_number": "BCE-2083-047",
+        "password": "pbkdf2_sha256$600000$hjn3LKTOFzhlXKMzY8KjtI$7d5fovwNEGLIS84amu9jPOMCJYxbmN2r2av0J8fwEvM=",
+        "first_name": "Aarav",
+        "last_name": "Giri",
+        "email": "aarav.giri45@example.com",
+        "phone": "9895511909",
+        "date_of_birth": "2005-06-20",
+        "gender": "M",
+        "address": "Lalitpur, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Prashant Giri",
+        "guardian_phone": "9869302158",
+        "created_at": "2026-09-02T00:48:11.860Z",
+        "updated_at": "2026-09-02T00:48:11.860Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 51,
+    "fields": {
+        "roll_number": "BCE-2083-048",
+        "password": "pbkdf2_sha256$600000$3vrrMnrYzQny3ogSiSsKeT$302aggCGaGJFKMVpMLO1TtSejs6I/5jN79wNEn/oP2Q=",
+        "first_name": "Roshani",
+        "last_name": "Dahal",
+        "email": "roshani.dahal46@example.com",
+        "phone": "9820099059",
+        "date_of_birth": "2004-11-01",
+        "gender": "F",
+        "address": "Hetauda, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Aarav Dahal",
+        "guardian_phone": "9814835614",
+        "created_at": "2026-09-02T00:48:13.267Z",
+        "updated_at": "2026-09-02T00:48:13.267Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 52,
+    "fields": {
+        "roll_number": "BCE-2083-049",
+        "password": "pbkdf2_sha256$600000$V0xV9ycu59PTvfO868isga$u5CzzLUHUnAtMAir5K1xI8AM1dlD/7UiAB2bhErj6Oo=",
+        "first_name": "Sabina",
+        "last_name": "Giri",
+        "email": "sabina.giri47@example.com",
+        "phone": "9867684996",
+        "date_of_birth": "2004-09-18",
+        "gender": "F",
+        "address": "Kathmandu, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Suman Giri",
+        "guardian_phone": "9851373735",
+        "created_at": "2026-09-02T00:48:14.920Z",
+        "updated_at": "2026-09-02T00:48:14.920Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 53,
+    "fields": {
+        "roll_number": "BCE-2083-050",
+        "password": "pbkdf2_sha256$600000$J6aScgFO29PPOQeakZoCUv$w7n/nzRt3uokMdXKI2xOH7AKGRucs0SeeRcFtLzGROA=",
+        "first_name": "Anushka",
+        "last_name": "Joshi",
+        "email": "anushka.joshi48@example.com",
+        "phone": "9843491314",
+        "date_of_birth": "2004-07-29",
+        "gender": "F",
+        "address": "Butwal, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Sabin Joshi",
+        "guardian_phone": "9885146293",
+        "created_at": "2026-09-02T00:48:16.492Z",
+        "updated_at": "2026-09-02T00:48:16.492Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 54,
+    "fields": {
+        "roll_number": "BCE-2083-051",
+        "password": "pbkdf2_sha256$600000$G0GacK2iPkp8PwgvNRoyj3$E77m0KXE6piphSnYayaDMnXxV3nBvPZRhhxomXjSDOo=",
+        "first_name": "Sujata",
+        "last_name": "Karki",
+        "email": "sujata.karki49@example.com",
+        "phone": "9831810617",
+        "date_of_birth": "2004-12-28",
+        "gender": "F",
+        "address": "Dharan, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Rohan Karki",
+        "guardian_phone": "9813326769",
+        "created_at": "2026-09-02T00:48:17.901Z",
+        "updated_at": "2026-09-02T00:48:17.901Z"
+    }
+},
+{
+    "model": "students.students",
+    "pk": 55,
+    "fields": {
+        "roll_number": "BCE-2083-052",
+        "password": "pbkdf2_sha256$600000$Ezfxy6aARE0PpWEpwpLdD8$S0wRwt60gO/Vxl/KlrDMYLrZwAbiApzIYmUoAdSX1s8=",
+        "first_name": "Prashant",
+        "last_name": "Karki",
+        "email": "prashant.karki50@example.com",
+        "phone": "9845810056",
+        "date_of_birth": "2004-11-22",
+        "gender": "M",
+        "address": "Pokhara, Nepal",
+        "program": 4,
+        "batch": "2083",
+        "current_semester": 1,
+        "section": "A",
+        "enrollment_date": "2026-09-02",
+        "status": "active",
+        "guardian_name": "Saroj Karki",
+        "guardian_phone": "9861343880",
+        "created_at": "2026-09-02T00:48:19.260Z",
+        "updated_at": "2026-09-02T00:48:19.260Z"
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 1,
+    "fields": {
+        "student": 4,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 2,
+    "fields": {
+        "student": 5,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 3,
+    "fields": {
+        "student": 6,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 4,
+    "fields": {
+        "student": 7,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 5,
+    "fields": {
+        "student": 8,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 6,
+    "fields": {
+        "student": 9,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 7,
+    "fields": {
+        "student": 10,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 8,
+    "fields": {
+        "student": 11,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 9,
+    "fields": {
+        "student": 12,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 10,
+    "fields": {
+        "student": 13,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 11,
+    "fields": {
+        "student": 14,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 12,
+    "fields": {
+        "student": 15,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 13,
+    "fields": {
+        "student": 16,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 14,
+    "fields": {
+        "student": 17,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 15,
+    "fields": {
+        "student": 18,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 16,
+    "fields": {
+        "student": 19,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 17,
+    "fields": {
+        "student": 20,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 18,
+    "fields": {
+        "student": 21,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 19,
+    "fields": {
+        "student": 22,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 20,
+    "fields": {
+        "student": 23,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 21,
+    "fields": {
+        "student": 24,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 22,
+    "fields": {
+        "student": 25,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 23,
+    "fields": {
+        "student": 26,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 24,
+    "fields": {
+        "student": 27,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 25,
+    "fields": {
+        "student": 28,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 26,
+    "fields": {
+        "student": 29,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 27,
+    "fields": {
+        "student": 30,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 28,
+    "fields": {
+        "student": 31,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 29,
+    "fields": {
+        "student": 32,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 30,
+    "fields": {
+        "student": 33,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 31,
+    "fields": {
+        "student": 34,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 32,
+    "fields": {
+        "student": 35,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 33,
+    "fields": {
+        "student": 36,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 34,
+    "fields": {
+        "student": 37,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 35,
+    "fields": {
+        "student": 38,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 36,
+    "fields": {
+        "student": 39,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 37,
+    "fields": {
+        "student": 40,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "leave",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 38,
+    "fields": {
+        "student": 41,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 39,
+    "fields": {
+        "student": 42,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 40,
+    "fields": {
+        "student": 43,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 41,
+    "fields": {
+        "student": 44,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 42,
+    "fields": {
+        "student": 45,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 43,
+    "fields": {
+        "student": 46,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 44,
+    "fields": {
+        "student": 47,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 45,
+    "fields": {
+        "student": 48,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 46,
+    "fields": {
+        "student": 49,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "late",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 47,
+    "fields": {
+        "student": 50,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 48,
+    "fields": {
+        "student": 51,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 49,
+    "fields": {
+        "student": 52,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 50,
+    "fields": {
+        "student": 53,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 51,
+    "fields": {
+        "student": 54,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "absent",
+        "remarks": ""
+    }
+},
+{
+    "model": "students.attendance",
+    "pk": 52,
+    "fields": {
+        "student": 55,
+        "course_assignment": 5,
+        "date": "2026-09-02",
+        "status": "present",
+        "remarks": ""
+    }
+},
+{
+    "model": "library.librarian",
+    "pk": 1,
+    "fields": {
+        "username": "librarian",
+        "password": "pbkdf2_sha256$1200000$TOdayh6LX0QSdlQ3kjdQWo$kaRkHs2nFv8HfnFpA+ytZ4LNPK5ukpBCEeIs00NC/e4=",
+        "full_name": "Demo Librarian",
+        "email": "library@khec.edu.np",
+        "phone": "9800000001",
+        "is_active": true,
+        "created_at": "2026-08-17T07:38:53.487Z"
+    }
+},
+{
+    "model": "library.bookcategory",
+    "pk": 1,
+    "fields": {
+        "name": "Computer Science",
+        "description": "Programming, algorithms, and information technology."
+    }
+},
+{
+    "model": "library.bookcategory",
+    "pk": 2,
+    "fields": {
+        "name": "Business & Management",
+        "description": "Business administration, finance, and accounting."
+    }
+},
+{
+    "model": "library.bookcategory",
+    "pk": 3,
+    "fields": {
+        "name": "Engineering",
+        "description": "Civil, electrical, and general engineering references."
+    }
+},
+{
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+        "title": "Python Crash Course",
+        "author": "Eric Mathews",
+        "isbn": "978-1593279288",
+        "category": 1,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 5,
+        "available_copies": 5,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:52.909Z"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+        "title": "Django for Beginners",
+        "author": "William S. Vincent",
+        "isbn": "978-1735467221",
+        "category": 1,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 3,
+        "available_copies": 1,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:52.988Z"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+        "title": "Database System Concepts",
+        "author": "Abraham Silberschatz",
+        "isbn": "978-1260084504",
+        "category": 1,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 4,
+        "available_copies": 3,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:53.067Z"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 4,
+    "fields": {
+        "title": "Principles of Management",
+        "author": "Stephen P. Robbins",
+        "isbn": "978-0133929762",
+        "category": 2,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 4,
+        "available_copies": 0,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:53.143Z"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 5,
+    "fields": {
+        "title": "Accounting for Dummies",
+        "author": "John A. Tracy",
+        "isbn": "978-1119837527",
+        "category": 2,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 3,
+        "available_copies": 2,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:53.264Z"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 6,
+    "fields": {
+        "title": "Engineering Mechanics",
+        "author": "R.C. Hibbeler",
+        "isbn": "978-0133918926",
+        "category": 3,
+        "publisher": "Demo Publishers",
+        "published_year": null,
+        "total_copies": 5,
+        "available_copies": 3,
+        "rack_location": "Rack 1",
+        "description": "",
+        "created_at": "2026-08-17T07:38:53.387Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 3,
+    "fields": {
+        "student": 20,
+        "book": 4,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:24:17.850Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 4,
+    "fields": {
+        "student": 14,
+        "book": 4,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:24:23.854Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 5,
+    "fields": {
+        "student": 11,
+        "book": 2,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:24:28.725Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 6,
+    "fields": {
+        "student": 19,
+        "book": 4,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:24:33.219Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 7,
+    "fields": {
+        "student": 18,
+        "book": 5,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:26:30.262Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 8,
+    "fields": {
+        "student": 18,
+        "book": 2,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:26:54.893Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 9,
+    "fields": {
+        "student": 18,
+        "book": 6,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:27:02.352Z"
+    }
+},
+{
+    "model": "library.borrowing",
+    "pk": 10,
+    "fields": {
+        "student": 9,
+        "book": 6,
+        "issued_by": 1,
+        "borrowed_date": "2026-09-02",
+        "due_date": "2026-09-16",
+        "return_date": null,
+        "status": "borrowed",
+        "fine_amount": "0.00",
+        "created_at": "2026-09-02T01:27:17.392Z"
+    }
+},
+{
+    "model": "academics.department",
+    "pk": 3,
+    "fields": {
+        "name": "Department of Computer Engineering",
+        "code": "BCE",
+        "description": "",
+        "head": 2,
+        "created_at": "2026-09-02T00:39:21.371Z"
+    }
+},
+{
+    "model": "academics.program",
+    "pk": 4,
+    "fields": {
+        "name": "Bachelor's in computer engineering",
+        "code": "BCE",
+        "department": 3,
+        "duration_years": 4,
+        "total_semesters": 8,
+        "description": "",
+        "is_active": true
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 1,
+    "fields": {
+        "name": "Data Structure and Algorithm",
+        "code": "BCE1001",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 2,
+    "fields": {
+        "name": "Database Management System",
+        "code": "BCE4001",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 3,
+    "fields": {
+        "name": "Python Programming",
+        "code": "BCE4002",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 4,
+    "fields": {
+        "name": "Discrete Structure",
+        "code": "BCE4003",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 5,
+    "fields": {
+        "name": "Communication System",
+        "code": "BCE4004",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.course",
+    "pk": 6,
+    "fields": {
+        "name": "Microprocessor",
+        "code": "BCE4005",
+        "program": 4,
+        "credit_hours": 3,
+        "description": "",
+        "semester": 1,
+        "is_elective": false
+    }
+},
+{
+    "model": "academics.academicyear",
+    "pk": 1,
+    "fields": {
+        "name": "2082/2083",
+        "start_date": "2026-09-02",
+        "end_date": "2027-09-02",
+        "is_current": false
+    }
+},
+{
+    "model": "academics.semester",
+    "pk": 1,
+    "fields": {
+        "academic_year": 1,
+        "name": "Semester 1",
+        "number": 1,
+        "start_date": "2026-09-02",
+        "end_date": "2027-03-02",
+        "is_current": true
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "teacher": 8,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 2,
+    "fields": {
+        "course": 2,
+        "teacher": 9,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 3,
+    "fields": {
+        "course": 3,
+        "teacher": 3,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 4,
+    "fields": {
+        "course": 4,
+        "teacher": 4,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 5,
+    "fields": {
+        "course": 5,
+        "teacher": 2,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.courseassignment",
+    "pk": 6,
+    "fields": {
+        "course": 6,
+        "teacher": 6,
+        "semester": 1,
+        "section": "A",
+        "max_students": 52
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 1,
+    "fields": {
+        "course_assignment": 1,
+        "day_of_week": "MON",
+        "start_time": "07:14:00",
+        "end_time": "09:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 2,
+    "fields": {
+        "course_assignment": 2,
+        "day_of_week": "MON",
+        "start_time": "09:00:00",
+        "end_time": "11:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 3,
+    "fields": {
+        "course_assignment": 3,
+        "day_of_week": "TUE",
+        "start_time": "07:15:00",
+        "end_time": "09:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 5,
+    "fields": {
+        "course_assignment": 4,
+        "day_of_week": "TUE",
+        "start_time": "09:00:00",
+        "end_time": "11:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 6,
+    "fields": {
+        "course_assignment": 5,
+        "day_of_week": "WED",
+        "start_time": "07:15:00",
+        "end_time": "09:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 7,
+    "fields": {
+        "course_assignment": 6,
+        "day_of_week": "THU",
+        "start_time": "07:15:00",
+        "end_time": "09:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.timetable",
+    "pk": 8,
+    "fields": {
+        "course_assignment": 3,
+        "day_of_week": "FRI",
+        "start_time": "07:15:00",
+        "end_time": "09:00:00",
+        "room": "Room 201"
+    }
+},
+{
+    "model": "academics.batch",
+    "pk": 1,
+    "fields": {
+        "name": "2083",
+        "program": 4,
+        "start_year": 2024,
+        "end_year": 2028,
+        "is_active": true
+    }
+},
+{
+    "model": "examinations.exam",
+    "pk": 1,
+    "fields": {
+        "name": "First Assessment",
+        "exam_type": "first_assessment",
+        "semester": 1,
+        "start_date": "2026-10-28",
+        "end_date": "2026-11-06",
+        "total_marks": "40.00",
+        "pass_marks": "16.00",
+        "description": "",
+        "is_published": true,
+        "created_at": "2026-09-02T01:15:48.675Z"
+    }
+},
+{
+    "model": "finances.feestructure",
+    "pk": 1,
+    "fields": {
+        "name": "BCE 1st Semester Fee",
+        "program": 4,
+        "semester": 1,
+        "academic_year": 1,
+        "tuition_fee": "10000.00",
+        "lab_fee": "500.00",
+        "library_fee": "100.00",
+        "exam_fee": "500.00",
+        "other_fee": "0.00",
+        "description": "",
+        "created_at": "2026-09-02T01:17:39.335Z"
+    }
+},
+{
+    "model": "finances.feepayment",
+    "pk": 1,
+    "fields": {
+        "student": 4,
+        "fee_structure": 1,
+        "amount_paid": "0.00",
+        "payment_date": "2026-09-02",
+        "payment_method": "cash",
+        "transaction_id": "",
+        "receipt_number": "RCP-744DAC2D",
+        "status": "pending",
+        "remarks": "",
+        "created_at": "2026-09-02T01:30:57.404Z"
+    }
+},
+{
+    "model": "finances.feepayment",
+    "pk": 2,
+    "fields": {
+        "student": 5,
+        "fee_structure": 1,
+        "amount_paid": "11100.00",
+        "payment_date": "2026-09-02",
+        "payment_method": "cash",
+        "transaction_id": "",
+        "receipt_number": "RCP-E1B0A35E",
+        "status": "paid",
+        "remarks": "",
+        "created_at": "2026-09-02T01:31:40.630Z"
+    }
+},
+{
+    "model": "finances.studentfeeaccount",
+    "pk": 1,
+    "fields": {
+        "student": 4,
+        "fee_structure": 1,
+        "total_due": "11100.00",
+        "total_paid": "0.00",
+        "created_at": "2026-09-02T01:30:58.136Z",
+        "updated_at": "2026-09-02T01:30:58.174Z"
+    }
+},
+{
+    "model": "finances.studentfeeaccount",
+    "pk": 2,
+    "fields": {
+        "student": 5,
+        "fee_structure": 1,
+        "total_due": "11100.00",
+        "total_paid": "11100.00",
+        "created_at": "2026-09-02T01:31:41.349Z",
+        "updated_at": "2026-09-02T01:31:41.384Z"
+    }
+},
+{
+    "model": "notices.notice",
+    "pk": 1,
+    "fields": {
+        "title": "Semester End Examination Schedule Published",
+        "content": "The final routine for Fall Semester End Examinations for B.E. Civil & B.E. Computer has been published. Download routine from student portal.",
+        "category": "exam",
+        "is_important": true,
+        "published_date": "2026-08-11",
+        "created_at": "2026-08-11T11:10:08.906Z"
+    }
+},
+{
+    "model": "notices.notice",
+    "pk": 2,
+    "fields": {
+        "title": "Annual Academic Calendar 2081/2082",
+        "content": "The revised academic calendar for Khwopa Engineering College is now active. All departments are requested to follow semester deadlines.",
+        "category": "academic",
+        "is_important": false,
+        "published_date": "2026-08-11",
+        "created_at": "2026-08-11T11:10:08.977Z"
+    }
+},
+{
+    "model": "notices.notice",
+    "pk": 3,
+    "fields": {
+        "title": "BIGYAN BHAILA NOTICE TEST",
+        "content": "Test Notice",
+        "category": "general",
+        "is_important": true,
+        "published_date": "2026-08-17",
+        "created_at": "2026-08-17T07:30:50.524Z"
+    }
+},
+{
+    "model": "notices.notice",
+    "pk": 4,
+    "fields": {
+        "title": "First Semester Exam Notice",
+        "content": "Exam is coming Sep 26 to Oct 6. Be prepared for that.",
+        "category": "exam",
+        "is_important": true,
+        "published_date": "2026-09-02",
+        "created_at": "2026-09-02T01:19:53.277Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 2,
+    "fields": {
+        "employee_id": "TCH-001",
+        "password": "pbkdf2_sha256$600000$1LnZfL7TTUaaV2lpTNATq8$D/+pYN3auk+XrdVO55n4kmK+0L4iNi+qs8vBWRn5lOM=",
+        "first_name": "Bikash",
+        "last_name": "Chawal",
+        "email": "bikash@gmail.com",
+        "phone": "9841234567",
+        "gender": "M",
+        "department": 3,
+        "designation": "lecturer",
+        "qualification": "M.Sc Computer Science",
+        "specialization": "Computer Science & AI",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:30:45.395Z",
+        "updated_at": "2026-09-02T00:51:20.337Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 3,
+    "fields": {
+        "employee_id": "TCH-002",
+        "password": "pbkdf2_sha256$600000$HacAndJcyMW0ap7a3BZF1h$i+zkQLriTE2lqeFYag6A5x0JprxgL6HFRREjiteiD8s=",
+        "first_name": "Milan",
+        "last_name": "Chikanbanjar",
+        "email": "milan@gmail.com",
+        "phone": "98123456789",
+        "gender": "M",
+        "department": 3,
+        "designation": "lecturer",
+        "qualification": "MSc in Information Technology",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:32:02.282Z",
+        "updated_at": "2026-09-02T00:51:26.360Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 4,
+    "fields": {
+        "employee_id": "TCH-003",
+        "password": "pbkdf2_sha256$600000$jIrw3OTzeG0ReT8rRAL3bG$pVqjGb9DaECC1yj8ipfARoYOYpxnmtrJRkaD8mEcgsc=",
+        "first_name": "Shiva Prasad",
+        "last_name": "Mahato",
+        "email": "shiva@gmail.com",
+        "phone": "98123654987",
+        "gender": "M",
+        "department": 3,
+        "designation": "professor",
+        "qualification": "MS in Pure Mathematics",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:33:34.498Z",
+        "updated_at": "2026-09-02T00:51:36.478Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 5,
+    "fields": {
+        "employee_id": "TCH-004",
+        "password": "pbkdf2_sha256$600000$PPKWCtI3pOlh3Cx433huSL$GJPYF5bUeA2nvxXIdq3PfvzmrN13tJFi5dfJXs7uRts=",
+        "first_name": "Arjun Kumar",
+        "last_name": "Gaire",
+        "email": "arjun@gmail.com",
+        "phone": "9862135464",
+        "gender": "M",
+        "department": 3,
+        "designation": "professor",
+        "qualification": "MS in Statistics / Mathematical Statistics",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:35:26.241Z",
+        "updated_at": "2026-09-02T00:50:56.599Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 6,
+    "fields": {
+        "employee_id": "TCH-005",
+        "password": "pbkdf2_sha256$600000$BEctOr6pT4hsPUx1kzXkhC$4G7cZge3sunXxW0gsJJtan9PzH3EtGDtnWsVvOiIPbE=",
+        "first_name": "Avizzit",
+        "last_name": "Karn",
+        "email": "karn@gmail.com",
+        "phone": "987894561",
+        "gender": "M",
+        "department": 3,
+        "designation": "lecturer",
+        "qualification": "MS in Data Science",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:36:24.761Z",
+        "updated_at": "2026-09-02T00:51:03.797Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 8,
+    "fields": {
+        "employee_id": "TCH-006",
+        "password": "pbkdf2_sha256$600000$eWkDyJLMQnhkcn0csOp49t$61lO8MwARwymmwZwH6gVhntCfiClGeSgVqQB6n/wfCE=",
+        "first_name": "Ayush",
+        "last_name": "Prajapati",
+        "email": "ayush@gmail.com",
+        "phone": "9865548721",
+        "gender": "M",
+        "department": 3,
+        "designation": "teaching_assistant",
+        "qualification": "Bachelor's in computer engineering",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:37:41.594Z",
+        "updated_at": "2026-09-02T00:51:11.336Z"
+    }
+},
+{
+    "model": "teachers.teacher",
+    "pk": 9,
+    "fields": {
+        "employee_id": "TCH-007",
+        "password": "pbkdf2_sha256$600000$Vc05wuRpCkmjCrHlyVuXHl$MAepXEHydTXL3paPraNssBi/YOZgWerOEMXxd/zI3Vw=",
+        "first_name": "Sarala",
+        "last_name": "Shakya",
+        "email": "sarala@gmail.com",
+        "phone": "984578126",
+        "gender": "F",
+        "department": 3,
+        "designation": "lecturer",
+        "qualification": "Master of Computer Applications",
+        "specialization": "",
+        "is_active": true,
+        "date_joined": "2026-09-02",
+        "created_at": "2026-09-02T00:38:51.077Z",
+        "updated_at": "2026-09-02T00:51:31.262Z"
+    }
+},
+{
+    "model": "teachers.leaverequest",
+    "pk": 1,
+    "fields": {
+        "teacher": 2,
+        "leave_type": "unpaid",
+        "from_date": "2026-09-04",
+        "to_date": "2026-09-05",
+        "reason": "You didnt pay to me",
+        "status": "approved",
+        "admin_remarks": "",
+        "applied_at": "2026-09-02T01:22:00.428Z",
+        "decided_at": "2026-09-02T01:28:38.701Z"
+    }
+}
+]

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bulk Upload Summary{% endblock %}
+{% block eyebrow_text %}Students{% endblock %}
+{% block page_title %}Import Successful{% endblock %}
+{% block page_subtitle %}<p>Here is the credentials summary for the newly imported students. You can copy or print this page.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'student_list' %}">Students</a><span class="sep">/</span><span class="current">Import Summary</span>
+{% endblock %}
+
+{% block page_actions %}
+  <button onclick="window.print()" class="btn btn-emis-outline"><i class="bi bi-printer me-1"></i>Print Credentials</button>
+  <a href="{% url 'student_list' %}" class="btn btn-emis-primary"><i class="bi bi-people me-1"></i>Go to Directory</a>
+{% endblock %}
+
+{% block content %}
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Created Student Credentials ({{ summary|length }} Students)</h2>
+    <span class="badge bg-success">Import Complete</span>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Roll Number (Username)</th>
+            <th>Student Name</th>
+            <th>Default Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in summary %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td class="id-cell font-monospace fw-bold">{{ item.roll }}</td>
+            <td>{{ item.name }}</td>
+            <td class="font-monospace text-danger">{{ item.pass }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="emis-card-footer p-3 bg-light text-muted small">
+    <i class="bi bi-shield-lock me-1"></i> Note: Advise students to change their default password upon first login to the Student Portal.
+  </div>
+</div>
+{% endblock %}

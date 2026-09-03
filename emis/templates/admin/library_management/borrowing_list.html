@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Circulation{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Book Circulation{% endblock %}
+{% block page_subtitle %}<p>Track all book issues and returns across the institution. Overdue items are highlighted.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><span class="current">Library · Circulation</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'library:admin_book_list' %}" class="btn btn-emis-outline"><i class="bi bi-book me-1"></i>Books</a>
+  <a href="{% url 'library:admin_librarian_list' %}" class="btn btn-emis-outline"><i class="bi bi-person-badge me-1"></i>Librarians</a>
+{% endblock %}
+
+{% block content %}
+  <div class="emis-card mb-4">
+    <div class="emis-card-body">
+      <form method="get" class="row g-2 align-items-center">
+        <div class="col-auto">
+          <select name="status" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="borrowed" {% if selected_status == 'borrowed' %}selected{% endif %}>Borrowed</option>
+            <option value="returned" {% if selected_status == 'returned' %}selected{% endif %}>Returned</option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-emis-outline"><i class="bi bi-funnel me-1"></i>Filter</button>
+        </div>
+        {% if selected_status %}
+        <div class="col-auto">
+          <a href="{% url 'library:admin_borrowing_list' %}" class="btn btn-emis-danger"><i class="bi bi-x-lg"></i></a>
+        </div>
+        {% endif %}
+        <div class="col-auto ms-auto">
+          <span class="badge {% if overdue|length %}bg-danger{% else %}bg-success{% endif %} fs-6">
+            <i class="bi bi-alarm me-1"></i>{{ overdue|length }} overdue
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="emis-card">
+    <div class="emis-card-header">
+      <h2>Borrowing Records ({{ borrowings|length }})</h2>
+    </div>
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Book</th>
+              <th>Issued By</th>
+              <th>Borrowed</th>
+              <th>Due</th>
+              <th>Returned</th>
+              <th>Status</th>
+              <th>Fine</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in borrowings %}
+            <tr {% if b.is_overdue %}class="table-danger"{% endif %}>
+              <td class="fw-semibold">{{ b.student.roll_number }} <span class="small text-muted">{{ b.student.full_name }}</span></td>
+              <td>{{ b.book.title }}</td>
+              <td>{{ b.issued_by.full_name|default:"—" }}</td>
+              <td>{{ b.borrowed_date|date:"M d, Y" }}</td>
+              <td>{{ b.due_date|date:"M d, Y" }}</td>
+              <td>{{ b.return_date|date:"M d, Y"|default:"—" }}</td>
+              <td>
+                {% if b.status == 'borrowed' %}
+                  {% if b.is_overdue %}
+                    <span class="badge bg-danger">Overdue {{ b.overdue_days }}d</span>
+                  {% else %}
+                    <span class="badge bg-primary">Borrowed</span>
+                  {% endif %}
+                {% else %}
+                  <span class="badge bg-success">Returned</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if b.fine_amount %}
+                  <span class="badge bg-warning text-dark">Rs. {{ b.fine_amount }}</span>
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+              <td class="text-end">
+                {% if b.status == 'borrowed' %}
+                  <a href="{% url 'library:admin_return_book' b.id %}" class="btn btn-sm btn-emis-primary"><i class="bi bi-arrow-return-left me-1"></i>Return</a>
+                {% else %}
+                  <span class="small text-muted">Closed</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="9" class="text-center py-4 text-muted">
+                <i class="bi bi-arrow-left-right display-6 text-muted mb-2 d-block"></i>
+                No circulation records yet. Loans are issued by librarians from the Library Portal.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

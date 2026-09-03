@@ -1,61 +1,131 @@
 {% extends 'base.html' %}
-{$ load static %}
+{% load static %}
 
-{% block title %}Classes Management{% endblock %}
-{% block eyebrow_text %}Classes{% endblock %}
-{% block page_title %}Classes Management{% endblock %}
-{% block page_subtitle %}<p>Manage class records, sections, and academic information.</p>{% endblock %}
+{% block title %}Academic Management Overview{% endblock %}
+{% block eyebrow_text %}Academics{% endblock %}
+{% block page_title %}Academic Management{% endblock %}
+{% block page_subtitle %}<p>Manage departments, degree programs, course offerings, teacher assignments, and time tables.</p>{% endblock %}
 
 {% block breadcrumb %}
-  <span>EMIS</span><span class="sep">/</span><span class="current">Classes Management</span>
+  <span>EMIS</span><span class="sep">/</span><span class="current">Academics</span>
 {% endblock %}
 
 {% block page_actions %}
-  <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button>
-  <button class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Class / Import</button>
+  <a href="{% url 'academics:department_list' %}" class="btn btn-emis-outline"><i class="bi bi-building me-1"></i>Departments</a>
+  <a href="{% url 'academics:program_list' %}" class="btn btn-emis-outline"><i class="bi bi-mortarboard me-1"></i>Programs</a>
+  <a href="{% url 'academics:course_list' %}" class="btn btn-emis-outline"><i class="bi bi-book me-1"></i>Courses</a>
+  <a href="{% url 'academics:batch_list' %}" class="btn btn-emis-outline"><i class="bi bi-people me-1"></i>Batches</a>
+  <a href="{% url 'academics:academic_year_list' %}" class="btn btn-emis-outline"><i class="bi bi-calendar-event me-1"></i>Academic Years</a>
+  <a href="{% url 'academics:assignment_list' %}" class="btn btn-emis-outline"><i class="bi bi-person-badge me-1"></i>Assign Teacher</a>
+  <a href="{% url 'academics:timetable_view' %}" class="btn btn-emis-primary"><i class="bi bi-calendar3 me-1"></i>Timetable</a>
 {% endblock %}
 
 {% block content %}
-  <div class="emis-card">
-    <div class="emis-card-header">
-      <h2>Class List</h2>
-      <a href="#" class="small">View all</a>
-    </div>
-    <div class="emis-card-body p-0">
-      <div class="table-responsive">
-        <table class="emis-table">
-          <thead>
-            <tr>
-              <th>Class ID</th>
-              <th>Name</th>
-              <th>Section</th>
-              <th>Academic Year</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for cls in classes %}
-            <tr>
-              <td>{{ cls.class_id }}</td>
-              <td>{{ cls.name }}</td>
-              <td>{{ cls.section }}</td>
-              <td>{{ cls.academic_year }}</td>
-              <td>{{ cls.status }}</td>
-              <td>
-                <a href="" class="btn btn-sm btn-emis-outline">Edit</a>
-                <a href="" class="btn btn-sm btn-emis-danger">Delete</a>
-              </td>
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="6" class="text-center">No classes found.</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+
+<!-- Summary Stat Grid -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip blue"><i class="bi bi-building"></i></span>Departments</div>
+      <div class="stat-value">{{ departments|length }}</div>
     </div>
   </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip teal"><i class="bi bi-mortarboard"></i></span>Programs</div>
+      <div class="stat-value">{{ programs|length }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip amber"><i class="bi bi-book"></i></span>Courses</div>
+      <div class="stat-value">{{ courses|length }}</div>
+    </div>
+  </div>
+  <div class="col-6 col-lg-3">
+    <div class="emis-stat">
+      <div class="label"><span class="icon-chip red"><i class="bi bi-calendar3"></i></span>Class Assignments</div>
+      <div class="stat-value">{{ assignments|length }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Programs Overview Table -->
+<div class="emis-card mb-4">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Academic Programs</h2>
+    <a href="{% url 'academics:program_add' %}" class="btn btn-sm btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Program</a>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Program Name</th>
+            <th>Department</th>
+            <th>Duration</th>
+            <th>Semesters</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prog in programs %}
+          <tr>
+            <td class="id-cell fw-bold">{{ prog.code }}</td>
+            <td>{{ prog.name }}</td>
+            <td>{{ prog.department.code }} - {{ prog.department.name }}</td>
+            <td>{{ prog.duration_years }} Years</td>
+            <td>{{ prog.total_semesters }} Semesters</td>
+            <td>{% if prog.is_active %}<span class="pill pill-teal">Active</span>{% else %}<span class="pill pill-red">Inactive</span>{% endif %}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center py-4 text-muted">No programs configured yet. <a href="{% url 'academics:program_add' %}">Add one now</a>.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Teacher Course Allocations Table -->
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Teacher Course Assignments</h2>
+    <a href="{% url 'academics:assignment_add' %}" class="btn btn-sm btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Assign Teacher</a>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Assigned Teacher</th>
+            <th>Semester</th>
+            <th>Section</th>
+            <th>Max Students</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ca in assignments %}
+          <tr>
+            <td class="fw-semibold">{{ ca.course.code }} — {{ ca.course.name }}</td>
+            <td><i class="bi bi-person-badge me-1 text-primary"></i>{{ ca.teacher.full_name }}</td>
+            <td>{{ ca.semester.name }}</td>
+            <td>Sec {{ ca.section }}</td>
+            <td>{{ ca.max_students }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center py-4 text-muted">No teacher assignments created yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Return Book{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Return Book{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'library:admin_borrowing_list' %}">Circulation</a><span class="sep">/</span><span class="current">Return Book</span>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-7">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Confirm Return</h2>
+      </div>
+      <div class="emis-card-body">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="icon-chip blue" style="width: 48px; height: 48px; font-size: 22px;"><i class="bi bi-book"></i></div>
+          <div>
+            <div class="fw-semibold">{{ borrowing.book.title }}</div>
+            <div class="small text-muted">{{ borrowing.book.author }} · Borrowed {{ borrowing.borrowed_date|date:"M d, Y" }} · Due {{ borrowing.due_date|date:"M d, Y" }}</div>
+          </div>
+        </div>
+        <p class="mb-1">
+          Student: <strong>{{ borrowing.student.roll_number }}</strong> ({{ borrowing.student.full_name }})
+        </p>
+        {% if borrowing.is_overdue %}
+          <div class="alert alert-warning small">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            This book is {{ borrowing.overdue_days }} day(s) overdue. A fine of <strong>Rs. {{ borrowing.calculate_fine }}</strong> (Rs. 5/day) will be applied.
+          </div>
+        {% else %}
+          <div class="alert alert-success small">
+            <i class="bi bi-check-circle me-1"></i>Book is on time. No fine will be applied.
+          </div>
+        {% endif %}
+        <form method="post" class="d-flex justify-content-end gap-2">
+          {% csrf_token %}
+          <a href="{% url 'library:admin_borrowing_list' %}" class="btn btn-emis-outline">Cancel</a>
+          <button type="submit" class="btn btn-emis-primary"><i class="bi bi-arrow-return-left me-1"></i>Confirm Return</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

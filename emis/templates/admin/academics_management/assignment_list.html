@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Teacher Allocations{% endblock %}
+{% block eyebrow_text %}Academics{% endblock %}
+{% block page_title %}Teacher Course Allocations{% endblock %}
+{% block page_subtitle %}<p>Assign faculty teachers to active course sections.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'academics:classes_list' %}">Academics</a><span class="sep">/</span><span class="current">Assignments</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'academics:classes_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Academics</a>
+  <a href="{% url 'academics:assignment_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Assign Teacher</a>
+{% endblock %}
+
+{% block content %}
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Active Course Assignments</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Assigned Teacher</th>
+            <th>Semester / Term</th>
+            <th>Section</th>
+            <th>Capacity</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ca in assignments %}
+          <tr>
+            <td class="id-cell fw-bold">{{ ca.course.code }} — {{ ca.course.name }}</td>
+            <td class="fw-semibold"><i class="bi bi-person-badge me-1 text-primary"></i>{{ ca.teacher.full_name }}</td>
+            <td>{{ ca.semester.name }}</td>
+            <td>Section {{ ca.section }}</td>
+            <td>{{ ca.max_students }} Students</td>
+            <td class="text-end">
+              <form action="{% url 'academics:assignment_delete' ca.id %}" method="post" class="d-inline" onsubmit="return confirm('Remove teacher assignment?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-emis-danger"><i class="bi bi-trash"></i> Remove</button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center py-4 text-muted">No teacher assignments created. Click 'Assign Teacher' to allocate courses.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

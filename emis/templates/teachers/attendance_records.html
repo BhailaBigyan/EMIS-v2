@@ -1,0 +1,140 @@
+{% extends "teachers/base_teacher.html" %}
+{% load static %}
+{% load portal_extras %}
+
+{% block title %}Attendance Records{% endblock %}
+{% block eyebrow_text %}Attendance{% endblock %}
+{% block page_title %}Attendance Records{% endblock %}
+{% block page_subtitle %}<p>Monthly per-student summary and daily records for your classes.</p>{% endblock %}
+
+{% block content %}
+
+<div class="emis-card mb-3">
+  <div class="emis-card-header">
+    <h2>Filter Records</h2>
+  </div>
+  <div class="emis-card-body">
+    <form method="get" class="row g-3 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label small text-muted">Course Assignment</label>
+        <select name="course_assignment" class="form-select" required onchange="this.form.submit()">
+          <option value="">— Choose a class —</option>
+          {% for a in assignments %}
+          <option value="{{ a.id }}" {% if selected_assignment and selected_assignment.id == a.id %}selected{% endif %}>
+            {{ a.course.name }} ({{ a.course.code }}) · {{ a.semester.name }} · Sec {{ a.section|default:"A" }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label small text-muted">Month</label>
+        <input type="month" name="month" value="{{ month }}" class="form-control" onchange="this.form.submit()">
+      </div>
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-emis-primary w-100"><i class="bi bi-search me-1"></i>Apply</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% if selected_assignment %}
+<div class="emis-card mb-3">
+  <div class="emis-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <h2>Monthly Summary</h2>
+    <span class="pill pill-neutral">{{ month }} · {{ selected_assignment.course.code }}</span>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Roll Number</th>
+            <th>Student</th>
+            <th>Present</th>
+            <th>Late</th>
+            <th>Leave</th>
+            <th>Absent</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in summary %}
+          {% with total=s.present|add:s.late|add:s.leave|add:s.absent %}
+          <tr>
+            <td class="font-mono fw-semibold">{{ s.student__roll_number }}</td>
+            <td>{{ s.student__first_name }} {{ s.student__last_name }}</td>
+            <td><span class="pill pill-teal">{{ s.present }}</span></td>
+            <td><span class="pill pill-blue">{{ s.late }}</span></td>
+            <td><span class="pill pill-amber">{{ s.leave }}</span></td>
+            <td><span class="pill pill-red">{{ s.absent }}</span></td>
+            <td>
+              {% if total %}
+                {% with pct=s.present|add:s.late|multiply:100|divide:total %}
+                <span class="fw-semibold {% if pct < 75 %}text-danger{% else %}text-success{% endif %}">{{ pct|floatformat:0 }}%</span>
+                {% endwith %}
+              {% else %}—{% endif %}
+            </td>
+          </tr>
+          {% endwith %}
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-4 text-muted">No attendance marked for this class and month.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Daily Records</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Roll Number</th>
+            <th>Student</th>
+            <th>Status</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in records %}
+          <tr>
+            <td>{{ r.date|date:"D, M d, Y" }}</td>
+            <td class="font-mono fw-semibold">{{ r.student.roll_number }}</td>
+            <td>{{ r.student.full_name }}</td>
+            <td>
+              {% if r.status == 'present' %}<span class="pill pill-teal">Present</span>
+              {% elif r.status == 'late' %}<span class="pill pill-blue">Late</span>
+              {% elif r.status == 'leave' %}<span class="pill pill-amber">Leave</span>
+              {% else %}<span class="pill pill-red">Absent</span>{% endif %}
+            </td>
+            <td>{{ r.remarks|default:"—" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center py-4 text-muted">No daily records for the selected month.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="emis-card">
+  <div class="emis-card-body text-center py-5">
+    <i class="bi bi-calendar2-check display-4 text-muted"></i>
+    <h4 class="mt-3">Choose a class to view records</h4>
+    <p class="text-muted mb-0">Pick a course assignment above to see the monthly summary and daily attendance.</p>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

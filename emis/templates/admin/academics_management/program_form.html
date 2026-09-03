@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block eyebrow_text %}Academics{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'academics:program_list' %}">Programs</a><span class="sep">/</span><span class="current">{{ title }}</span>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label">Program Code <span class="text-danger">*</span></label>
+            {{ form.code }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Program Name <span class="text-danger">*</span></label>
+            {{ form.name }}
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Department <span class="text-danger">*</span></label>
+            {{ form.department }}
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <label class="form-label">Duration (Years)</label>
+              {{ form.duration_years }}
+            </div>
+            <div class="col-6">
+              <label class="form-label">Total Semesters</label>
+              {{ form.total_semesters }}
+            </div>
+          </div>
+          <div class="mb-3 form-check">
+            {{ form.is_active }}
+            <label class="form-check-label">Is Active</label>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            {{ form.description }}
+          </div>
+          <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'academics:program_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary">Save Program</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

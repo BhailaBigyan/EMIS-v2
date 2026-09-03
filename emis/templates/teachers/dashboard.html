@@ -1,0 +1,158 @@
+{% extends "teachers/base_teacher.html" %}
+{% load static %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+{% block eyebrow_text %}Overview{% endblock %}
+{% block page_title %}Welcome back, {{ teacher.first_name }}{% endblock %}
+{% block page_subtitle %}<p>{{ today_display }} · {{ teacher.get_designation_display }}, {{ teacher.department.name|default:"Unassigned" }}</p>{% endblock %}
+
+{% block content %}
+
+  <!-- Profile Strip -->
+  <div class="stu-welcome">
+    <div class="stu-welcome-avatar">
+      {{ teacher.first_name|slice:":1" }}{{ teacher.last_name|slice:":1" }}
+    </div>
+    <div class="stu-welcome-text">
+      <h2>{{ teacher.full_name }}</h2>
+      <p>
+        {% if teacher.department %}{{ teacher.department.name }}{% endif %}
+        {% if teacher.specialization %} · {{ teacher.specialization }}{% endif %}
+      </p>
+    </div>
+    <div class="stu-welcome-meta">
+      <div class="item">
+        <div class="k">Employee ID</div>
+        <div class="v">{{ teacher.employee_id }}</div>
+      </div>
+      <div class="item">
+        <div class="k">Assigned Courses</div>
+        <div class="v">{{ assignments_count }}</div>
+      </div>
+      <div class="item">
+        <div class="k">Designation</div>
+        <div class="v text-capitalize">{{ teacher.get_designation_display }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip blue"><i class="bi bi-journal-bookmark"></i></span>Assigned Courses</div>
+        <div class="stat-value" style="font-size: 20px;">{{ assignments_count }}</div>
+        <div class="stat-delta flat">semesters: {{ assignments|length }} assignment(s)</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-calendar-event"></i></span>Today's Classes</div>
+        <div class="stat-value" style="font-size: 20px;">{{ today_slots|length }}</div>
+        <div class="stat-delta flat">scheduled periods</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-person-lines-fill"></i></span>Pending Leaves</div>
+        <div class="stat-value" style="font-size: 20px;">{{ pending_leaves }}</div>
+        <div class="stat-delta {% if pending_leaves %}down{% else %}up{% endif %}">
+          {% if pending_leaves %}<i class="bi bi-exclamation-circle"></i> awaiting approval{% else %}<i class="bi bi-check-lg"></i> none pending{% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3">
+      <div class="emis-stat">
+        <div class="label"><span class="icon-chip green"><i class="bi bi-clipboard-check"></i></span>Attendance This Week</div>
+        <div class="stat-value" style="font-size: 20px;">{{ marked_days }}</div>
+        <div class="stat-delta flat">days marked</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Today's Classes -->
+    <div class="col-lg-7">
+      <div class="emis-card">
+        <div class="emis-card-header">
+          <h2>Today's Classes</h2>
+          <a href="{% url 'teachers:teacher_routines' %}" class="small">Full Routine &rarr;</a>
+        </div>
+        <div class="emis-card-body p-0">
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Course</th>
+                  <th>Semester</th>
+                  <th>Room</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for s in today_slots %}
+                <tr>
+                  <td>{{ s.start_time|time:"g:i A" }} – {{ s.end_time|time:"g:i A" }}</td>
+                  <td>{{ s.course_assignment.course.name }} <span class="text-muted">({{ s.course_assignment.course.code }})</span></td>
+                  <td>{{ s.course_assignment.semester.name }}</td>
+                  <td>{{ s.room }}</td>
+                  <td><a href="{% url 'teachers:teacher_attendance' %}?course_assignment={{ s.course_assignment.id }}" class="small fw-semibold row-action">Mark &rarr;</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center py-4 text-muted">No classes scheduled for today. Enjoy the free time!</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Leaves -->
+    <div class="col-lg-5">
+      <div class="emis-card">
+        <div class="emis-card-header">
+          <h2>Recent Leave Requests</h2>
+          <a href="{% url 'teachers:teacher_leave' %}" class="small">View All &rarr;</a>
+        </div>
+        <div class="emis-card-body p-0">
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Dates</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for l in recent_leaves %}
+                <tr>
+                  <td>{{ l.get_leave_type_display }}</td>
+                  <td>{{ l.from_date|date:"M d" }} – {{ l.to_date|date:"M d" }} <span class="text-muted">({{ l.days }}d)</span></td>
+                  <td>
+                    {% if l.status == 'approved' %}<span class="pill pill-teal">Approved</span>
+                    {% elif l.status == 'rejected' %}<span class="pill pill-red">Rejected</span>
+                    {% else %}<span class="pill pill-amber">Pending</span>{% endif %}
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="3" class="text-center py-4 text-muted">No leave requests yet.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="emis-card-body border-top">
+          <a href="{% url 'teachers:teacher_leave_new' %}" class="btn btn-emis-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>New Leave Request</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

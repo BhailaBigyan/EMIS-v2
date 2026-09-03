@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Categories{% endblock %}
+{% block eyebrow_text %}Library{% endblock %}
+{% block page_title %}Book Categories{% endblock %}
+{% block page_subtitle %}<p>Organize the catalog into subject categories.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'library:admin_book_list' %}">Books</a><span class="sep">/</span><span class="current">Categories</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'library:admin_category_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Category</a>
+{% endblock %}
+
+{% block content %}
+<div class="emis-card">
+  <div class="emis-card-header">
+    <h2>Categories ({{ categories|length }})</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Total Copies</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cat in categories %}
+          <tr>
+            <td class="fw-semibold">{{ cat.name }}</td>
+            <td>{{ cat.description|default:"—" }}</td>
+            <td>{{ cat.book_count|default:0 }}</td>
+            <td class="text-end">
+              <a href="{% url 'library:admin_category_delete' cat.id %}" class="btn btn-sm btn-emis-danger"><i class="bi bi-trash"></i></a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center py-4 text-muted">No categories yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

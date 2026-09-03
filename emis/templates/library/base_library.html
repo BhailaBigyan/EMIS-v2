@@ -22,7 +22,7 @@
 
   {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="portal-library">
 
   <div class="stu-shell">
 
@@ -49,7 +49,7 @@
         <div>
           {% block eyebrow %}<div class="eyebrow">{% block eyebrow_text %}Overview{% endblock %}</div>{% endblock %}
           <h1>{% block page_title %}Library Dashboard{% endblock %}</h1>
-          {% block page_subtitle %}<p>Track your borrowed books, due dates, and fines.</p>{% endblock %}
+          {% block page_subtitle %}<p>Librarian circulation desk — issue books, manage loans, and process returns.</p>{% endblock %}
         </div>
         <div class="emis-page-header-actions">
           {% block page_actions %}{% endblock %}
@@ -64,7 +64,7 @@
 
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{% static 'js/emis-student.js' %}"></script>
+  <script src="{% static 'js/student.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

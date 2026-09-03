@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block eyebrow_text %}Academics{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+{% block page_subtitle %}<p>Add a new term or semester to an academic year session.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'academics:academic_year_list' %}">Academic Years</a><span class="sep">/</span><span class="current">{{ title }}</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'academics:academic_year_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to List</a>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-8 col-lg-6">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label class="form-label font-weight-medium">Academic Year <span class="text-danger">*</span></label>
+            {{ form.academic_year }}
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-8">
+              <label class="form-label font-weight-medium">Semester / Term Name <span class="text-danger">*</span></label>
+              {{ form.name }}
+              <div class="form-text">e.g. Spring 2026, Semester 1</div>
+            </div>
+            <div class="col-4">
+              <label class="form-label font-weight-medium">Sequence # <span class="text-danger">*</span></label>
+              {{ form.number }}
+            </div>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label font-weight-medium">Start Date <span class="text-danger">*</span></label>
+              {{ form.start_date }}
+            </div>
+            <div class="col-6">
+              <label class="form-label font-weight-medium">End Date <span class="text-danger">*</span></label>
+              {{ form.end_date }}
+            </div>
+          </div>
+
+          <div class="form-check mb-4">
+            {{ form.is_current }}
+            <label class="form-check-label font-weight-medium" for="{{ form.is_current.id_for_label }}">
+              Set as Current Active Semester
+            </label>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'academics:academic_year_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary"><i class="bi bi-check-circle me-1"></i>Save Semester</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

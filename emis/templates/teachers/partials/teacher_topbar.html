@@ -1,0 +1,59 @@
+{% load static %}
+
+<!-- Brand / utility row -->
+<header class="stu-topbar">
+  <a href="{% url 'teachers:teacher_dashboard' %}" class="stu-brand">
+    <div class="stu-brand-mark">E</div>
+    <div class="stu-brand-text">
+      <div class="name">EMIS</div>
+      <div class="sub">Teacher Portal</div>
+    </div>
+  </a>
+
+  <div class="stu-topbar-right">
+    <div class="stu-user-chip">
+      <div class="stu-user-avatar">{{ teacher.first_name|slice:":1" }}{{ teacher.last_name|slice:":1" }}</div>
+      <div class="stu-user-meta">
+        <div class="uname">{{ teacher.full_name }}</div>
+        <div class="urole">{{ teacher.get_designation_display }} · {{ teacher.employee_id }}</div>
+      </div>
+    </div>
+
+    <a href="{% url 'teachers:teacher_logout' %}" class="stu-logout-btn" aria-label="Logout">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </a>
+
+    <button class="stu-mobile-toggle" type="button" data-stu-nav-toggle aria-label="Toggle menu">
+      <i class="bi bi-list"></i>
+      <i class="bi bi-x"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Horizontal nav row -->
+<nav class="stu-navbar" id="stu-navbar">
+  <div class="stu-nav">
+    <a href="{% url 'teachers:teacher_dashboard' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_dashboard' %}active{% endif %}">
+      <i class="bi bi-grid-1x2"></i>Dashboard
+    </a>
+    <a href="{% url 'teachers:teacher_attendance' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_attendance' %}active{% endif %}">
+      <i class="bi bi-clipboard-check"></i>Mark Attendance
+    </a>
+    <a href="{% url 'teachers:teacher_attendance_records' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_attendance_records' %}active{% endif %}">
+      <i class="bi bi-calendar-check"></i>Attendance Records
+    </a>
+    <a href="{% url 'teachers:teacher_routines' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_routines' %}active{% endif %}">
+      <i class="bi bi-calendar3"></i>My Routines
+    </a>
+    <a href="{% url 'teachers:teacher_leave' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_leave' or request.resolver_match.url_name == 'teacher_leave_new' %}active{% endif %}">
+      <i class="bi bi-person-lines-fill"></i>Leave
+    </a>
+    <a href="{% url 'teachers:assistant' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'assistant' %}active{% endif %}">
+      <i class="bi bi-stars"></i>AI Assistant
+    </a>
+    <a href="{% url 'teachers:teacher_profile' %}" class="stu-nav-link {% if request.resolver_match.url_name == 'teacher_profile' or request.resolver_match.url_name == 'teacher_profile_edit' %}active{% endif %}">
+      <i class="bi bi-person-circle"></i>My Profile
+    </a>
+  </div>
+</nav>

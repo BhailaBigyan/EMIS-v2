@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add New Student{% endblock %}
+{% block eyebrow_text %}Students{% endblock %}
+{% block page_title %}Add New Student{% endblock %}
+{% block page_subtitle %}<p>Enroll a new student into the system. Roll number and default password will be auto-generated.</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'student_list' %}">Students</a><span class="sep">/</span><span class="current">Add Student</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'student_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Directory</a>
+  <a href="{% url 'student_bulk_upload' %}" class="btn btn-emis-outline"><i class="bi bi-file-earmark-spreadsheet me-1"></i>Bulk Upload CSV/Excel</a>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10">
+    <div class="emis-card">
+      <div class="emis-card-header">
+        <h2>Student Enrollment Form</h2>
+      </div>
+      <div class="emis-card-body">
+        <form method="post">
+          {% csrf_token %}
+          
+          <h5 class="mb-3 text-primary"><i class="bi bi-person me-2"></i>Personal Information</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">First Name <span class="text-danger">*</span></label>
+              {{ form.first_name }}
+              {% if form.first_name.errors %}<div class="text-danger small">{{ form.first_name.errors.0 }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Last Name <span class="text-danger">*</span></label>
+              {{ form.last_name }}
+              {% if form.last_name.errors %}<div class="text-danger small">{{ form.last_name.errors.0 }}</div>{% endif %}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label font-weight-medium">Gender <span class="text-danger">*</span></label>
+              {{ form.gender }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label font-weight-medium">Date of Birth</label>
+              {{ form.date_of_birth }}
+            </div>
+            <div class="col-md-4">
+              <label class="form-label font-weight-medium">Status</label>
+              {{ form.status }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Email</label>
+              {{ form.email }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Phone</label>
+              {{ form.phone }}
+            </div>
+            <div class="col-12">
+              <label class="form-label font-weight-medium">Address</label>
+              {{ form.address }}
+            </div>
+          </div>
+
+          <h5 class="mb-3 text-primary"><i class="bi bi-book me-2"></i>Academic Information</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Program</label>
+              {{ form.program }}
+            </div>
+            <div class="col-md-3">
+              <label class="form-label font-weight-medium">Batch</label>
+              {{ form.batch }}
+            </div>
+            <div class="col-md-3">
+              <label class="form-label font-weight-medium">Current Semester</label>
+              {{ form.current_semester }}
+            </div>
+          </div>
+
+          <h5 class="mb-3 text-primary"><i class="bi bi-shield-person me-2"></i>Guardian Information</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Guardian Name</label>
+              {{ form.guardian_name }}
+            </div>
+            <div class="col-md-6">
+              <label class="form-label font-weight-medium">Guardian Phone</label>
+              {{ form.guardian_phone }}
+            </div>
+          </div>
+
+          <div class="alert alert-info d-flex align-items-center">
+            <i class="bi bi-info-circle-fill me-2 fs-4"></i>
+            <div>
+              <strong>Auto Generation Note:</strong> Roll number will be auto-generated as <code>{PROGRAM_CODE}-{BATCH}-{SEQUENCE}</code> (e.g. <code>BCA-2081-001</code>). Default password will be set as <code>emis@{roll_number}</code>.
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <a href="{% url 'student_list' %}" class="btn btn-emis-outline">Cancel</a>
+            <button type="submit" class="btn btn-emis-primary"><i class="bi bi-check-circle me-1"></i>Create Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

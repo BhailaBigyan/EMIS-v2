@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Programs{% endblock %}
+{% block eyebrow_text %}Academics{% endblock %}
+{% block page_title %}Academic Programs{% endblock %}
+{% block page_subtitle %}<p>Degree programs (e.g. BCA, BSc CSIT, BIT, BBA).</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'academics:classes_list' %}">Academics</a><span class="sep">/</span><span class="current">Programs</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'academics:classes_list' %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Academics</a>
+  <a href="{% url 'academics:program_add' %}" class="btn btn-emis-primary"><i class="bi bi-plus-lg me-1"></i>Add Program</a>
+{% endblock %}
+
+{% block content %}
+<div class="emis-card">
+  <div class="emis-card-header d-flex justify-content-between align-items-center">
+    <h2>Program Directory</h2>
+  </div>
+  <div class="emis-card-body p-0">
+    <div class="table-responsive">
+      <table class="emis-table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Program Name</th>
+            <th>Department</th>
+            <th>Duration</th>
+            <th>Semesters</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prog in programs %}
+          <tr>
+            <td class="id-cell font-monospace fw-bold">{{ prog.code }}</td>
+            <td class="fw-semibold">{{ prog.name }}</td>
+            <td>{{ prog.department.name }}</td>
+            <td>{{ prog.duration_years }} Years</td>
+            <td>{{ prog.total_semesters }} Semesters</td>
+            <td>{% if prog.is_active %}<span class="pill pill-teal">Active</span>{% else %}<span class="pill pill-red">Inactive</span>{% endif %}</td>
+            <td class="text-end">
+              <a href="{% url 'academics:program_edit' prog.id %}" class="btn btn-sm btn-emis-outline"><i class="bi bi-pencil"></i></a>
+              <form action="{% url 'academics:program_delete' prog.id %}" method="post" class="d-inline" onsubmit="return confirm('Delete this program?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-emis-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center py-4 text-muted">No academic programs found. Click 'Add Program' to create one.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

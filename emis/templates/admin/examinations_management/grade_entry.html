@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Grade Entry - {{ course.code }}{% endblock %}
+{% block eyebrow_text %}Examinations{% endblock %}
+{% block page_title %}Bulk Grade Entry Grid{% endblock %}
+{% block page_subtitle %}<p>Enter marks for all enrolled students in {{ course.code }} — {{ course.name }} (Total Marks: {{ exam.total_marks }}).</p>{% endblock %}
+
+{% block breadcrumb %}
+  <span>EMIS</span><span class="sep">/</span><a href="{% url 'examinations:exam_list' %}">Examinations</a><span class="sep">/</span><a href="{% url 'examinations:schedule_list' exam.id %}">Schedule</a><span class="sep">/</span><span class="current">Grade Entry</span>
+{% endblock %}
+
+{% block page_actions %}
+  <a href="{% url 'examinations:schedule_list' exam.id %}" class="btn btn-emis-outline"><i class="bi bi-arrow-left me-1"></i>Back to Schedule</a>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+
+  <div class="emis-card">
+    <div class="emis-card-header d-flex justify-content-between align-items-center">
+      <div>
+        <h2>{{ course.code }} &mdash; {{ course.name }}</h2>
+        <div class="text-muted small mt-1">Exam Session: <strong>{{ exam.name }}</strong> &bull; Total Marks: <strong>{{ exam.total_marks }}</strong> &bull; Pass Marks: <strong>{{ exam.pass_marks }}</strong></div>
+      </div>
+      <button type="submit" class="btn btn-emis-primary"><i class="bi bi-save me-1"></i>Save All Marks</button>
+    </div>
+
+    <div class="emis-card-body p-0">
+      <div class="table-responsive">
+        <table class="emis-table">
+          <thead>
+            <tr>
+              <th style="width: 60px;">#</th>
+              <th>Roll Number</th>
+              <th>Student Name</th>
+              <th style="width: 160px;">Marks Obtained</th>
+              <th>Calculated Grade</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in students_with_grades %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td class="id-cell font-monospace fw-bold">{{ item.student.roll_number }}</td>
+              <td class="fw-semibold">{{ item.student.full_name }}</td>
+              <td>
+                <input type="number" step="0.01" max="{{ exam.total_marks }}" min="0" 
+                       name="marks_{{ item.student.student_id }}" 
+                       value="{{ item.grade.marks_obtained|default:'' }}" 
+                       class="form-control form-control-sm text-center fw-bold" 
+                       placeholder="0.00">
+              </td>
+              <td>
+                {% if item.grade %}
+                  {% if item.grade.grade_letter == 'F' %}
+                    <span class="badge bg-danger">{{ item.grade.grade_letter }}</span>
+                  {% else %}
+                    <span class="badge bg-success">{{ item.grade.grade_letter }}</span>
+                  {% endif %}
+                {% else %}
+                  <span class="text-muted small">&ndash;</span>
+                {% endif %}
+              </td>
+              <td>
+                <input type="text" name="remarks_{{ item.student.student_id }}" 
+                       value="{{ item.grade.remarks|default:'' }}" 
+                       class="form-control form-control-sm" 
+                       placeholder="Optional remark">
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">No active students enrolled in this program and semester.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="emis-card-footer p-3 bg-light d-flex justify-content-end">
+      <button type="submit" class="btn btn-emis-primary"><i class="bi bi-save me-1"></i>Save All Marks</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

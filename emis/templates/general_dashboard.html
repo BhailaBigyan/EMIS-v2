@@ -1,116 +1,263 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Admin Dashboard{% endblock %}
 {% block eyebrow_text %}Overview{% endblock %}
-{% block page_title %}Dashboard{% endblock %}
-{% block page_subtitle %}<p>Welcome back. Here's what's happening across your institution today.</p>{% endblock %}
+{% block page_title %}Admin Dashboard{% endblock %}
+{% block page_subtitle %}<p>Real-time overview of your institution's students, academics, examinations, and fee collections.</p>{% endblock %}
 
 {% block breadcrumb %}
   <span>EMIS</span><span class="sep">/</span><span class="current">Dashboard</span>
 {% endblock %}
 
 {% block page_actions %}
-  <!-- <button class="btn btn-emis-outline"><i class="bi bi-download me-1"></i>Export</button> -->
+  <a href="{% url 'finances:record_payment' %}" class="btn btn-emis-outline"><i class="bi bi-cash me-1"></i>Record Payment</a>
+  <a href="{% url 'student_bulk_upload' %}" class="btn btn-emis-outline"><i class="bi bi-file-earmark-spreadsheet me-1"></i>Bulk Import</a>
+  <a href="{% url 'student_add' %}" class="btn btn-emis-primary"><i class="bi bi-person-plus me-1"></i>Add Student</a>
 {% endblock %}
 
 {% block content %}
 
-  <!-- Stat cards -->
+  <!-- Live Dynamic Stat Cards -->
   <div class="row g-3 mb-4">
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
         <div class="label"><span class="icon-chip blue"><i class="bi bi-people"></i></span>Total Students</div>
-        <div class="stat-value">2,481</div>
-        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>3.2% this term</div>
+        <div class="stat-value">{{ total_students }}</div>
+        <div class="stat-delta up"><i class="bi bi-person-check me-1"></i>Registered in system</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip teal"><i class="bi bi-calendar-check"></i></span>Attendance Today</div>
-        <div class="stat-value">94.1%</div>
-        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>1.4% vs yesterday</div>
+        <div class="label"><span class="icon-chip teal"><i class="bi bi-cash-stack"></i></span>Total Fee Collections</div>
+        <div class="stat-value">Rs. {{ total_collections }}</div>
+        <div class="stat-delta up"><i class="bi bi-arrow-up-short"></i>Fee collections</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip amber"><i class="bi bi-journal-text"></i></span>Pending Results</div>
-        <div class="stat-value">17</div>
-        <div class="stat-delta flat">Awaiting grading</div>
+        <div class="label"><span class="icon-chip amber"><i class="bi bi-mortarboard"></i></span>Academic Programs</div>
+        <div class="stat-value">{{ total_programs }}</div>
+        <div class="stat-delta flat"><i class="bi bi-book me-1"></i>Active degree courses</div>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="emis-stat">
-        <div class="label"><span class="icon-chip red"><i class="bi bi-person-badge"></i></span>Staff on Leave</div>
-        <div class="stat-value">4</div>
-        <div class="stat-delta down"><i class="bi bi-arrow-down-short"></i>2 fewer than last week</div>
+        <div class="label"><span class="icon-chip red"><i class="bi bi-building"></i></span>Departments &amp; Staff</div>
+        <div class="stat-value">{{ total_departments }} / {{ total_teachers }}</div>
+        <div class="stat-delta flat"><i class="bi bi-diagram-3 me-1"></i>Depts / Active Faculty</div>
       </div>
     </div>
   </div>
 
-  <!-- Recent students table -->
+  <!-- Real Recently Enrolled Students Table -->
   <div class="emis-card mb-4">
-    <div class="emis-card-header">
+    <div class="emis-card-header d-flex justify-content-between align-items-center">
       <h2>Recently Enrolled Students</h2>
-      <a href="#" class="small">View all</a>
+      <a href="{% url 'student_list' %}" class="small font-weight-semibold">View all students &rarr;</a>
     </div>
     <div class="emis-card-body p-0">
       <div class="table-responsive">
         <table class="emis-table">
           <thead>
             <tr>
-              <th>Student</th>
               <th>Roll No.</th>
-              <th>Class</th>
-              <th>Enrolled</th>
+              <th>Student Name</th>
+              <th>Program</th>
+              <th>Batch</th>
+              <th>Enrolled Date</th>
               <th>Status</th>
+              <th class="text-end">Action</th>
             </tr>
           </thead>
           <tbody>
+            {% for student in recent_students %}
             <tr>
-              <td>Aarav Sharma</td>
-              <td class="id-cell">EMIS-2081-0142</td>
-              <td>Grade 10 — B</td>
-              <td>Aug 3, 2026</td>
-              <td><span class="pill pill-teal">Active</span></td>
+              <td class="id-cell">
+                <a href="{% url 'student_profile' student.student_id %}" class="fw-semibold font-monospace">
+                  {{ student.roll_number }}
+                </a>
+              </td>
+              <td>
+                <div class="fw-medium">{{ student.full_name }}</div>
+                {% if student.email %}<div class="small text-muted">{{ student.email }}</div>{% endif %}
+              </td>
+              <td>
+                {% if student.program %}
+                  <span class="badge bg-light text-dark border">{{ student.program.code }}</span>
+                {% else %}
+                  <span class="text-muted">&mdash;</span>
+                {% endif %}
+              </td>
+              <td>{{ student.batch|default:"—" }}</td>
+              <td>{{ student.created_at|date:"M d, Y" }}</td>
+              <td>
+                {% if student.status == 'active' %}
+                  <span class="pill pill-teal">Active</span>
+                {% elif student.status == 'inactive' %}
+                  <span class="pill pill-amber">Inactive</span>
+                {% elif student.status == 'graduated' %}
+                  <span class="pill pill-blue">Graduated</span>
+                {% else %}
+                  <span class="pill pill-red">Suspended</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <a href="{% url 'student_profile' student.student_id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-eye"></i> Profile</a>
+              </td>
             </tr>
+            {% empty %}
             <tr>
-              <td>Sita Gurung</td>
-              <td class="id-cell">EMIS-2081-0143</td>
-              <td>Grade 9 — A</td>
-              <td>Aug 2, 2026</td>
-              <td><span class="pill pill-teal">Active</span></td>
+              <td colspan="7" class="text-center py-4 text-muted">No students registered yet. Click 'Add Student' to enroll.</td>
             </tr>
-            <tr>
-              <td>Bikash Thapa</td>
-              <td class="id-cell">EMIS-2081-0144</td>
-              <td>Grade 11 — C</td>
-              <td>Aug 1, 2026</td>
-              <td><span class="pill pill-amber">Pending docs</span></td>
-            </tr>
-            <tr>
-              <td>Puja Rai</td>
-              <td class="id-cell">EMIS-2081-0145</td>
-              <td>Grade 8 — A</td>
-              <td>Jul 30, 2026</td>
-              <td><span class="pill pill-red">Inactive</span></td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- Empty state example (e.g. for a fresh module with no data yet) -->
-  <div class="emis-card">
-    <div class="emis-card-header">
-      <h2>Upcoming Exams</h2>
+  <div class="row g-4 mb-4">
+    <!-- Upcoming Exams Card -->
+    <div class="col-12 col-lg-6">
+      <div class="emis-card h-100">
+        <div class="emis-card-header d-flex justify-content-between align-items-center">
+          <h2>Upcoming Examination Sessions</h2>
+          <a href="{% url 'examinations:exam_list' %}" class="small font-weight-semibold">Manage Exams &rarr;</a>
+        </div>
+        <div class="emis-card-body p-0">
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Exam Title</th>
+                  <th>Semester</th>
+                  <th>Dates</th>
+                  <th class="text-end">Schedule</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for exam in upcoming_exams %}
+                <tr>
+                  <td class="fw-bold">{{ exam.name }}</td>
+                  <td>{{ exam.semester.name }}</td>
+                  <td>{{ exam.start_date|date:"M d" }} &ndash; {{ exam.end_date|date:"M d, Y" }}</td>
+                  <td class="text-end">
+                    <a href="{% url 'examinations:schedule_list' exam.id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-calendar-week me-1"></i>Routine</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center py-4 text-muted">No upcoming examination sessions.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="emis-card-body">
-      <div class="emis-empty">
-        <i class="bi bi-journal-x"></i>
-        <h4>No exams scheduled</h4>
-        <p>Once you create an exam under Examination &amp; Grades, it'll show up here.</p>
+
+    <!-- Recent Payments Card -->
+    <div class="col-12 col-lg-6">
+      <div class="emis-card h-100">
+        <div class="emis-card-header d-flex justify-content-between align-items-center">
+          <h2>Recent Fee Collections</h2>
+          <a href="{% url 'finances:payment_list' %}" class="small font-weight-semibold">View Payments &rarr;</a>
+        </div>
+        <div class="emis-card-body p-0">
+          <div class="table-responsive">
+            <table class="emis-table">
+              <thead>
+                <tr>
+                  <th>Receipt</th>
+                  <th>Student</th>
+                  <th>Amount</th>
+                  <th class="text-end">Receipt</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for p in recent_payments %}
+                <tr>
+                  <td class="font-monospace id-cell fw-bold">{{ p.receipt_number }}</td>
+                  <td class="fw-semibold">{{ p.student.roll_number }}</td>
+                  <td class="fw-bold text-success">Rs. {{ p.amount_paid }}</td>
+                  <td class="text-end">
+                    <a href="{% url 'finances:payment_receipt' p.id %}" class="btn btn-sm btn-emis-outline row-action"><i class="bi bi-printer"></i> Print</a>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center py-4 text-muted">No recent fee collections.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Management Links Strip -->
+  <div class="row g-3">
+    <div class="col-md-3">
+      <div class="emis-card hover-lift h-100">
+        <div class="emis-card-body d-flex align-items-center gap-3">
+          <span class="icon-chip blue flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
+            <i class="bi bi-person-badge"></i>
+          </span>
+          <div>
+            <h5 class="mb-1 font-weight-semibold" style="font-size: 15px;">Students</h5>
+            <p class="text-muted small mb-2">View &amp; manage students.</p>
+            <a href="{% url 'student_list' %}" class="small font-weight-semibold">Student Directory &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="emis-card hover-lift h-100">
+        <div class="emis-card-body d-flex align-items-center gap-3">
+          <span class="icon-chip teal flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
+            <i class="bi bi-journal-bookmark"></i>
+          </span>
+          <div>
+            <h5 class="mb-1 font-weight-semibold" style="font-size: 15px;">Academics</h5>
+            <p class="text-muted small mb-2">Programs, courses &amp; timetable.</p>
+            <a href="{% url 'academics:department_list' %}" class="small font-weight-semibold">Academic Overview &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="emis-card hover-lift h-100">
+        <div class="emis-card-body d-flex align-items-center gap-3">
+          <span class="icon-chip amber flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
+            <i class="bi bi-cash-stack"></i>
+          </span>
+          <div>
+            <h5 class="mb-1 font-weight-semibold" style="font-size: 15px;">Finances</h5>
+            <p class="text-muted small mb-2">Fee structures &amp; receipts.</p>
+            <a href="{% url 'finances:finance_dashboard' %}" class="small font-weight-semibold">Finance Portal &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="emis-card hover-lift h-100">
+        <div class="emis-card-body d-flex align-items-center gap-3">
+          <span class="icon-chip red flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
+            <i class="bi bi-journal-check"></i>
+          </span>
+          <div>
+            <h5 class="mb-1 font-weight-semibold" style="font-size: 15px;">Examinations</h5>
+            <p class="text-muted small mb-2">Exams, routine &amp; report cards.</p>
+            <a href="{% url 'examinations:exam_list' %}" class="small font-weight-semibold">Exam Management &rarr;</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
